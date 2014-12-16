@@ -1,4 +1,4 @@
-{
+G
   "name": "bluewhale",
   "version": "0.0.0",
   "description": "Dockerboard Web Client",
@@ -16,5 +16,10 @@
     "client"
   ],
   "author": "fundon <cfddream@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-sass": "ajoslin/gulp-sass#master"
+  }
 }
