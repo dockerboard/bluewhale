@@ -57,7 +57,7 @@ function buildScss(isWatching) {
     .pipe(autoprefixer({
       browsers: ['last 2 versions', 'last 4 Android versions']
     }))
-    .pipe(minifyCSS())
+    .pipe(gif(!isWatching, minifyCSS()))
     .pipe(gulp.dest('dist/css'));
 
   return task;
