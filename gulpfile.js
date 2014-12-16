@@ -6,11 +6,23 @@ var gulp = require('gulp');
 var pkg = require('./package.json');
 var plugins = require('gulp-load-plugins')();
 
+var AUTOPREFIXER_BROWSERS = [
+  'ie >= 10',
+  'ie_mob >= 10',
+  'ff >= 30',
+  'chrome >= 34',
+  'safari >= 7',
+  'opera >= 23',
+  'ios >= 7',
+  'android >= 4.4',
+  'bb >= 10'
+];
 
 /** Gulp dependencies */
 
 var autoprefixer = plugins.autoprefixer;
 var concat = plugins.concat;
+var csso = plugins.csso;
 var debug = plugins.debug;
 var filter = plugins.filter;
 var gif = plugins['if'];
@@ -18,7 +30,6 @@ var jade = plugins.jade;
 var jscs = plugins.jscs;
 var jshint = plugins.jshint;
 var jshintSummary = require('jshint-summary');
-var minifyCSS = plugins.minifyCss;
 var ngAnnotate = plugins.ngAnnotate;
 var ngHtml2js = plugins.ngHtml2js;
 var sass = plugins.sass;
@@ -37,7 +48,9 @@ gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade', 'browser-sync']);
 gulp.task('browser-sync', function() {
   browserSync({
     server: {
-      baseDir: "./dist"
+      notify: false,
+      logPrefix: 'BW',
+      baseDir: './dist'
     }
   });
 });
@@ -126,9 +139,9 @@ function buildScss(isWatching) {
   task
     .pipe(sass())
     .pipe(autoprefixer({
-      browsers: ['last 2 versions', 'last 4 Android versions']
+      browsers: AUTOPREFIXER_BROWSERS
     }))
-    .pipe(gif(!isWatching, minifyCSS()))
+    .pipe(gif(!isWatching, csso()))
     .pipe(gulp.dest('dist/css'));
 
   return task;
