@@ -57,7 +57,10 @@ gulp.task('browser-sync', function() {
     server: {
       notify: false,
       logPrefix: 'BW',
-      baseDir: './dist'
+      baseDir: './dist',
+      routes: {
+        "/bower_components": "bower_components"
+      }
     }
   });
 });
