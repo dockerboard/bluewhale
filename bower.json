@@ -1,0 +1,30 @@
+{
+  "name": "bluewhale",
+  "version": "0.0.0",
+  "authors": [
+    "fundon <cfddream@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.3.x",
+    "angular-animate": "1.3.x",
+    "angular-aria": "1.3.x",
+    "hammerjs": "2.0.x",
+    "angular-resource": "1.3.x",
+    "angular-ui-router": "0.2.x",
+    "d3": "3.5.x",
+    "lodash": "2.4.x",
+    "metrics-graphics": "1.1.x",
+    "angular-material": "0.6.x",
+    "material-design-icons": "1.0.x",
+    "angular-pretty-bytes": "1.0.x",
+    "angular-loading-bar": "0.6.x"
+  }
+}
