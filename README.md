@@ -1,7 +1,7 @@
 
 # bluewhale
 
-A [Dockerboard][] Web Client.
+The [Dockerboard][] Web Client.
 
 
 
