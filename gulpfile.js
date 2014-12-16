@@ -1,6 +1,7 @@
 'use strict';
 
 var browserSync = require('browser-sync');
+var del = require('del');
 var glob = require('glob');
 var gulp = require('gulp');
 var pkg = require('./package.json');
@@ -39,11 +40,17 @@ var watch = plugins.watch;
 
 /** Tasks **/
 
-gulp.task('default', ['build']);
+gulp.task('default', ['clean'], function () {
+  gulp.start('build');
+});
 
 gulp.task('build', ['build:scss', 'build:js', 'build:jade']);
 
 gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade', 'browser-sync']);
+
+gulp.task('clean', function(cb) {
+  del(['dist/*'], { dot: true }, cb);
+});
 
 gulp.task('browser-sync', function() {
   browserSync({
