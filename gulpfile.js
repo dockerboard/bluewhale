@@ -1,8 +1,9 @@
 'use strict';
 
-var pkg = require('./package.json');
+var browserSync = require('browser-sync');
 var glob = require('glob');
 var gulp = require('gulp');
+var pkg = require('./package.json');
 var plugins = require('gulp-load-plugins')();
 
 
@@ -31,7 +32,15 @@ gulp.task('default', ['build']);
 
 gulp.task('build', ['build:scss', 'build:js', 'build:jade']);
 
-gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade']);
+gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade', 'browser-sync']);
+
+gulp.task('browser-sync', function() {
+  browserSync({
+    server: {
+      baseDir: "./dist"
+    }
+  });
+});
 
 /*** Scss Tasks ***/
 
@@ -40,7 +49,8 @@ gulp.task('build:scss', function () {
 });
 
 gulp.task('watch:scss', function (a) {
-  return buildScss(true);
+  return buildScss(true)
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 /*** JS Tasks ***/
@@ -69,7 +79,8 @@ gulp.task('build:js', function () {
 });
 
 gulp.task('watch:js', function () {
-  return buildJS(true);
+  return buildJS(true)
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 /*** Jade Tasks ***/
@@ -78,7 +89,8 @@ gulp.task('build:jade', function () {
 });
 
 gulp.task('watch:jade', function (a) {
-  return buildJade(true);
+  return buildJade(true)
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 
