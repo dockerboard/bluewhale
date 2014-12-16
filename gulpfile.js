@@ -43,26 +43,6 @@ gulp.task('watch:scss', function (a) {
   return buildScss(true);
 });
 
-function buildScss(isWatching) {
-  var dir = 'src/css/**/*.scss';
-  var task = gulp.src(dir);
-  if (isWatching) {
-    task = task
-      .pipe(watch(dir))
-      .pipe(debug())
-  }
-
-  task
-    .pipe(sass())
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions', 'last 4 Android versions']
-    }))
-    .pipe(gif(!isWatching, minifyCSS()))
-    .pipe(gulp.dest('dist/css'));
-
-  return task;
-}
-
 /*** JS Tasks ***/
 
 gulp.task('jshint', function () {
@@ -92,6 +72,18 @@ gulp.task('watch:js', function () {
   return buildJS(true);
 });
 
+/*** Jade Tasks ***/
+gulp.task('build:jade', function () {
+  return buildJade()
+});
+
+gulp.task('watch:jade', function (a) {
+  return buildJade(true);
+});
+
+
+/** Helpers **/
+
 function buildJS(isWatching) {
   var dir = 'src/js/**/*.js';
   var task = gulp.src(dir);
@@ -110,17 +102,25 @@ function buildJS(isWatching) {
   return task;
 }
 
-/*** Jade Tasks ***/
-gulp.task('build:jade', function () {
-  return buildJade()
-});
+function buildScss(isWatching) {
+  var dir = 'src/css/**/*.scss';
+  var task = gulp.src(dir);
+  if (isWatching) {
+    task = task
+      .pipe(watch(dir))
+      .pipe(debug())
+  }
 
-gulp.task('watch:jade', function (a) {
-  return buildJade(true);
-});
+  task
+    .pipe(sass())
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions', 'last 4 Android versions']
+    }))
+    .pipe(gif(!isWatching, minifyCSS()))
+    .pipe(gulp.dest('dist/css'));
 
-
-/** Helpers **/
+  return task;
+}
 
 function buildJade(isWatching) {
   var htmlFilter = filter('**/*.html');
