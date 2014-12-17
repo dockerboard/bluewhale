@@ -18,7 +18,6 @@
   "author": "fundon <cfddream@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "bower": "^1.3.12",
     "browser-sync": "^1.8.0",
     "del": "^1.1.0",
     "glob": "^4.3.1",
