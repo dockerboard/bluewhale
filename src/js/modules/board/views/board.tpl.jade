@@ -1,0 +1,12 @@
+div(layout="column" layout-fill class="board" ng-controller="BoardCtrl" flex)
+  md-toolbar(layout="column" md-theme="none" style="max-height: 64px;" flex)
+    md-list(role="list")
+      md-item
+        md-button(ng-click="addNode()" md-theme="blue" aria-label="Add Component" title="Add Component")
+          md-icon(icon="bower_components/material-design-icons/content/svg/production/ic_add_24px.svg" style="width: 24px; height: 24px;")
+      md-item
+        md-button(ng-disabled="true" md-theme="blue" aria-label="Remove Component" title="Remove Component")
+          md-icon(icon="bower_components/material-design-icons/content/svg/production/ic_clear_24px.svg" style="width: 24px; height: 24px;")
+
+  md-content(layout="column" style="margin-top: 16px;" flex)
+    svg(width="100%" height="100%" xmlns="http://www.w3.org/2000/svg")
