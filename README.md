@@ -19,6 +19,12 @@ bower install
 npm install
 ```
 
+Or
+
+```
+docker build -t bluewhale github.com/dockerboard/bluewhale
+```
+
 ### Development
 
 ```
