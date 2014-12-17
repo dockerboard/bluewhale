@@ -8,6 +8,6 @@ WORKDIR /usr/src/app
 RUN npm install -g gulp
 RUN npm install -g bower
 RUN npm install
-RUN bower install -p
+RUN bower install -p --allow-root
 RUN gulp build
 RUN mv bower_components dist/

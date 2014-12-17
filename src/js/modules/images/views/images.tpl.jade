@@ -12,14 +12,14 @@ div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
       md-item(style="position: absolute; right: 8px;")
         md-item-content
           md-button(aria-label="Search" ng-click="search()")
-            img(src="bower_components/material-design-icons/action/svg/production/ic_search_24px.svg" style="width: 24px; height: 24px;")
+            div.icon.svg-ic_search_24px
 
   md-content(style="margin-top: 16px;")
     md-list
       md-item(ng-repeat="image in images")
         md-item-content
           div(class="md-tile-left")
-            img(src="bower_components/material-design-icons/image/svg/production/ic_photo_24px.svg" style="width: 24px; height: 24px; margin: 16px;")
+            div.icon.svg-ic_photo_24px(style="margin: 0 auto;")
           div(class="md-tile-content")
             h3(ng-init="image.Id = (image.Id | limitTo: 12)" title="{{ image.Id }}")
               span ID:
