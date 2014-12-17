@@ -2,8 +2,8 @@ FROM node:0.11.14
 
 MAINTAINER fundon cfddream@gmail.com
 
-ADD . /usr/src/app
-WORKDIR /usr/src/app
+ADD . /bluewhale
+WORKDIR /bluewhale
 
 RUN npm install -g gulp
 RUN npm install -g bower
