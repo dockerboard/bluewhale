@@ -5,7 +5,9 @@ var del = require('del');
 var glob = require('glob');
 var gulp = require('gulp');
 var pkg = require('./package.json');
+var proxyMiddleware = require('proxy-middleware');
 var plugins = require('gulp-load-plugins')();
+var url = require('url');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -33,6 +35,7 @@ var jshint = plugins.jshint;
 var jshintSummary = require('jshint-summary');
 var ngAnnotate = plugins.ngAnnotate;
 var ngHtml2js = plugins.ngHtml2js;
+var plumber = plugins.plumber;
 var sass = plugins.sass;
 var uglify = plugins.uglify;
 var watch = plugins.watch;
@@ -52,6 +55,8 @@ gulp.task('clean', function(cb) {
   del(['dist/*'], { dot: true }, cb);
 });
 
+var proxyOptions = url.parse('http://localhost:8001/api');
+proxyOptions.route = '/api';
 gulp.task('browser-sync', function() {
   browserSync({
     server: {
@@ -60,7 +65,8 @@ gulp.task('browser-sync', function() {
       baseDir: './dist',
       routes: {
         "/bower_components": "bower_components"
-      }
+      },
+      middleware: [proxyMiddleware(proxyOptions)]
     }
   });
 });
@@ -167,7 +173,8 @@ function buildJade(isWatching) {
   if (isWatching) {
     task = task
       .pipe(watch(dir))
-      .pipe(debug());
+      .pipe(debug())
+      .pipe(plumber());
   }
 
   task
