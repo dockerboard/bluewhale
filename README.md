@@ -22,7 +22,11 @@ npm install
 Or
 
 ```
-docker build -t bluewhale github.com/dockerboard/bluewhale
+docker build -t dockerboard/bluewhale github.com/dockerboard/bluewhale
+docker build -t dockerboard/dockerboard github.com/dockerboard/dockerboard
+docker run -d -v /bluewhale/dist --name bluewhale dockerboard/bluewhale
+docker run -d -p 8001:8001 -v /var/run/docker.sock:/var/run/docker.sock --volumes-from bluewhale --name dockerboard  dockerboard/dockerboard
+open 127.0.0.1:8001
 ```
 
 ### Development
