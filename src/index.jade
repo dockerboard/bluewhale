@@ -11,7 +11,77 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="apple-mobile-web-app-status-bar-style" content="black")
     link(rel="icon" type="image/x-icon" href="/favicon.ico")
+
+    link(rel="stylesheet" href="bower_components/angular-material/angular-material.css")
+    link(rel="stylesheet" href="bower_components/angular-material/themes/blue-theme.css")
+    link(rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css")
     link(rel='stylesheet' href='css/app.css')
-  body(md-theme="blue" layout="row" ng-controller="AppCtrl")
+  body(md-theme="blue" layout="row" ng-controller="SidenavCtrl")
+
+    md-sidenav(layout="column"
+      class="md-sidenav-left md-whiteframe-z2"
+      md-component-id="left"
+      md-is-locked-open="$media('gt-sm')")
+      md-toolbar(md-theme="blue")
+        h1(class="md-toolbar-tools")
+          a(href="" ng-click="goHome()") Dockerboard
+      md-content
+        div(ng-repeat="section in menu.sections")
+          button(class="menu-item menu-title md-menu-item"
+            ng-if="!section.url"
+            ng-click="menu.toggleSelectSection(section)"
+            ng-href="#{{section.url}}"
+            md-highlight="menu.isSectionSelected(section)"
+            md-ink-ripple="#bbb") {{section.name}}
+          a(class="menu-item menu-title md-menu-item"
+            ng-if="section.url"
+            ng-click="menu.toggleSelectSection(section)"
+            ng-href="#{{section.url}}"
+            md-highlight="menu.isSectionSelected(section)"
+            md-ink-ripple="#bbb") {{section.name}}
+
+          a(class="menu-item menu-sub-item md-menu-item"
+            ng-show="menu.isSectionSelected(section)"
+            ng-repeat="page in section.pages"
+            ng-href="{{page.url}}"
+            md-highlight="menu.isPageSelected(section, page)"
+            md-ink-ripple="#bbb")
+              span(ng-bind="page")
+
+    div(layout="column" tabindex="-1" role="main" flex)
+      md-toolbar(layout="column" ng-click="openMenu()" class="md-blue-theme md-toolbar-tools" flex)
+        div(layout="row" layout-align="center center" flex)
+          md-button(class="menu-icon" hide-gt-sm aria-label="Toggle Menu" style="position: relative; top: -5px;")
+            md-icon(icon="bower_components/material-design-icons/navigation/svg/production/ic_menu_24px.svg")
+          div(style="line-height: 28px;" hide-sm ng-if="menu.currentSection.name") {{menu.currentSection.name}}
+          span(layout="column" class="menu-separator-icon" ng-if="menu.currentPage" style="padding: 0 10px;")
+            img(style="height: 16px;" src="bower_components/material-design-icons/navigation/svg/production/ic_chevron_right_24px.svg" alt="" aria-hidden="true" hide-sm)
+          div(style="line-height: 28px;" ng-bind="menu.currentPage")
+          div(flex)
+      md-content(layout="column" class="md-padding" ui-view flex)
+
+    script(src="bower_components/angular/angular.js")
+    script(src="bower_components/angular-resource/angular-resource.js")
+    script(src="bower_components/angular-ui-router/release/angular-ui-router.js")
+    script(src="bower_components/angular-aria/angular-aria.js")
+    script(src="bower_components/angular-animate/angular-animate.js")
+    script(src="bower_components/hammerjs/hammer.js")
+    script(src="bower_components/angular-material/angular-material.js")
+    script(src="bower_components/lodash/dist/lodash.js")
+    script(src="bower_components/d3/d3.js")
+    script(src="bower_components/pretty-bytes/pretty-bytes.js")
+    script(src="bower_components/angular-pretty-bytes/angular-pretty-bytes.js")
+    script(src="bower_components/angular-loading-bar/build/loading-bar.js")
+
+    script(src='js/config.js')
     script(src='js/app.js')
+    script(src="js/filters/filters.js")
+    script(src="js/services/index.js")
+    script(src="js/services/menu.js")
+    script(src="js/services/containers.js")
+    script(src="js/services/images.js")
+    script(src="js/modules/site/site.js")
+    script(src="js/modules/sidenav/sidenav.js")
+    script(src="js/modules/containers/containers.js")
+    script(src="js/modules/images/images.js")
 

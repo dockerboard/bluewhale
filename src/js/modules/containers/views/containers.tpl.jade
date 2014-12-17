@@ -1,0 +1,49 @@
+div(layout="column" layout-fill class="images" ng-controller="ContainersCtrl" flex)
+  md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
+    md-list(layout="row" role="list")
+      md-item
+        md-item-content
+          md-switch(md-theme="blue" ng-model="queryParams.all" aria-label="All") All
+      md-item
+        md-item-content
+          md-switch(md-theme="blue" ng-model="queryParams.size" aria-label="Size") Size
+      md-item
+        md-item-content
+          div(style="padding: 8px;")
+            input(id="queryParamsSince" ng-model="queryParams.since" style="font-size: 10px; max-width: 70px; border: 1px solid transparent; border-bottom: 1px solid #f2f2f2;")
+            label(for="queryParamsSince") Since
+      md-item
+        md-item-content
+          div(style="padding: 8px;")
+            input(id="queryParamsBefore" ng-model="queryParams.before" style="font-size: 10px; max-width: 70px; border: 1px solid transparent; border-bottom: 1px solid #f2f2f2;")
+            label(for="queryParamsBefore") Before
+      md-item
+        md-item-content
+          div(style="padding: 8px;")
+            input(id="queryParamsLimit" ng-model="queryParams.limit" style="max-width: 50px; border: 1px solid transparent; border-bottom: 1px solid #f2f2f2;")
+            label(for="queryParamsLimit") Limit
+      md-item(style="position: absolute; right: 8px;")
+        md-item-content
+          md-button(aria-label="Search" ng-click="search()")
+            img(src="bower_components/material-design-icons/action/svg/production/ic_search_24px.svg" style="width: 24px; height: 24px;")
+
+  md-content(style="margin-top: 16px;")
+    md-list
+      md-item(ng-repeat="container in containers")
+        md-item-content
+          div(class="md-tile-left")
+            img(src="bower_components/material-design-icons/image/svg/production/ic_crop_original_24px.svg" style="width: 24px; height: 24px; margin: 16px;")
+          div(class="md-tile-content")
+            h3(ng-init="container.Id = (container.Id | limitTo: 12)" title="{{ container.Id }}")
+              span ID:
+              a(ng-href="#/containers/{{ container.Id }}") {{ container.Id }}
+            p Created: {{ container.Created + '000' | date:'yyyy-MM-dd HH:mm:ss Z' }}
+            p Status: {{ container.Status }}
+            p Names: {{ container.Names.join(', ') }}
+            p Ports: {{ container.Ports.join(', ') }}
+            p(ng-if="container.SizeRw >= 0") SizeRw: {{ container.SizeRw | prettyBytes }}
+            p(ng-if="container.SizeRootFs >= 0") SizeRootFs: {{ container.SizeRootFs | prettyBytes }}
+            p
+              | Command: <span style="background: #eee;">{{ container.Command }}</span>
+            p
+              | Image: <a ng-init="container.Image = (container.Image | formatImageId)" ng-href="#/images/{{ container.Image }}">{{ container.Image }}</a>
