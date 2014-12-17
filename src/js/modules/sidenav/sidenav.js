@@ -10,7 +10,7 @@ SidenavController.$inject = ['$scope', '$location', '$mdSidenav', '$timeout', '$
 function SidenavController($scope, $location, $mdSidenav, $timeout, $rootScope, Menu) {
   $scope.menu = Menu;
 
-  var mainContentArea = document.querySelector("[role='main']");
+  var mainContentArea = document.querySelector('[role="main"]');
 
   $rootScope.$on('$locationChangeSuccess', openPage);
 

@@ -35,7 +35,7 @@ function ContainersController($scope, Containers) {
 
   $scope.search = function () {
     $scope.fetch();
-  }
+  };
 }
 
 ContainerController.$inject = ['$scope', '$stateParams', 'limitToFilter', 'dateFilter', 'Containers'];

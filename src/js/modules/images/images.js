@@ -57,7 +57,7 @@ function ImagesController($scope, Images) {
 
   $scope.search = function () {
     $scope.fetch();
-  }
+  };
 
   $scope.getRepo = function (tags) {
     var repo = '';

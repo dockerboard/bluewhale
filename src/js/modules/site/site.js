@@ -10,7 +10,7 @@ angular.module('site.component')
         state('site', {
           url: '/',
           templateUrl: '/js/modules/site/views/index.tpl.html'
-        })
+        });
     }
   ]);
 })();

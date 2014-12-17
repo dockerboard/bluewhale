@@ -12,30 +12,30 @@ angular.module(dockerboardApp.name, dockerboardApp.dependencies)
     ])
   .run(['$rootScope', function($rootScope) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        console.log("State Change: transition begins!");
+        console.log('State Change: transition begins!');
       });
 
       $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-        console.log("State Change: State change success!");
+        console.log('State Change: State change success!');
       });
 
       $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams) {
-        console.log("State Change: Error!");
+        console.log('State Change: Error!');
       });
 
       $rootScope.$on('$stateNotFound', function(event, toState, toParams, fromState, fromParams) {
-        console.log("State Change: State not found!");
+        console.log('State Change: State not found!');
       });
 
       $rootScope.$on('$viewContentLoading', function(event, viewConfig) {
-        console.log("View Load: the view is loaded, and DOM rendered!");
+        console.log('View Load: the view is loaded, and DOM rendered!');
       });
 
       $rootScope.$on('$viewcontentLoaded', function(event, viewConfig) {
-        console.log("View Load: the view is loaded, and DOM rendered!");
+        console.log('View Load: the view is loaded, and DOM rendered!');
       });
 
-  }])
+  }]);
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {

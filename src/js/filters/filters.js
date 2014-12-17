@@ -7,7 +7,7 @@
     .filter('sanitize', ['$sce', function ($sce) {
       return function(htmlCode) {
         return htmlCode ? $sce.trustAsHtml(htmlCode + '') : '';
-      }
+      };
     }])
 
     .filter('formatImageId', ['limitToFilter', function (limitToFilter) {

@@ -10,7 +10,8 @@
   "globalstrict": true,
   "immed": true,
   "indent": 2,
-  "laxbreak": true,
+  "latedef": "nofunc",
+  "laxbreak": false,
   "loopfunc": true,
   "newcap": true,
   "noarg": true,
@@ -19,6 +20,10 @@
   "nonew": true,
   "quotmark": "single",
   "sub": true,
+  "strict": true,
   "trailing": true,
-  "undef": true
+  "undef": true,
+  "unused": true,
+  "browser": true,
+  "predef": ["angular", "dockerboardApp"]
 }

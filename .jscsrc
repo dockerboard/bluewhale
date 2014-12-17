@@ -1,5 +1,5 @@
 {
-  "preset": "google",
+  "preset": "airbnb",
   "fileExtensions": [ ".js", "jscs" ],
 
   "requireParenthesesAroundIIFE": true,
