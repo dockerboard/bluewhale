@@ -7,7 +7,7 @@
 
       res.queryParams = {
         all: false,
-        limit: 20,
+        limit: '',
         size: false,
         since: '',
         before: ''
