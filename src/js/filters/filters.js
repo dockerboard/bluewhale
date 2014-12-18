@@ -10,8 +10,20 @@
       };
     }])
 
+    .filter('escape', ['$window', function ($window) {
+      return function (url) {
+        return $window.encodeURIComponent($window.encodeURIComponent(url));
+      }
+    }])
+
+    .filter('unescape', ['$window', function ($window) {
+      return function (url) {
+        return url ? $window.decodeURIComponent(url) : '';
+      }
+    }])
+
     .filter('formatImageId', ['limitToFilter', function (limitToFilter) {
-      var reg = /[\-\:\._]/;
+      var reg = /[\-\:\.\/_]/;
 
       return formatImageId;
 

@@ -14,7 +14,7 @@ angular.module('images.ctrl')
           templateUrl: '/js/modules/images/views/images.tpl.html'
         })
         .state('imageitem', {
-          url: '/images/:id',
+          url: '/images/{id}',
           templateUrl: '/js/modules/images/views/image.tpl.html'
         });
     }
@@ -79,6 +79,9 @@ function ImagesController($scope, Images) {
 
 ImageController.$inject = ['$scope', '$stateParams', 'limitToFilter', 'dateFilter', 'prettyBytesFilter', 'Images'];
 function ImageController($scope, $stateParams, limitToFilter, dateFilter, prettyBytesFilter, Images) {
+  // Fix contains `/` issue.
+  $stateParams.id = $stateParams.id.replace(/%(25)/g, '%').replace(/\//g, '%2F');
+
   $scope.tabs = [
     {
       title: 'Normal'

@@ -59,9 +59,9 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
           md-button(class="menu-icon" hide-gt-sm aria-label="Toggle Menu" style="position: relative; top: -5px;")
             div.icon.svg-ic_menu_24px
           div(style="line-height: 28px;" hide-sm ng-if="menu.currentSection.name") {{menu.currentSection.name}}
-          span(layout="column" class="menu-separator-icon" ng-if="menu.currentPage" style="padding: 0 10px;")
+          div(layout="column" class="menu-separator-icon" ng-if="menu.currentPage" style="padding: 0 10px;")
             div.icon.svg-ic_chevron_right_24px(aria-hidden="true" hide-sm)
-          div(style="line-height: 28px;" ng-bind="menu.currentPage")
+          div(style="line-height: 28px;") {{ menu.currentPage | unescape }}
           div(flex)
       md-content(layout="column" class="md-padding" ui-view flex)
 

@@ -46,4 +46,5 @@ div(layout="column" layout-fill class="images" ng-controller="ContainersCtrl" fl
             p
               | Command: <span style="background: #eee;">{{ container.Command }}</span>
             p
-              | Image: <a ng-init="container.Image = (container.Image | formatImageId)" ng-href="#/images/{{ container.Image }}">{{ container.Image }}</a>
+              span Image:
+              a(ng-init="container.Image = (container.Image | formatImageId)" ng-href="#/images/{{ container.Image | escape }}") {{ container.Image }}
