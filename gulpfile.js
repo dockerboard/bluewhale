@@ -132,7 +132,8 @@ function buildJS(isWatching) {
   if (isWatching) {
     task = task
       .pipe(watch(dir))
-      .pipe(debug());
+      .pipe(debug())
+      .pipe(plumber());
   }
 
   task
