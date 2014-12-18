@@ -14,7 +14,7 @@ angular.module('containers.ctrl')
           templateUrl: '/js/modules/containers/views/containers.tpl.html'
         })
         .state('containeritem', {
-          url: '/containers/:id',
+          url: '/containers/:Id',
           templateUrl: '/js/modules/containers/views/container.tpl.html'
         });
     }
@@ -40,7 +40,7 @@ function ContainersController($scope, Containers) {
 
 ContainerController.$inject = ['$scope', '$stateParams', 'limitToFilter', 'dateFilter', 'Containers'];
 function ContainerController($scope, $stateParams, limitToFilter, dateFilter, Containers) {
-  Containers.get({id: $stateParams.id}, function (data) {
+  Containers.get({Id: $stateParams.Id}, function (data) {
     formatBasicAttributes(data);
     $scope.container = data;
   });

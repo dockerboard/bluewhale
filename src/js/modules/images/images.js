@@ -14,7 +14,7 @@ angular.module('images.ctrl')
           templateUrl: '/js/modules/images/views/images.tpl.html'
         })
         .state('imageitem', {
-          url: '/images/{id}',
+          url: '/images/{Id}',
           templateUrl: '/js/modules/images/views/image.tpl.html'
         });
     }
@@ -80,7 +80,7 @@ function ImagesController($scope, Images) {
 ImageController.$inject = ['$scope', '$stateParams', 'limitToFilter', 'dateFilter', 'prettyBytesFilter', 'Images'];
 function ImageController($scope, $stateParams, limitToFilter, dateFilter, prettyBytesFilter, Images) {
   // Fix contains `/` issue.
-  $stateParams.id = $stateParams.id.replace(/%(25)/g, '%').replace(/\//g, '%2F');
+  $stateParams.Id = $stateParams.Id.replace(/%(25)/g, '%').replace(/\//g, '%2F');
 
   $scope.tabs = [
     {
@@ -113,10 +113,16 @@ function ImageController($scope, $stateParams, limitToFilter, dateFilter, pretty
     }, $scope.basicAttributes);
   }
 
-  Images.get({id: $stateParams.id}, function (data) {
+  Images.get({Id: $stateParams.Id}, function (data) {
     formatBasicAttributes(data);
     $scope.image = data;
   });
+
+  $scope.destory = function (image) {
+    Images.delete({Id: image.Id}, function (data) {
+      console.log(data);
+    });
+  };
 
 }
 })();

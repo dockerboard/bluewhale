@@ -3,7 +3,16 @@
 
   angular.module('dockerboard.services')
     .factory('Containers', ['$resource', function ($resource) {
-      var res = $resource('/api/containers/:id');
+      var res = $resource('/api/containers/:Id', {
+        Id: '@Id'
+      }, {
+        delete: {
+          method: 'POST',
+          headers: {
+            'X-HTTP-Method-Override': 'DELETE'
+          }
+        }
+      });
 
       res.queryParams = {
         all: false,
