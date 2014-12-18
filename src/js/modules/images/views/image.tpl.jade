@@ -2,10 +2,10 @@ div(layout="column" layout-fill class="images" ng-controller="ImageCtrl" flex)
   md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
     md-list(role="list")
       md-item
-        md-button(md-theme="blue" aria-label="Add Component" title="Add Component")
+        md-button(md-theme="blue" aria-label="Add Container" title="Add Container")
           div.icon.svg-ic_add_24px
       md-item
-        md-button(md-theme="blue" aria-label="Remove Image" title="Remove Image" ng-click="destory(image)")
+        md-button(md-theme="blue" aria-label="Remove Image" title="Remove Image" ng-click="destory($event)")
           div.icon.svg-ic_clear_24px
 
   md-content(style="margin-top: 16px;")

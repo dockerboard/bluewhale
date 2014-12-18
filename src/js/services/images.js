@@ -10,6 +10,10 @@
           method: 'POST',
           headers: {
             'X-HTTP-Method-Override': 'DELETE'
+          },
+          params: {
+            force: false,
+            noprune: false
           }
         }
       });

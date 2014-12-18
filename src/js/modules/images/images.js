@@ -77,8 +77,8 @@ function ImagesController($scope, Images) {
   };
 }
 
-ImageController.$inject = ['$scope', '$stateParams', 'limitToFilter', 'dateFilter', 'prettyBytesFilter', 'Images'];
-function ImageController($scope, $stateParams, limitToFilter, dateFilter, prettyBytesFilter, Images) {
+ImageController.$inject = ['$scope', '$location', '$stateParams', '$mdDialog', 'limitToFilter', 'dateFilter', 'prettyBytesFilter', 'Images'];
+function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilter, dateFilter, prettyBytesFilter, Images) {
   // Fix contains `/` issue.
   $stateParams.Id = $stateParams.Id.replace(/%(25)/g, '%').replace(/\//g, '%2F');
 
@@ -116,13 +116,67 @@ function ImageController($scope, $stateParams, limitToFilter, dateFilter, pretty
   Images.get({Id: $stateParams.Id}, function (data) {
     formatBasicAttributes(data);
     $scope.image = data;
+    $scope.imageShortId = limitToFilter(data.Id, 12);
+  }, function (e) {
+    if (e.status === 404) {
+      $location.path('/images');
+    }
   });
 
-  $scope.destory = function (image) {
-    Images.delete({Id: image.Id}, function (data) {
-      console.log(data);
+  $scope.showConfirm = function(ev) {
+    var confirm = $mdDialog.confirm()
+      .title('Would you like to force delete image?')
+      .content('Conflict, cannot delete 8bb8d7c417a3 because the container b7a80b9b1d8d is using it, use -f to force')
+      .ariaLabel('Lucky day')
+      .ok('Yes')
+      .cancel('Cancel')
+      .targetEvent(ev);
+    $mdDialog.show(confirm).then(function() {
+      $scope.destory($scope.image, { force: true });
+      //$scope.alert = '';
+    }, function() {
+      //$scope.alert = '';
     });
   };
 
+  $scope.destory = function (ev) {
+    $mdDialog.show({
+      controller: DestoryDialogController,
+      templateUrl: '/js/modules/images/views/image.destory.dialog.tpl.html',
+      locals: { image: $scope.image, imageShortId: $scope.imageShortId },
+      targetEvent: ev,
+    });
+  };
+
+  DestoryDialogController.$inject = ['$scope', '$mdDialog', 'Images', 'image', 'imageShortId'];
+  function DestoryDialogController($scope, $mdDialog, Images, image, imageShortId) {
+    $scope.image = image;
+    $scope.imageShortId = imageShortId;
+
+    $scope.cancel = function () {
+      $mdDialog.cancel();
+    };
+
+    $scope.params = {
+      force: false,
+      noprune: false
+    };
+
+    $scope.content = '';
+
+    $scope.ok = function () {
+      Images.delete(
+        { Id: $scope.imageShortId },
+        $scope.params,
+        function (data) {
+          $location.path('/images');
+        },
+        function (e) {
+          $scope.content = e.data;
+        }
+      );
+    };
+
+  }
 }
 })();
