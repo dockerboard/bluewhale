@@ -38,11 +38,16 @@ function ContainersController($scope, Containers) {
   };
 }
 
-ContainerController.$inject = ['$scope', '$stateParams', 'limitToFilter', 'dateFilter', 'Containers'];
-function ContainerController($scope, $stateParams, limitToFilter, dateFilter, Containers) {
+ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'dateFilter', 'Containers'];
+function ContainerController($scope, $stateParams, $location, $mdDialog, limitToFilter, dateFilter, Containers) {
   Containers.get({Id: $stateParams.Id}, function (data) {
     formatBasicAttributes(data);
     $scope.container = data;
+    $scope.containerShortId =  limitToFilter(data.Id, 12);
+  }, function (e) {
+    if (e.status === 404) {
+      $location.path('/containers');
+    }
   });
 
   $scope.basicAttributes = [];
@@ -65,5 +70,46 @@ function ContainerController($scope, $stateParams, limitToFilter, dateFilter, Co
       });
     }, $scope.basicAttributes);
   }
+
+  $scope.destory = function (ev) {
+    $mdDialog.show({
+      controller: DestoryDialogController,
+      templateUrl: '/js/modules/containers/views/container.destory.dialog.tpl.html',
+      locals: { container: $scope.container, containerShortId: $scope.containerShortId },
+      targetEvent: ev,
+    });
+  };
+
+}
+
+DestoryDialogController.$inject = ['$scope', '$location', '$mdDialog', 'Containers', 'container', 'containerShortId'];
+function DestoryDialogController($scope, $location, $mdDialog, Containers, container, containerShortId) {
+  $scope.container = container;
+  $scope.containerShortId = containerShortId;
+
+  $scope.cancel = function () {
+    $mdDialog.cancel();
+  };
+
+  $scope.params = {
+    force: false,
+    v: false
+  };
+
+  $scope.content = '';
+
+  $scope.ok = function () {
+    Containers.delete(
+      { Id: $scope.containerShortId },
+      $scope.params,
+      function (data) {
+        $mdDialog.hide();
+        $location.path('/containers');
+      },
+      function (e) {
+        $scope.content = e.data;
+      }
+    );
+  };
 }
 })();

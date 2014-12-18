@@ -123,22 +123,6 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
     }
   });
 
-  $scope.showConfirm = function(ev) {
-    var confirm = $mdDialog.confirm()
-      .title('Would you like to force delete image?')
-      .content('Conflict, cannot delete 8bb8d7c417a3 because the container b7a80b9b1d8d is using it, use -f to force')
-      .ariaLabel('Lucky day')
-      .ok('Yes')
-      .cancel('Cancel')
-      .targetEvent(ev);
-    $mdDialog.show(confirm).then(function() {
-      $scope.destory($scope.image, { force: true });
-      //$scope.alert = '';
-    }, function() {
-      //$scope.alert = '';
-    });
-  };
-
   $scope.destory = function (ev) {
     $mdDialog.show({
       controller: DestoryDialogController,
@@ -148,35 +132,36 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
     });
   };
 
-  DestoryDialogController.$inject = ['$scope', '$mdDialog', 'Images', 'image', 'imageShortId'];
-  function DestoryDialogController($scope, $mdDialog, Images, image, imageShortId) {
-    $scope.image = image;
-    $scope.imageShortId = imageShortId;
+}
 
-    $scope.cancel = function () {
-      $mdDialog.cancel();
-    };
+DestoryDialogController.$inject = ['$scope', '$mdDialog', 'Images', 'image', 'imageShortId'];
+function DestoryDialogController($scope, $mdDialog, Images, image, imageShortId) {
+  $scope.image = image;
+  $scope.imageShortId = imageShortId;
 
-    $scope.params = {
-      force: false,
-      noprune: false
-    };
+  $scope.cancel = function () {
+    $mdDialog.cancel();
+  };
 
-    $scope.content = '';
+  $scope.params = {
+    force: false,
+    noprune: false
+  };
 
-    $scope.ok = function () {
-      Images.delete(
-        { Id: $scope.imageShortId },
-        $scope.params,
-        function (data) {
-          $location.path('/images');
-        },
-        function (e) {
-          $scope.content = e.data;
-        }
-      );
-    };
+  $scope.content = '';
 
-  }
+  $scope.ok = function () {
+    Images.delete(
+      { Id: $scope.imageShortId },
+      $scope.params,
+      function (data) {
+        $scope.cancel();
+        $location.path('/images');
+      },
+      function (e) {
+        $scope.content = e.data;
+      }
+    );
+  };
 }
 })();

@@ -1,6 +1,9 @@
 div(layout="column" layout-fill class="images" ng-controller="ContainerCtrl" flex)
   md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
     md-list(role="list")
+      md-item
+        md-button(md-theme="blue" aria-label="Remove Container" title="Remove Container" ng-click="destory(container)")
+          div.icon.svg-ic_clear_24px
 
   md-content(style="margin-top: 16px;")
     table(layout="column" style="padding: 8px; text-align: left; width: 100%; display: table;")
