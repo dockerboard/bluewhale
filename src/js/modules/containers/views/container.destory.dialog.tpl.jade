@@ -1,6 +1,6 @@
 md-dialog(aria-label="Remove Container")
+  md-subheader(class="md-sticky-no-effect") Remove Container {{ containerShortId }}
   md-content
-    md-subheader(class="md-sticky-no-effect") Remove Container {{ containerShortId }}
     md-checkbox(ng-model="params.force" aria-label="Force") Force: {{ params.force }}
     md-checkbox(ng-model="params.v" aria-label="Remove Volumes") Remove Volumes: {{ params.v }}
     p {{ content }}

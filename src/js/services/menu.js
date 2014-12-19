@@ -4,10 +4,12 @@
 angular.module('dockerboard.services')
   .factory('Menu', ['$rootScope', '$location', function ($rootScope, $location) {
     var sections = [
+      /*
       {
         name: 'Apps',
         url: '/apps'
       },
+     */
       {
         name: 'Containers',
         url: '/containers'

@@ -1,0 +1,15 @@
+md-dialog(aria-label="{action} + 'Container'")
+  md-subheader(class="md-sticky-no-effect") {{action}} Container {{ containerShortId }}
+  md-content
+    md-checkbox(ng-model="isRestart" ng-change="change(isRestart)" aria-label="Restart") Restart: {{ isRestart }}
+    div
+      md-tooltip Number of seconds to wait before killing the container
+      div Seconds:
+      md-slider(flex ng-disabled="action == 'start'" ng-model="params.t" min="0" max="60" aria-label="green" id="green-slider" class="md-accent")
+      div(flex="20" layout layout-align="center center")
+        input(type="number" ng-model="params.t" aria-label="green" aria-controls="green-slider")
+    p {{ content }}
+
+  div(class="md-actions" layout="row")
+    md-button(ng-click="cancel()") Cancel
+    md-button(ng-click="ok()" class="md-primary") Yes
