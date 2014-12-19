@@ -15,8 +15,6 @@ The [Dockerboard][] Web Client.
 
 ```
 npm install -g gulp
-npm install -g bower
-bower install
 npm install
 ```
 
