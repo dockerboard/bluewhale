@@ -1,16 +1,17 @@
 div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
   md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
-    md-list(layout="row" role="list")
-      md-item
+    md-list(layout="row" role="list" md-theme="blue")
+      md-item(flex=10 layout-align="center center" layout="column")
+        md-item-content(layout-align="center center")
+          md-tooltip All
+          md-switch(md-theme="blue" ng-model="queryParams.all" aria-label="All")
+      md-item(flex=10 layout-align="center center" layout="column")
+        md-item-content(layout-align="center center")
+          md-tooltip Filters
+          md-text-float(label="Filters" ng-model="queryParams.filters")
+      md-item(style="position: absolute; right: 0;")
         md-item-content
-          md-switch(md-theme="blue" ng-model="queryParams.all" aria-label="All") All
-      md-item
-        md-item-content
-          div(style="padding: 8px;")
-            input(id="queryParamsFilters" ng-model="queryParamsFilters" style="max-width: 123px; border: 1px solid transparent; border-bottom: 1px solid #f2f2f2;")
-            label(for="queryParamsFilters") Filters
-      md-item(style="position: absolute; right: 8px;")
-        md-item-content
+          md-tooltip Search
           md-button(aria-label="Search" ng-click="search()")
             div.icon.svg-ic_search_24px
 

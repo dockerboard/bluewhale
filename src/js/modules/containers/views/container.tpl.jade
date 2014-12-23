@@ -5,6 +5,7 @@ div(layout="column" layout-fill class="images" ng-controller="ContainerCtrl" fle
         md-button(md-theme="blue" aria-label="Running" ng-click="toggleRunning($event)")
           md-tooltip {{ container.State.Running ? 'Stop' : 'Start' }}
           div.icon(ng-class="container.State.Running ? 'svg-ic_stop_24px': 'svg-ic_play_arrow_24px'")
+      md-item
         md-button(md-theme="blue" aria-label="Paused" ng-click="togglePaused($event)")
           md-tooltip {{ container.State.Paused ? 'UnPause' : 'Pause' }}
           div.icon(ng-class="container.State.Paused ? 'svg-ic_play_circle_outline_24px': 'svg-ic_pause_circle_outline_24px'")
