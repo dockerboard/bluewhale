@@ -39,6 +39,7 @@ var plumber = plugins.plumber;
 var sass = plugins.sass;
 var uglify = plugins.uglify;
 var watch = plugins.watch;
+var imagemin = plugins.imagemin;
 
 
 /** Tasks **/
@@ -53,6 +54,15 @@ gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade', 'browser-sync']);
 
 gulp.task('clean', function(cb) {
   del(['dist/*'], { dot: true }, cb);
+});
+
+gulp.task('images', function () {
+  return gulp.src(['src/favicon.ico', 'src/images/*'])
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}]
+    }))
+    .pipe(gulp.dest('dist/'));
 });
 
 var proxyOptions = url.parse('http://localhost:8001/api');
