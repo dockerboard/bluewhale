@@ -1,9 +1,16 @@
-md-dialog(aria-label="Remove Container")
-  md-subheader(class="md-sticky-no-effect") Remove Container {{ containerShortId }}
+md-dialog.container-dialog(aria-label="Remove Container")
+  md-toolbar(layout="column" layout-align="center center" md-theme="blue")
+    md-subheader(class="md-sticky-no-effect") Remove Container {{ containerShortId }}
   md-content
-    md-checkbox(ng-model="params.force" aria-label="Force") Force: {{ params.force }}
-    md-checkbox(ng-model="params.v" aria-label="Remove Volumes") Remove Volumes: {{ params.v }}
-    p {{ content }}
+    md-list
+      md-item
+        div Force:
+        md-checkbox(ng-model="params.force" aria-label="Force")
+      md-item
+        div Remove Volumes:
+        md-checkbox(ng-model="params.v" aria-label="Remove Volumes")
+      md-item
+        p {{ content }}
 
   div(class="md-actions" layout="row")
     md-button(ng-click="cancel()") Cancel

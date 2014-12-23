@@ -37,13 +37,13 @@ div(layout="column" layout-fill class="images" ng-controller="ContainersCtrl" fl
             h3(ng-init="container.Id = (container.Id | limitTo: 12)" title="{{ container.Id }}")
               span ID:
               a(ng-href="#/containers/{{ container.Id }}") {{ container.Id }}
+            p Names: {{ container.Names.join(', ') }}
             p
               span Created: 
               span(am-time-ago="container.Created" am-preprocess="unix")
             p
               span Status: 
               span {{ container.Status }}
-            p Names: {{ container.Names.join(', ') }}
             p Ports: {{ container.Ports.join(', ') }}
             p(ng-if="container.SizeRw >= 0") SizeRw: {{ container.SizeRw | prettyBytes }}
             p(ng-if="container.SizeRootFs >= 0") SizeRootFs: {{ container.SizeRootFs | prettyBytes }}

@@ -1,9 +1,19 @@
-md-dialog(aria-label="Remove Image")
+md-dialog.container-dialog(aria-label="Remove Image")
+  md-toolbar(layout="column" layout-align="center center" md-theme="blue")
+    md-subheader.md-sticky-no-effect
+      span.action Remove
+      | Image
+      span.short-id {{ imageShortId }}
   md-content
-    md-subheader(class="md-sticky-no-effect") Remove Image {{ imageShortId }}
-    md-checkbox(ng-model="params.force" aria-label="Force") Force: {{ params.force }}
-    md-checkbox(ng-model="params.noprune" aria-label="No Prune") No Prune: {{ params.noprune }}
-    p {{ content }}
+    md-list
+      md-item
+        div Force:
+        md-checkbox(ng-model="params.force" aria-label="Force")
+      md-item
+        div No Prune:
+        md-checkbox(ng-model="params.noprune" aria-label="No Prune")
+      md-item
+        p {{ content }}
 
   div(class="md-actions" layout="row")
     md-button(ng-click="cancel()") Cancel

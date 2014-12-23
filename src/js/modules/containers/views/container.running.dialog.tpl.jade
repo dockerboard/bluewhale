@@ -1,14 +1,23 @@
-md-dialog(aria-label="{action} + 'Container'")
-  md-subheader(class="md-sticky-no-effect") {{action}} Container {{ containerShortId }}
+md-dialog.container-dialog(aria-label="{action} + 'Container'")
+  md-toolbar(layout="column" layout-align="center center" md-theme="blue")
+    md-subheader.md-sticky-no-effect
+      span.action {{action}} 
+      | Container 
+      span.short-id {{ containerShortId }}
   md-content
-    md-checkbox(ng-model="isRestart" ng-change="change(isRestart)" aria-label="Restart") Restart: {{ isRestart }}
-    div
-      md-tooltip Number of seconds to wait before killing the container
-      div Seconds:
-      md-slider(flex ng-disabled="action == 'start'" ng-model="params.t" min="0" max="60" aria-label="green" id="green-slider" class="md-accent")
-      div(flex="20" layout layout-align="center center")
-        input(type="number" ng-model="params.t" aria-label="green" aria-controls="green-slider")
-    p {{ content }}
+    md-list
+      md-item
+        div Restart:
+        md-checkbox(ng-model="isRestart" ng-change="change(isRestart)" aria-label="Restart")
+      md-item
+        div Seconds:
+          md-tooltip Number of seconds to wait before killing the container
+        div(layout="row" flex)
+          md-slider(layout="column" flex="80" ng-disabled="action == 'start'" ng-model="params.t" min="0" max="60" aria-label="green" id="green-slider" class="md-accent")
+          div(layout="column" layout-align="left center" flex)
+            input(layout="column" type="number" ng-model="params.t" aria-label="green" aria-controls="green-slider" style="margin: auto 0;")
+      md-item
+        p {{ content }}
 
   div(class="md-actions" layout="row")
     md-button(ng-click="cancel()") Cancel

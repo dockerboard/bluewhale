@@ -1,5 +1,9 @@
-md-dialog(aria-label="{{action}} Container")
-  md-subheader(class="md-sticky-no-effect") {{action}} Container {{ containerShortId }}
+md-dialog.container-dialog(aria-label="{{action}} Container")
+  md-toolbar(layout="column" layout-align="center center" md-theme="blue")
+    md-subheader.md-sticky-no-effect
+      span.action {{action}} 
+      | Container 
+      span.short-id {{ containerShortId }}
   md-content
     p {{ content }}
 

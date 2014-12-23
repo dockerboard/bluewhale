@@ -110,3 +110,35 @@ md-sidenav {
   border-left-color: white;
   transform: translate3d(0px, 0px, 0px);
 }
+
+md-tooltip {
+  position: absolute;
+}
+
+md-dialog {
+  min-width: 300px;
+  md-toolbar {
+    min-height: 50px;
+    border-radius: 4px 4px 0 0;
+  }
+  .md-subheader {
+    margin-right: 0 !important;
+    padding: 16px !important;
+    color: #fff !important;
+    background-color: transparent !important;
+  }
+}
+
+.container-dialog {
+  .md-subheader {
+    .action {
+      text-transform: capitalize;
+    }
+    .short-id {
+    }
+  }
+}
+
+.md-subheader.md-blue-theme {
+  //background-color: #03a9f4;
+}
