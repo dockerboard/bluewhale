@@ -23,3 +23,10 @@ div(layout="column" layout-fill class="images" ng-controller="ContainerCtrl" fle
         tr(ng-repeat="attr in basicAttributes")
           th {{ attr.key }}
           th(ng-bind-html="attr.value | sanitize")
+
+        tr
+          th State
+          th
+            span {{ container.State.Running }} 
+            span(ng-if="container.State.Running") Uptime 
+            span(am-time-ago="container.State.StartedAt" am-without-suffix="true")

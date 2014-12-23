@@ -25,6 +25,7 @@
     "angular-material": "0.6.x",
     "material-design-icons": "1.0.x",
     "angular-pretty-bytes": "1.0.x",
-    "angular-loading-bar": "0.6.x"
+    "angular-loading-bar": "0.6.x",
+    "angular-moment": "~0.8.3"
   }
 }

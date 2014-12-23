@@ -28,4 +28,6 @@ div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
             p Tags: {{ getTags(image.RepoTags) }}
             p Size: {{ image.Size | prettyBytes }}
             p VirtualSize: {{ image.VirtualSize | prettyBytes }}
-            p Created: {{ image.Created + '000' | date:'yyyy-MM-dd HH:mm:ss Z' }}
+            p
+              span Created: 
+              span(am-time-ago="image.Created" am-preprocess="unix")

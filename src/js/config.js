@@ -8,7 +8,8 @@ app.dependencies = [
   'ngAnimate',
   'ui.router',
   'prettyBytes',
-  'angular-loading-bar'
+  'angular-loading-bar',
+  'angularMoment'
 ];
 app.registerModule = registerModule;
 
