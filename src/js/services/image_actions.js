@@ -9,6 +9,12 @@ angular.module('dockerboard.services')
     }, {
       update: {
         method: 'POST'
+      },
+      history: {
+        params: {
+          action: 'history'
+        },
+        isArray: true
       }
     });
     return res;

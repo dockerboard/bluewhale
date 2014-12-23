@@ -13,9 +13,13 @@ angular.module('images.ctrl')
           url: '/images',
           templateUrl: '/js/modules/images/views/images.tpl.html'
         })
-        .state('imageitem', {
+        .state('imageItem', {
           url: '/images/{Id}',
           templateUrl: '/js/modules/images/views/image.tpl.html'
+        })
+        .state('imageHistory', {
+          url: '/images/{Id}/history',
+          templateUrl: '/js/modules/images/views/image.history.tpl.html'
         });
     }
   ]);
@@ -133,9 +137,8 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
   };
 
   $scope.history = function (ev) {
-    ImageActions.get(
+    ImageActions.history(
       { Id: $scope.imageShortId },
-      { action: 'history' },
       function (data) {
         console.log(data);
       },
