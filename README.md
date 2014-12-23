@@ -5,6 +5,11 @@ The [Dockerboard][] Web Client.
 
 [![badge](http://dockeri.co/image/dockerboard/bluewhale)](https://registry.hub.docker.com/u/dockerboard/bluewhare/)
 
+
+## Screenshot
+
+![Dockerboard Screenshot](https://github.com/dockerboard/bluewhale/blob/master/screenshots/dockerboard.gif?raw=true)
+
 ## Quickstart
 
 ### Prerequisites
