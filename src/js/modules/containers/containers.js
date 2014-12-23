@@ -38,8 +38,8 @@ function ContainersController($scope, Containers) {
   };
 }
 
-ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'dateFilter', 'Containers'];
-function ContainerController($scope, $stateParams, $location, $mdDialog, limitToFilter, dateFilter, Containers) {
+ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'Containers'];
+function ContainerController($scope, $stateParams, $location, $mdDialog, limitToFilter, amTimeAgoFilter, Containers) {
   Containers.get({Id: $stateParams.Id}, function (data) {
     formatBasicAttributes(data);
     $scope.container = data;
@@ -61,7 +61,7 @@ function ContainerController($scope, $stateParams, $location, $mdDialog, limitTo
         href += (k === 'Id' ? 'containers/' : 'images/') + v;
         v = '<a ng-href="' + href + '" href="' + href + '">' + v + '</a>';
       } else if (k === 'Created') {
-        v = dateFilter(v, 'yyyy-MM-dd HH:mm:ss Z');
+        v = amTimeAgoFilter(v, true);
       }
 
       this.push({

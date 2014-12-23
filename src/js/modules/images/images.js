@@ -77,8 +77,8 @@ function ImagesController($scope, Images) {
   };
 }
 
-ImageController.$inject = ['$scope', '$location', '$stateParams', '$mdDialog', 'limitToFilter', 'dateFilter', 'prettyBytesFilter', 'Images'];
-function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilter, dateFilter, prettyBytesFilter, Images) {
+ImageController.$inject = ['$scope', '$location', '$stateParams', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'prettyBytesFilter', 'Images'];
+function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilter, amTimeAgoFilter, prettyBytesFilter, Images) {
   // Fix contains `/` issue.
   $stateParams.Id = $stateParams.Id.replace(/%(25)/g, '%').replace(/\//g, '%2F');
 
@@ -103,7 +103,7 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
       } else if (k === 'Size' || k === 'VirtualSize') {
         v = prettyBytesFilter(v);
       } else if (k === 'Created') {
-        v = dateFilter(v, 'yyyy-MM-dd HH:mm:ss Z');
+        v = amTimeAgoFilter(v, true);
       }
 
       this.push({
