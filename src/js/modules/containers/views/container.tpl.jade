@@ -9,7 +9,7 @@ div(layout="column" layout-fill class="images" ng-controller="ContainerCtrl" fle
           md-tooltip {{ container.State.Paused ? 'UnPause' : 'Pause' }}
           div.icon(ng-class="container.State.Paused ? 'svg-ic_play_circle_outline_24px': 'svg-ic_pause_circle_outline_24px'")
       md-item
-        md-button(md-theme="blue" aria-label="Remove" ng-click="destory(container)")
+        md-button(md-theme="blue" aria-label="Remove" ng-click="destory($event)")
           md-tooltip Remove
           div.icon.svg-ic_clear_24px
 
