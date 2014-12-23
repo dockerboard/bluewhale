@@ -69,11 +69,12 @@
 }
 
 .images md-toolbar md-list md-item {
-  border-left: 1px dotted #f3f3f3;
+  margin-right: 10px;
+  //border-left: 1px dotted #f3f3f3;
 }
 .images md-toolbar md-list md-item:first-child,
 .images md-toolbar md-list md-item:last-child {
-  border-left: 1px dotted transparent;
+  //border-left: 1px dotted transparent;
 }
 
 .images table {
@@ -141,4 +142,13 @@ md-dialog {
 
 .md-subheader.md-blue-theme {
   //background-color: #03a9f4;
+}
+
+md-input-group {
+  label {
+    display: none;
+  }
+  input {
+    width: 100%;
+  }
 }
