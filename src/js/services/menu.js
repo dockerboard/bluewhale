@@ -11,6 +11,10 @@ angular.module('dockerboard.services')
       },
      */
       {
+        name: 'Dashboard',
+        url: '/dashboard'
+      },
+      {
         name: 'Containers',
         url: '/containers'
       },
@@ -19,8 +23,8 @@ angular.module('dockerboard.services')
         url: '/images'
       },
       {
-        name: 'Board',
-        url: '/board'
+        name: 'Canvas',
+        url: '/canvas'
       }
     ];
 
