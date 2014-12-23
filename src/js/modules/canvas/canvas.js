@@ -1,23 +1,23 @@
 (function () {
 'use strict';
 
-dockerboardApp.registerModule('board');
+dockerboardApp.registerModule('canvas');
 
-angular.module('board')
-  .controller('BoardCtrl', BoardController)
+angular.module('canvas')
+  .controller('CanvasCtrl', CanvasController)
   .config(['$stateProvider',
     function ($stateProvider) {
       $stateProvider.
-        state('board', {
-          url: '/board',
-          templateUrl: '/js/modules/board/views/board.tpl.html'
+        state('canvas', {
+          url: '/canvas',
+          templateUrl: '/js/modules/canvas/views/canvas.tpl.html'
         });
     }
   ]);
 
 
-BoardController.$inject = ['$scope', '$rootScope'];
-function BoardController($scope, $rootScope) {
+CanvasController.$inject = ['$scope', '$rootScope'];
+function CanvasController($scope, $rootScope) {
   $scope.addNode = function () {
     alert('add node');
   }
