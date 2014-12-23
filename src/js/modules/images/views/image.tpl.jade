@@ -1,14 +1,18 @@
 div(layout="column" layout-fill class="images" ng-controller="ImageCtrl" flex)
   md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
-    md-list(role="list")
+    md-list(md-theme="blue" role="list")
       md-item
-        md-button(md-theme="blue" aria-label="Add Container")
+        md-button(aria-label="Add Container")
           md-tooltip Add Container
           div.icon.svg-ic_add_24px
       md-item
-        md-button(md-theme="blue" aria-label="Remove Image" ng-click="destory($event)")
+        md-button(aria-label="Remove Image" ng-click="destory($event)")
           md-tooltip Remove Image
           div.icon.svg-ic_clear_24px
+      md-item
+        md-button(aria-label="History" ng-click="history($event)")
+          md-tooltip Image History
+          div.icon.svg-ic_history_24px
 
   md-content(style="margin-top: 16px;")
     table(layout="column" style="padding: 8px; text-align: left; width: 100%; display: table;")

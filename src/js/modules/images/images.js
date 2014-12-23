@@ -77,8 +77,8 @@ function ImagesController($scope, Images) {
   };
 }
 
-ImageController.$inject = ['$scope', '$location', '$stateParams', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'prettyBytesFilter', 'Images'];
-function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilter, amTimeAgoFilter, prettyBytesFilter, Images) {
+ImageController.$inject = ['$scope', '$location', '$stateParams', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'prettyBytesFilter', 'Images', 'ImageActions'];
+function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilter, amTimeAgoFilter, prettyBytesFilter, Images, ImageActions) {
   // Fix contains `/` issue.
   $stateParams.Id = $stateParams.Id.replace(/%(25)/g, '%').replace(/\//g, '%2F');
 
@@ -130,6 +130,18 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
       locals: { image: $scope.image, imageShortId: $scope.imageShortId },
       targetEvent: ev,
     });
+  };
+
+  $scope.history = function (ev) {
+    ImageActions.get(
+      { Id: $scope.imageShortId },
+      { action: 'history' },
+      function (data) {
+        console.log(data);
+      },
+      function (e) {
+      }
+    );
   };
 
 }

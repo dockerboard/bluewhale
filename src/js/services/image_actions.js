@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('dockerboard.services')
-  .factory('ContainerActions', ['$resource', function ($resource) {
-    var res = $resource('/api/containers/:Id/:action', {
+  .factory('ImageActions', ['$resource', function ($resource) {
+    var res = $resource('/api/images/:Id/:action', {
       Id: '@Id',
       action: '@action'
     }, {
