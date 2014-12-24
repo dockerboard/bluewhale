@@ -10,4 +10,5 @@ RUN npm install -g bower
 RUN npm install
 RUN bower install -p --allow-root
 RUN gulp build
+RUN gulp images
 RUN mv bower_components dist/
