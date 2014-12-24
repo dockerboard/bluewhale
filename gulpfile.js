@@ -57,7 +57,12 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('images', function () {
-  return gulp.src('src/**/*.{ico,gif,png,jpg,svg}')
+  var imgFilter = filter([
+    'favicon.ico',
+    'images/**/*.{ico,gif,png,jpg,svg}'
+  ]);
+  return gulp.src('src/**')
+    .pipe(imgFilter)
     .pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}]
