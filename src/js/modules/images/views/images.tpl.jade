@@ -18,6 +18,7 @@ div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
   md-content(style="margin-top: 16px;")
     md-list
       md-item(ng-repeat="image in images")
+        md-divider(ng-if="!$first")
         md-item-content
           div(class="md-tile-left")
             div.icon.svg-ic_photo_24px(style="margin: 0 auto;")

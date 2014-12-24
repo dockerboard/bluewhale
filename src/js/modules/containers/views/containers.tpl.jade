@@ -30,6 +30,7 @@ div(layout="column" layout-fill class="images" ng-controller="ContainersCtrl" fl
   md-content(style="margin-top: 16px;")
     md-list
       md-item(ng-repeat="container in containers")
+        md-divider(ng-if="!$first")
         md-item-content
           div(class="md-tile-left")
             div.icon.svg-ic_crop_original_24px(style="margin: 0 auto;")
