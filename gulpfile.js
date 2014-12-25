@@ -48,61 +48,67 @@ var rev = plugins.rev;
 
 /** Tasks **/
 
-gulp.task('default', ['clean'], function () {
+gulp.task('default', ['clean'], function() {
   gulp.start('build');
 });
 
 gulp.task('build', ['build:scss', 'build:js', 'build:jade']);
 
-gulp.task('publish:html', function () {
+gulp.task('publish:html', function() {
   return gulp.src('dist/**/*.html')
     .pipe(usemin({
       css: [csso(), rev()],
-      js: [uglify({ preserveComments: 'some' }), rev()]
+      js: [uglify({
+          preserveComments: 'some'
+      }), rev()]
     }))
     .pipe(gulp.dest('tmp/'));
 });
 
-gulp.task('publish:move', function () {
-	return gulp.src('tmp/**')
-		.pipe(gulp.dest('dist/'));
+gulp.task('publish:move', function() {
+  return gulp.src('tmp/**')
+    .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('publish', function (cb) {
-	return runSequence('publish:html', 'clean:dist', 'publish:move', ['sprites', 'images'], cb);
+gulp.task('publish', function(cb) {
+  return runSequence('publish:html', 'clean:dist', 'publish:move', ['sprites', 'images'], cb);
 });
 
 gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade', 'browser-sync']);
 
 gulp.task('clean', ['clean:dist', 'clean:tmp']);
 
-gulp.task('clean:dist', function (cb) {
+gulp.task('clean:dist', function(cb) {
   del(['dist'], cb);
 });
 
-gulp.task('clean:tmp', function (cb) {
+gulp.task('clean:tmp', function(cb) {
   del(['tmp'], cb);
 });
 
-gulp.task('sprites', function () {
-	return gulp.src('bower_components/material-design-icons/sprites/svg-sprite/*.svg')
+gulp.task('sprites', function() {
+  return gulp.src('bower_components/material-design-icons/sprites/svg-sprite/*.svg')
     .pipe(imagemin({
       progressive: true,
-      svgoPlugins: [{removeViewBox: false}]
+      svgoPlugins: [{
+        removeViewBox: false
+      }]
     }))
-		.pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('images', ['sprites'], function () {
+gulp.task('images', function() {
   var imgFilter = filter([
     'favicon.ico',
-    'images/**/*.{ico,gif,png,jpg,svg}',
+    'images/**/*.{ico,gif,png,jpg,svg}'
   ]);
   return gulp.src('src/**')
     .pipe(imgFilter)
     .pipe(imagemin({
       progressive: true,
-      svgoPlugins: [{removeViewBox: false}]
+      svgoPlugins: [{
+        removeViewBox: false
+      }]
     }))
     .pipe(gulp.dest('dist/'));
 });
@@ -116,7 +122,7 @@ gulp.task('browser-sync', function() {
       logPrefix: 'BW',
       baseDir: './dist',
       routes: {
-        "/bower_components": "bower_components"
+        '/bower_components': 'bower_components'
       },
       middleware: [proxyMiddleware(proxyOptions)]
     }
@@ -125,53 +131,59 @@ gulp.task('browser-sync', function() {
 
 /*** Scss Tasks ***/
 
-gulp.task('build:scss', function () {
+gulp.task('build:scss', function() {
   return buildScss()
 });
 
-gulp.task('watch:scss', function (a) {
+gulp.task('watch:scss', function(a) {
   return buildScss(true)
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 /*** JS Tasks ***/
 
-gulp.task('jshint', function () {
+gulp.task('jshint', function() {
   return gulp.src('src/js/**/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(
-        jshintSummary, {
-          fileColCol: ',bold',
-          positionCol: ',bold',
-          codeCol: 'green,bold',
-          reasonCol: 'cyan'
-        }
+      jshintSummary, {
+        fileColCol: ',bold',
+        positionCol: ',bold',
+        codeCol: 'green,bold',
+        reasonCol: 'cyan'
+      }
       ))
-      .pipe(jshint.reporter('fail'));
+    .pipe(jshint.reporter('fail'));
 });
 
-gulp.task('jscs', function () {
+gulp.task('jscs', function() {
   return gulp.src('src/js/**/*.js')
     .pipe(jscs());
 });
 
-gulp.task('build:js', function () {
+gulp.task('build:js', function() {
   return buildJS();
 });
 
-gulp.task('watch:js', function () {
+gulp.task('watch:js', function() {
   return buildJS(true)
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 /*** Jade Tasks ***/
-gulp.task('build:jade', function () {
+gulp.task('build:jade', function() {
   return buildJade()
 });
 
-gulp.task('watch:jade', function (a) {
+gulp.task('watch:jade', function(a) {
   return buildJade(true)
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 
@@ -190,7 +202,9 @@ function buildJS(isWatching) {
 
   task
     .pipe(ngAnnotate())
-    .pipe(gif(!isWatching, uglify({ preserveComments: 'some' })))
+    .pipe(gif(!isWatching, uglify({
+      preserveComments: 'some'
+    })))
     .pipe(gulp.dest('dist/js'));
 
   return task;

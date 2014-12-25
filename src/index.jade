@@ -39,7 +39,13 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
       md-toolbar(md-theme="blue")
         h1(class="md-toolbar-tools")
           a(href="" ng-click="goHome()") Dockerboard
-      md-content
+      md-content(flex)
+        nav.app-footer
+          div
+            a(href="https://github.com/dockerboard")
+              img(src="images/github.svg" width="16")
+          div Created and maintained by <a href="http://dockerpool.com" target="_blank">DockerPool</a> Team
+          div © DockerBoard 2014
         div(ng-repeat="section in menu.sections")
           button(class="menu-item menu-title md-menu-item"
             ng-if="!section.url"
