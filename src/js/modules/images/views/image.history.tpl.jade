@@ -1,6 +1,9 @@
 div(layout="column" layout-fill class="images" ng-controller="ImageHistoryCtrl" flex)
   md-content
     md-list
+      md-item(ng-if="commits.length === 0")
+        md-item-content(layout-align="center center")
+          div No History
       md-item(ng-repeat="image in commits")
         md-divider(ng-if="!$first")
         md-item-content
