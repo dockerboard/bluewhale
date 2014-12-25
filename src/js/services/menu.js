@@ -35,22 +35,46 @@ angular.module('dockerboard.services')
     return self = {
       sections: sections,
 
+      breadcrumbs: [],
+
       selectSection: function(section) {
-        self.openedSection = section;
+        self.currentSection = section;
+        if (section) {
+          self.breadcrumbs[0] = section;
+        } else {
+          self.breadcrumbs.length = 0;
+        }
       },
       toggleSelectSection: function(section) {
-        self.openedSection = (self.openedSection === section ? null : section);
+        if (self.isSectionSelected(section)) return;
+        self.selectSection(section);
       },
       isSectionSelected: function(section) {
-        return self.openedSection === section;
+        return self.currentSection === section;
       },
-      selectPage: function(section, page) {
-        page && page.url && $location.path(page.url);
-        self.currentSection = section;
+      selectPage: function(page, subSection) {
         self.currentPage = page;
+        self.currentPageSubSection = subSection;
+        if (subSection) {
+          self.breadcrumbs[2] = subSection;
+        } else {
+          self.breadcrumbs.length = 2;
+        }
+        if (page) {
+          self.breadcrumbs[1] = page;
+        } else {
+          self.breadcrumbs.length = 1;
+        }
       },
-      isPageSelected: function(section, page) {
+      isPageSelected: function(page) {
         return self.currentPage === page;
+      },
+      breadcrumbUrl: function (index) {
+        var segments = self.breadcrumbs.slice(0, index + 1);
+        segments.forEach(function (v, i) {
+          segments[i] = v.url || v;
+        });
+        return segments.join('/');
       }
     };
 
@@ -58,28 +82,21 @@ angular.module('dockerboard.services')
       var activated = false;
       var path = $location.$$path;
       sections.forEach(function(section) {
-        if (section) {
-          if (section.pages) {
-            section.pages.forEach(function(page) {
-              if (path === page.url) {
-                self.selectSection(section);
-                self.selectPage(section, page);
-                activated = true;
-              }
-            });
-          } else if (section.url) {
-            var i = path.indexOf(section.url);
-            if (i > -1) {
-              self.selectSection(section);
-              self.selectPage(section, path.substr(section.url.length + 1) || null);
-              activated = true;
-            }
+        if (section && section.url) {
+          var segments = path.split('/');
+          var currSection = segments.slice(0, 2).join('/');
+          if (currSection === section.url) {
+            self.selectPage(segments[2], segments[3]);
+            self.selectSection(section);
+            activated = true;
           }
         }
       });
-      //if (!activated) {
-      //  self.selectSection(sections[0]);
-      //}
+      if (!activated) {
+        self.selectPage(null, null);
+        self.selectSection(null);
+        self.breadcrumbs.length = 0;
+      }
     }
   }]);
 

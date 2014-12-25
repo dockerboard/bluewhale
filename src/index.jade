@@ -47,24 +47,19 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
             md-highlight="menu.isSectionSelected(section)"
             md-ink-ripple="#bbb") {{section.name}}
 
-          a(class="menu-item menu-sub-item md-menu-item"
-            ng-show="menu.isSectionSelected(section)"
-            ng-repeat="page in section.pages"
-            ng-href="{{page.url}}"
-            md-highlight="menu.isPageSelected(section, page)"
-            md-ink-ripple="#bbb")
-              span(ng-bind="page")
-
     div(layout="column" tabindex="-1" role="main" flex)
       md-toolbar(layout="column" ng-click="openMenu()" class="md-blue-theme md-toolbar-tools" flex)
-        div(layout="row" layout-align="center center" flex)
-          md-button(class="menu-icon" hide-gt-sm aria-label="Toggle Menu" style="position: relative; top: -5px;")
-            div.icon.svg-ic_menu_24px
-          div(style="line-height: 28px;" hide-sm ng-if="menu.currentSection.name") {{menu.currentSection.name}}
-          div(layout="column" class="menu-separator-icon" ng-if="menu.currentPage" style="padding: 0 10px;")
-            div.icon.svg-ic_chevron_right_24px(aria-hidden="true" hide-sm)
-          div(style="line-height: 28px;") {{ menu.currentPage | unescape }}
-          div(flex)
+        md-list(layout="row" layout-align="left center" flex)
+          md-item
+            md-item-content
+              md-button(class="menu-icon" hide-gt-sm aria-label="Toggle Menu")
+                div.icon.svg-ic_menu_24px
+          md-item(ng-repeat="breadcrumb in menu.breadcrumbs" layout="column")
+            md-item-content(layout-align="left center" flex)
+              div
+                a(ng-href="#{{menu.breadcrumbUrl($index)}}") {{ breadcrumb.name || breadcrumb }}
+              div(ng-if="$index < menu.breadcrumbs.length - 1" class="menu-separator-icon" style="padding-right: 3px; padding-left: 3px;")
+                div.icon.svg-ic_chevron_right_24px(aria-hidden="true" hide-sm)
       md-content(layout="column" class="md-padding" ui-view flex)
 
     script(src="bower_components/angular/angular.js")
