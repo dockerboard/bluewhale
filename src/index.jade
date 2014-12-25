@@ -39,13 +39,13 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
             ng-click="menu.toggleSelectSection(section)"
             ng-href="#{{section.url}}"
             md-highlight="menu.isSectionSelected(section)"
-            md-ink-ripple="#bbb") {{section.name}}
+            md-ink-ripple="#bbb") {{ section.name }}
           a(class="menu-item menu-title md-menu-item"
             ng-if="section.url"
             ng-click="menu.toggleSelectSection(section)"
             ng-href="#{{section.url}}"
             md-highlight="menu.isSectionSelected(section)"
-            md-ink-ripple="#bbb") {{section.name}}
+            md-ink-ripple="#bbb") {{ section.name }}
 
     div(layout="column" tabindex="-1" role="main" flex)
       md-toolbar(layout="column" ng-click="openMenu()" class="md-blue-theme md-toolbar-tools" flex)
