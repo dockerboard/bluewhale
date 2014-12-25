@@ -1,0 +1,20 @@
+div(layout="column" layout-fill class="images" ng-controller="ImageHistoryCtrl" flex)
+  md-content
+    md-list
+      md-item(ng-repeat="image in commits")
+        md-divider(ng-if="!$first")
+        md-item-content
+          div(class="md-tile-left")
+            div.icon.svg-ic_photo_24px(style="margin: 0 auto;")
+          div(class="md-tile-content")
+            h3(ng-init="image.Id = (image.Id | limitTo: 12)" title="{{ image.Id }}")
+              span ID:
+              a(ng-href="#/images/{{ image.Id }}") {{ image.Id }}
+            p Tags: {{ Tags }}
+            p Size: {{ image.Size | prettyBytes }}
+            p
+              span Created: 
+              span(am-time-ago="image.Created" am-preprocess="unix")
+            p
+              span CreatedBy: 
+              span {{ image.CreatedBy }}

@@ -6,6 +6,7 @@ dockerboardApp.registerModule('images.ctrl');
 angular.module('images.ctrl')
   .controller('ImagesCtrl', ImagesController)
   .controller('ImageCtrl', ImageController)
+  .controller('ImageHistoryCtrl', ImageHistoryController)
   .config(['$stateProvider',
     function ($stateProvider) {
       $stateProvider.
@@ -135,18 +136,6 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
       targetEvent: ev,
     });
   };
-
-  $scope.history = function (ev) {
-    ImageActions.history(
-      { Id: $scope.imageShortId },
-      function (data) {
-        console.log(data);
-      },
-      function (e) {
-      }
-    );
-  };
-
 }
 
 DestoryDialogController.$inject = ['$scope', '$mdDialog', 'Images', 'image', 'imageShortId'];
@@ -179,4 +168,20 @@ function DestoryDialogController($scope, $mdDialog, Images, image, imageShortId)
     );
   };
 }
+
+
+ImageHistoryController.$inject = ['$scope', '$stateParams', 'ImageActions'];
+function ImageHistoryController($scope, $stateParams, ImageActions) {
+  $scope.imageShortId = $stateParams.Id;
+  ImageActions.history(
+    { Id: $scope.imageShortId },
+    function (data) {
+      $scope.commits = data;
+    },
+    function (e) {
+    }
+  );
+
+}
+
 })();
