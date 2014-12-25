@@ -40,12 +40,6 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
         h1(class="md-toolbar-tools")
           a(href="" ng-click="goHome()") Dockerboard
       md-content(flex)
-        nav.app-footer
-          div
-            a(href="https://github.com/dockerboard")
-              img(src="images/github.svg" width="16")
-          div Created and maintained by <a href="http://dockerpool.com" target="_blank">DockerPool</a> Team
-          div © DockerBoard 2014
         div(ng-repeat="section in menu.sections")
           button(class="menu-item menu-title md-menu-item"
             ng-if="!section.url"
@@ -59,6 +53,12 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
             ng-href="#{{section.url}}"
             md-highlight="menu.isSectionSelected(section)"
             md-ink-ripple="#bbb") {{ section.name }}
+        nav.app-footer
+          div
+            a(href="https://github.com/dockerboard")
+              img(src="images/github.svg" width="16")
+          div Created and maintained by <a href="http://dockerpool.com" target="_blank">DockerPool</a> Team
+          div © DockerBoard 2014
 
     div(layout="column" tabindex="-1" role="main" flex)
       md-toolbar(layout="column" ng-click="openMenu()" class="md-blue-theme md-toolbar-tools" flex)
