@@ -12,6 +12,8 @@ The [Dockerboard][] Web Client.
 
 ## Quickstart
 
+Dockerboard Restful API Prefix: `http://localhost/api/`
+
 ### Prerequisites
 
 * [Node.js][]
