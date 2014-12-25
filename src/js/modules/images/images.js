@@ -138,8 +138,8 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
   };
 }
 
-DestoryDialogController.$inject = ['$scope', '$mdDialog', 'Images', 'image', 'imageShortId'];
-function DestoryDialogController($scope, $mdDialog, Images, image, imageShortId) {
+DestoryDialogController.$inject = ['$scope', '$location', '$mdDialog', 'Images', 'image', 'imageShortId'];
+function DestoryDialogController($scope, $location, $mdDialog, Images, image, imageShortId) {
   $scope.image = image;
   $scope.imageShortId = imageShortId;
 
@@ -156,13 +156,22 @@ function DestoryDialogController($scope, $mdDialog, Images, image, imageShortId)
 
   $scope.ok = function () {
     Images.delete(
-      { Id: $scope.imageShortId },
-      $scope.params,
+      {
+        Id: $scope.imageShortId,
+        force: $scope.params.force,
+        noprune: $scope.params.noprune
+      },
+      null,
       function (data) {
         $scope.cancel();
         $location.path('/images');
       },
       function (e) {
+        if (e.status === 404) {
+          $scope.cancel();
+          $location.path('/images');
+          return;
+        }
         $scope.content = e.data;
       }
     );

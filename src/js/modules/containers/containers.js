@@ -124,13 +124,22 @@ function DestoryDialogController($scope, $location, $mdDialog, Containers, paren
 
   $scope.ok = function () {
     Containers.delete(
-      { Id: $scope.containerShortId },
-      $scope.params,
+      {
+        Id: $scope.containerShortId,
+        force: $scope.params.force,
+        v: $scope.params.v
+      },
+      null,
       function (data) {
         $mdDialog.hide();
         $location.path('/containers');
       },
       function (e) {
+        if (e.status === 404) {
+          $mdDialog.hide();
+          $location.path('/containers');
+          return;
+        }
         $scope.content = e.data;
       }
     );
