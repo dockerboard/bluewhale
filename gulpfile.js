@@ -71,7 +71,7 @@ gulp.task('publish:move', function() {
 });
 
 gulp.task('publish', function(cb) {
-  return runSequence('publish:html', 'clean:dist', 'publish:move', ['sprites', 'images'], cb);
+  return runSequence('publish:html', 'clean:dist', 'publish:move', 'nw-files', ['sprites', 'images'], cb);
 });
 
 gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade', 'browser-sync']);
@@ -84,6 +84,11 @@ gulp.task('clean:dist', function(cb) {
 
 gulp.task('clean:tmp', function(cb) {
   del(['tmp'], cb);
+});
+
+gulp.task('nw-files', function () {
+  return gulp.src(['src/package.json', 'src/koa.js'])
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('sprites', function() {
@@ -145,7 +150,7 @@ gulp.task('watch:scss', function(a) {
 /*** JS Tasks ***/
 
 gulp.task('jshint', function() {
-  return gulp.src('src/js/**/*.js')
+  return gulp.src(['src/js/**/*.js', '!src/node_modules'])
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter(
       jshintSummary, {
@@ -159,7 +164,7 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('jscs', function() {
-  return gulp.src('src/js/**/*.js')
+  return gulp.src(['src/js/**/*.js', '!src/node_modules'])
     .pipe(jscs());
 });
 
@@ -191,7 +196,7 @@ gulp.task('watch:jade', function(a) {
 
 function buildJS(isWatching) {
   var dir = 'src/js/**/*.js';
-  var task = gulp.src(dir);
+  var task = gulp.src([dir, '!src/node_modules']);
 
   if (isWatching) {
     task = task

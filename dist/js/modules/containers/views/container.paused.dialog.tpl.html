@@ -1,0 +1,13 @@
+
+<md-dialog aria-label="{{action}} Container" class="container-dialog">
+  <md-toolbar layout="column" layout-align="center center" md-theme="blue">
+    <md-subheader class="md-sticky-no-effect"><span class="action">{{action}} </span>Container <span class="short-id">{{ containerShortId }}</span></md-subheader>
+  </md-toolbar>
+  <md-content>
+    <p>{{ content }}</p>
+  </md-content>
+  <div layout="row" class="md-actions">
+    <md-button ng-click="cancel()">Cancel</md-button>
+    <md-button ng-click="ok()" class="md-primary">Yes</md-button>
+  </div>
+</md-dialog>

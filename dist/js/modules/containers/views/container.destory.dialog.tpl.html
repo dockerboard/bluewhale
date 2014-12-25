@@ -1,0 +1,25 @@
+
+<md-dialog aria-label="Remove Container" class="container-dialog">
+  <md-toolbar layout="column" layout-align="center center" md-theme="blue">
+    <md-subheader class="md-sticky-no-effect">Remove Container {{ containerShortId }}</md-subheader>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-item>
+        <div>Force:</div>
+        <md-checkbox ng-model="params.force" aria-label="Force"></md-checkbox>
+      </md-item>
+      <md-item>
+        <div>Remove Volumes:</div>
+        <md-checkbox ng-model="params.v" aria-label="Remove Volumes"></md-checkbox>
+      </md-item>
+      <md-item>
+        <p>{{ content }}</p>
+      </md-item>
+    </md-list>
+  </md-content>
+  <div layout="row" class="md-actions">
+    <md-button ng-click="cancel()">Cancel</md-button>
+    <md-button ng-click="ok()" class="md-primary">Yes</md-button>
+  </div>
+</md-dialog>

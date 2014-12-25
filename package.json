@@ -1,11 +1,10 @@
 {
   "name": "bluewhale",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Dockerboard Web Client",
-  "main": "index.js",
+  "main": "dist/index.html",
   "scripts": {
-    "test": "make test",
-    "postinstall": "bower install"
+    "test": "make test"
   },
   "repository": "dockerboard/bluewhale",
   "keywords": [
@@ -46,6 +45,7 @@
     "jshint-summary": "^0.4.0",
     "karma": "^0.12.28",
     "karma-chrome-launcher": "^0.1.7",
+    "node-webkit-builder": "^1.0.4",
     "proxy-middleware": "^0.9.0",
     "run-sequence": "^1.0.2",
     "vinyl-paths": "^1.0.0"

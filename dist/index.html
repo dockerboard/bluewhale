@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dockerboard" ng-strict-di class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Dockerboard | Simple dashboards, visualizations, managements for your dockers</title>
+    <script>
+      if (window.nwDispatcher) {
+        require('./koa');
+        window.moment = require('moment');
+        window.location.assign('http://localhost:3000/#/');
+        window.node_require = window.require;
+      }
+    </script>
+    <base href="/">
+    <meta name="description" content="Simple dashboards, visualizations, managements for your dockers.">
+    <meta name="keywords" content="docker, dockers, docker dashboards, docker visualizations, docer managements">
+    <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="css/dockerboard-dad6fa5b.css"/>
+    <link rel="stylesheet" href="css/dockerboard-app-4f2f3298.css"/>
+  </head>
+  <body md-theme="blue" layout="row" ng-controller="SidenavCtrl">
+    <md-sidenav layout="column" md-component-id="left" md-is-locked-open="$media('gt-sm')" class="md-sidenav-left md-whiteframe-z2">
+      <md-toolbar md-theme="blue">
+        <h1 class="md-toolbar-tools"><a href="" ng-click="goHome()">Dockerboard</a></h1>
+      </md-toolbar>
+      <md-content flex>
+        <div ng-repeat="section in menu.sections">
+          <button ng-if="!section.url" ng-click="menu.toggleSelectSection(section)" ng-href="#{{section.url}}" md-highlight="menu.isSectionSelected(section)" md-ink-ripple="#bbb" class="menu-item menu-title md-menu-item">{{ section.name }}</button><a ng-if="section.url" ng-click="menu.toggleSelectSection(section)" ng-href="#{{section.url}}" md-highlight="menu.isSectionSelected(section)" md-ink-ripple="#bbb" class="menu-item menu-title md-menu-item">{{ section.name }}</a>
+        </div>
+        <nav class="app-footer">
+          <div><a href="https://github.com/dockerboard"><img src="images/github.svg" width="16"></a></div>
+          <div>Created and maintained by <a href="http://dockerpool.com" target="_blank">DockerPool</a> Team</div>
+          <div>© DockerBoard 2014</div>
+        </nav>
+      </md-content>
+    </md-sidenav>
+    <div layout="column" tabindex="-1" role="main" flex>
+      <md-toolbar layout="column" ng-click="openMenu()" flex class="md-blue-theme md-toolbar-tools">
+        <md-list layout="row" layout-align="left center" flex>
+          <md-item>
+            <md-item-content>
+              <md-button hide-gt-sm aria-label="Toggle Menu" class="menu-icon">
+                <div class="icon svg-ic_menu_24px"></div>
+              </md-button>
+            </md-item-content>
+          </md-item>
+          <md-item ng-repeat="breadcrumb in menu.breadcrumbs" layout="column">
+            <md-item-content layout-align="left center" flex>
+              <div><a ng-href="#{{menu.breadcrumbUrl($index)}}">{{ breadcrumb.name || breadcrumb }}</a></div>
+              <div ng-if="$index &lt; menu.breadcrumbs.length - 1" style="padding-right: 3px; padding-left: 3px;" class="menu-separator-icon">
+                <div aria-hidden="true" hide-sm class="icon svg-ic_chevron_right_24px"></div>
+              </div>
+            </md-item-content>
+          </md-item>
+        </md-list>
+      </md-toolbar>
+      <md-content layout="column" ui-view flex class="md-padding"></md-content>
+    </div>
+    <script src="js/dockerboard-d7c9164e.js"></script>
+    <script src="js/dockerboard-app-b3334c4a.js"></script>
+  </body>
+</html>

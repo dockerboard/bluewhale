@@ -1,0 +1,73 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="ContainersCtrl" flex="flex" class="images">
+  <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
+    <md-list layout="row" role="list" md-theme="blue">
+      <md-item flex="10" layout-align="center center" layout="column">
+        <md-item-content layout-align="center center">
+          <md-tooltip>All</md-tooltip>
+          <md-switch ng-model="queryParams.all" aria-label="All"></md-switch>
+        </md-item-content>
+      </md-item>
+      <md-item flex="10" layout-align="center center" layout="column">
+        <md-item-content layout-align="center center">
+          <md-tooltip>Size</md-tooltip>
+          <md-switch ng-model="queryParams.size" aria-label="Size"></md-switch>
+        </md-item-content>
+      </md-item>
+      <md-item flex="20" layout-align="center center" layout="column">
+        <md-item-content layout-align="center center">
+          <md-tooltip>Since</md-tooltip>
+          <md-text-float label="Since" ng-model="queryParams.since"></md-text-float>
+        </md-item-content>
+      </md-item>
+      <md-item flex="20" layout-align="center center" layout="column">
+        <md-item-content layout-align="center center">
+          <md-tooltip>Before</md-tooltip>
+          <md-text-float label="Before" ng-model="queryParams.before"></md-text-float>
+        </md-item-content>
+      </md-item>
+      <md-item flex="20" layout-align="center center" layout="column">
+        <md-item-content layout-align="center center">
+          <md-tooltip>Limit</md-tooltip>
+          <md-text-float label="Limit" ng-model="queryParams.limit"></md-text-float>
+        </md-item-content>
+      </md-item>
+      <md-item style="position: absolute; right: 0;">
+        <md-item-content>
+          <md-tooltip>Search</md-tooltip>
+          <md-button aria-label="Search" ng-click="search()">
+            <div class="icon svg-ic_search_24px"></div>
+          </md-button>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-toolbar>
+  <md-content style="margin-top: 16px;">
+    <md-list>
+      <md-item ng-if="containers.length === 0">
+        <md-item-content layout-align="center center">
+          <div>No Containers</div>
+        </md-item-content>
+      </md-item>
+      <md-item ng-repeat="container in containers">
+        <md-divider ng-if="!$first"></md-divider>
+        <md-item-content>
+          <div class="md-tile-left">
+            <div style="margin: 0 auto;" class="icon svg-ic_crop_original_24px"></div>
+          </div>
+          <div class="md-tile-content">
+            <h3 ng-init="container.Id = (container.Id | limitTo: 12)" title="{{ container.Id }}"><span>ID:</span><a ng-href="#/containers/{{ container.Id }}">{{ container.Id }}</a></h3>
+            <p>Names: {{ container.Names.join(', ') }}</p>
+            <p><span>Created: </span><span am-time-ago="container.Created" am-preprocess="unix"></span></p>
+            <p><span>Status: </span><span>{{ container.Status }}</span></p>
+            <p>Ports: {{ container.Ports.join(', ') }}</p>
+            <p ng-if="container.SizeRw &gt;= 0">SizeRw: {{ container.SizeRw | prettyBytes }}</p>
+            <p ng-if="container.SizeRootFs &gt;= 0">SizeRootFs: {{ container.SizeRootFs | prettyBytes }}</p>
+            <p>Command: <span style="background: #eee;">{{ container.Command }}</span></p>
+            <p><span>Image:</span><a ng-init="container.Image = (container.Image | formatImageId)" ng-href="#/images/{{ container.Image | escape }}">{{ container.Image }}</a></p>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-content>
+</div>

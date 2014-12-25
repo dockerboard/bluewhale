@@ -1,0 +1,40 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="ImageCtrl" flex="flex" class="images">
+  <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
+    <md-list md-theme="blue" role="list">
+      <md-item>
+        <md-button aria-label="Add Container">
+          <md-tooltip>Add Container</md-tooltip>
+          <div class="icon svg-ic_add_24px"></div>
+        </md-button>
+      </md-item>
+      <md-item>
+        <md-button aria-label="Remove Image" ng-click="destory($event)">
+          <md-tooltip>Remove Image</md-tooltip>
+          <div class="icon svg-ic_clear_24px"></div>
+        </md-button>
+      </md-item>
+      <md-item>
+        <md-button aria-label="History">
+          <md-tooltip>Image History</md-tooltip><a ng-href="#/images/{{imageShortId}}/history" layout="layout" class="icon svg-ic_history_24px"></a>
+        </md-button>
+      </md-item>
+    </md-list>
+  </md-toolbar>
+  <md-content style="margin-top: 16px;">
+    <table layout="column" style="padding: 8px; text-align: left; width: 100%; display: table;">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="attr in basicAttributes">
+          <th>{{ attr.key }}</th>
+          <th ng-bind-html="attr.value | sanitize"></th>
+        </tr>
+      </tbody>
+    </table>
+  </md-content>
+</div>

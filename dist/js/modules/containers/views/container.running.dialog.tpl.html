@@ -1,0 +1,30 @@
+
+<md-dialog aria-label="{action} + 'Container'" md-theme="blue" class="container-dialog">
+  <md-toolbar layout="column" layout-align="center center">
+    <md-subheader class="md-sticky-no-effect"><span class="action">{{action}} </span>Container <span class="short-id">{{ containerShortId }}</span></md-subheader>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-item>
+        <div>Restart:</div>
+        <md-checkbox ng-model="isRestart" ng-change="change(isRestart)" aria-label="Restart"></md-checkbox>
+      </md-item>
+      <md-item>
+        <div>Seconds: </div><small>Number of seconds to wait before killing the container</small>
+        <div layout="row" flex="flex">
+          <md-slider layout="column" flex="80" ng-disabled="action == 'start'" ng-model="params.t" min="0" max="60" aria-label="green" id="green-slider" class="md-accent"></md-slider>
+          <div layout="column" layout-align="left center" flex="flex">
+            <input layout="column" type="number" ng-model="params.t" aria-label="green" aria-controls="green-slider" style="margin: auto 0;"/>
+          </div>
+        </div>
+      </md-item>
+      <md-item>
+        <p>{{ content }}</p>
+      </md-item>
+    </md-list>
+  </md-content>
+  <div layout="row" class="md-actions">
+    <md-button ng-click="cancel()">Cancel</md-button>
+    <md-button ng-click="ok()" class="md-primary">Yes</md-button>
+  </div>
+</md-dialog>

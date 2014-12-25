@@ -22,7 +22,9 @@ Dockerboard Restful API Prefix: `http://localhost/api/`
 
 ```
 npm install -g gulp
+npm install -g bower
 npm install
+bower install
 ```
 
 Or

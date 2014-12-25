@@ -1,0 +1,52 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="ImagesCtrl" flex="flex" class="images">
+  <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
+    <md-list layout="row" role="list" md-theme="blue">
+      <md-item flex="10" layout-align="center center" layout="column">
+        <md-item-content layout-align="center center">
+          <md-tooltip>All</md-tooltip>
+          <md-switch md-theme="blue" ng-model="queryParams.all" aria-label="All"></md-switch>
+        </md-item-content>
+      </md-item>
+      <md-item flex="10" layout-align="center center" layout="column">
+        <md-item-content layout-align="center center">
+          <md-tooltip>Filters</md-tooltip>
+          <md-text-float label="Filters" ng-model="queryParams.filters"></md-text-float>
+        </md-item-content>
+      </md-item>
+      <md-item style="position: absolute; right: 0;">
+        <md-item-content>
+          <md-tooltip>Search</md-tooltip>
+          <md-button aria-label="Search" ng-click="search()">
+            <div class="icon svg-ic_search_24px"></div>
+          </md-button>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-toolbar>
+  <md-content style="margin-top: 16px;">
+    <md-list>
+      <md-item ng-if="images.length === 0">
+        <md-item-content layout-align="center center">
+          <div>No Images</div>
+        </md-item-content>
+      </md-item>
+      <md-item ng-repeat="image in images">
+        <md-divider ng-if="!$first"></md-divider>
+        <md-item-content>
+          <div class="md-tile-left">
+            <div style="margin: 0 auto;" class="icon svg-ic_photo_24px"></div>
+          </div>
+          <div class="md-tile-content">
+            <h3 ng-init="image.Id = (image.Id | limitTo: 12)" title="{{ image.Id }}"><span>ID:</span><a ng-href="#/images/{{ image.Id }}">{{ image.Id }}</a></h3>
+            <h4>Repo: {{ getRepo(image.RepoTags) }}</h4>
+            <p>Tags: {{ getTags(image.RepoTags) }}</p>
+            <p>Size: {{ image.Size | prettyBytes }}</p>
+            <p>VirtualSize: {{ image.VirtualSize | prettyBytes }}</p>
+            <p><span>Created: </span><span am-time-ago="image.Created" am-preprocess="unix"></span></p>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-content>
+</div>

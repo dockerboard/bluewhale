@@ -1,0 +1,39 @@
+{
+  "name": "bluewhale",
+  "version": "0.0.1",
+  "description": "Dockerboard Web Client",
+  "private": true,
+  "main": "app://dockerboard-app/index.html",
+  "scripts": {
+    "test": "make test"
+  },
+  "js-flags": "--harmony",
+  "repository": "dockerboard/bluewhale",
+  "keywords": [
+    "docker",
+    "rocket",
+    "dockerboard",
+    "board",
+    "web",
+    "client"
+  ],
+  "author": "fundon <cfddream@gmail.com>",
+  "license": "MIT",
+  "node-remote": "<local>",
+  "dependencies": {
+    "koa": "*",
+    "koa-proxy": "*",
+    "koa-static": "*",
+    "moment": "*"
+  },
+  "window": {
+    "title": "Dockerboard",
+    "frame": false,
+    "toolbar": true,
+    "height": 650,
+    "width": 1100,
+    "min_width": 400,
+    "min_height": 650,
+    "position": "center"
+  }
+}

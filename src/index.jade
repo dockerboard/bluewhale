@@ -3,6 +3,13 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
   head
     meta(charset='utf-8')
     title Dockerboard | Simple dashboards, visualizations, managements for your dockers
+    script.
+      if (window.nwDispatcher) {
+        require('./koa');
+        window.moment = require('moment');
+        window.location.assign('http://localhost:3000/#/');
+        window.node_require = window.require;
+      }
     base(href="/")
     meta(name="description" content="Simple dashboards, visualizations, managements for your dockers.")
     meta(name="keywords" content="docker, dockers, docker dashboards, docker visualizations, docer managements")

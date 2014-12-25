@@ -1,0 +1,27 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="ImageHistoryCtrl" flex="flex" class="images">
+  <md-content>
+    <md-list>
+      <md-item ng-if="commits.length === 0">
+        <md-item-content layout-align="center center">
+          <div>No History</div>
+        </md-item-content>
+      </md-item>
+      <md-item ng-repeat="image in commits">
+        <md-divider ng-if="!$first"></md-divider>
+        <md-item-content>
+          <div class="md-tile-left">
+            <div style="margin: 0 auto;" class="icon svg-ic_photo_24px"></div>
+          </div>
+          <div class="md-tile-content">
+            <h3 ng-init="image.Id = (image.Id | limitTo: 12)" title="{{ image.Id }}"><span>ID:</span><a ng-href="#/images/{{ image.Id }}">{{ image.Id }}</a></h3>
+            <p>Tags: {{ Tags }}</p>
+            <p>Size: {{ image.Size | prettyBytes }}</p>
+            <p><span>Created: </span><span am-time-ago="image.Created" am-preprocess="unix"></span></p>
+            <p><span>CreatedBy: </span><span>{{ image.CreatedBy }}</span></p>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-content>
+</div>

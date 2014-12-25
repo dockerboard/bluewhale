@@ -1,0 +1,45 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="ContainerCtrl" flex="flex" class="images">
+  <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
+    <md-list role="list">
+      <md-item>
+        <md-button md-theme="blue" aria-label="Running" ng-click="toggleRunning($event)">
+          <md-tooltip>{{ container.State.Running ? 'Stop' : 'Start' }}</md-tooltip>
+          <div ng-class="container.State.Running ? 'svg-ic_stop_24px': 'svg-ic_play_arrow_24px'" class="icon"></div>
+        </md-button>
+      </md-item>
+      <md-item>
+        <md-button md-theme="blue" aria-label="Paused" ng-click="togglePaused($event)">
+          <md-tooltip>{{ container.State.Paused ? 'UnPause' : 'Pause' }}</md-tooltip>
+          <div ng-class="container.State.Paused ? 'svg-ic_play_circle_outline_24px': 'svg-ic_pause_circle_outline_24px'" class="icon"></div>
+        </md-button>
+      </md-item>
+      <md-item>
+        <md-button md-theme="blue" aria-label="Remove" ng-click="destory($event)">
+          <md-tooltip>Remove</md-tooltip>
+          <div class="icon svg-ic_clear_24px"></div>
+        </md-button>
+      </md-item>
+    </md-list>
+  </md-toolbar>
+  <md-content style="margin-top: 16px;">
+    <table layout="column" style="padding: 8px; text-align: left; width: 100%; display: table;">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="attr in basicAttributes">
+          <th>{{ attr.key }}</th>
+          <th ng-bind-html="attr.value | sanitize"></th>
+        </tr>
+        <tr>
+          <th>State</th>
+          <th><span>{{ container.State.Running }} </span><span ng-if="container.State.Running">Uptime </span><span am-time-ago="container.State.StartedAt" am-without-suffix="true"></span></th>
+        </tr>
+      </tbody>
+    </table>
+  </md-content>
+</div>
