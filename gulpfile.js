@@ -8,6 +8,8 @@ var pkg = require('./package.json');
 var proxyMiddleware = require('proxy-middleware');
 var plugins = require('gulp-load-plugins')();
 var url = require('url');
+var vinylPaths = require('vinyl-paths');
+var runSequence = require('run-sequence');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -40,6 +42,8 @@ var sass = plugins.sass;
 var uglify = plugins.uglify;
 var watch = plugins.watch;
 var imagemin = plugins.imagemin;
+var usemin = plugins.usemin;
+var rev = plugins.rev;
 
 
 /** Tasks **/
@@ -50,16 +54,49 @@ gulp.task('default', ['clean'], function () {
 
 gulp.task('build', ['build:scss', 'build:js', 'build:jade']);
 
-gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade', 'browser-sync']);
-
-gulp.task('clean', function(cb) {
-  del(['dist/*'], { dot: true }, cb);
+gulp.task('publish:html', function () {
+  return gulp.src('dist/**/*.html')
+    .pipe(usemin({
+      css: [csso(), rev()],
+      js: [uglify({ preserveComments: 'some' }), rev()]
+    }))
+    .pipe(gulp.dest('tmp/'));
 });
 
-gulp.task('images', function () {
+gulp.task('publish:move', function () {
+	return gulp.src('tmp/**')
+		.pipe(gulp.dest('dist/'));
+});
+
+gulp.task('publish', function (cb) {
+	return runSequence('publish:html', 'clean:dist', 'publish:move', ['sprites', 'images'], cb);
+});
+
+gulp.task('watch', ['watch:scss', 'watch:js', 'watch:jade', 'browser-sync']);
+
+gulp.task('clean', ['clean:dist', 'clean:tmp']);
+
+gulp.task('clean:dist', function (cb) {
+  del(['dist'], cb);
+});
+
+gulp.task('clean:tmp', function (cb) {
+  del(['tmp'], cb);
+});
+
+gulp.task('sprites', function () {
+	return gulp.src('bower_components/material-design-icons/sprites/svg-sprite/*.svg')
+    .pipe(imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}]
+    }))
+		.pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('images', ['sprites'], function () {
   var imgFilter = filter([
     'favicon.ico',
-    'images/**/*.{ico,gif,png,jpg,svg}'
+    'images/**/*.{ico,gif,png,jpg,svg}',
   ]);
   return gulp.src('src/**')
     .pipe(imgFilter)
@@ -193,15 +230,17 @@ function buildJade(isWatching) {
       .pipe(plumber());
   }
 
-  task
+  task = task
     .pipe(htmlFilter)
     .pipe(htmlFilter.restore())
     .pipe(jadeFilter)
     .pipe(jade({
-      pretty: isWatching
+      pretty: true,
+      locals: {
+        debug: !!isWatching
+      }
     }))
     .pipe(jadeFilter.restore())
-    .pipe(gulp.dest('dist/'));
 
-  return task;
+  return task.pipe(gulp.dest('dist/'));
 }

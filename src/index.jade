@@ -11,6 +11,8 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="apple-mobile-web-app-status-bar-style" content="black")
     link(rel="icon" type="image/x-icon" href="/favicon.ico")
+
+    // build:css(./) css/dockerboard.css
     link(rel="stylesheet" href="bower_components/angular/angular-csp.css")
     link(rel="stylesheet" href="bower_components/angular-material/angular-material.css")
     link(rel="stylesheet" href="bower_components/angular-material/themes/blue-theme.css")
@@ -21,8 +23,13 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
     link(rel="stylesheet" href="bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-content.css")
     link(rel="stylesheet" href="bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-action.css")
     link(rel="stylesheet" href="bower_components/material-design-icons/sprites/svg-sprite/svg-sprite-av.css")
+    // endbuild
+
+    // build:css css/dockerboard-app.css
     link(rel='stylesheet' href='css/app.css')
     link(rel='stylesheet' href='css/svg-icons.css')
+    // endbuild
+
   body(md-theme="blue" layout="row" ng-controller="SidenavCtrl")
 
     md-sidenav(layout="column"
@@ -62,6 +69,7 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
                 div.icon.svg-ic_chevron_right_24px(aria-hidden="true" hide-sm)
       md-content(layout="column" class="md-padding" ui-view flex)
 
+    // build:js(./) js/dockerboard.js
     script(src="bower_components/angular/angular.js")
     script(src="bower_components/angular-resource/angular-resource.js")
     script(src="bower_components/angular-ui-router/release/angular-ui-router.js")
@@ -76,7 +84,9 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
     script(src="bower_components/angular-loading-bar/build/loading-bar.js")
     script(src="bower_components/moment/moment.js")
     script(src="bower_components/angular-moment/angular-moment.js")
+    // endbuild
 
+    // build:js js/dockerboard-app.js
     script(src='js/config.js')
     script(src='js/app.js')
     script(src="js/filters/filters.js")
@@ -91,4 +101,5 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
     script(src="js/modules/containers/containers.js")
     script(src="js/modules/images/images.js")
     script(src="js/modules/canvas/canvas.js")
+    // endbuild
 

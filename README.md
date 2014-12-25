@@ -46,6 +46,7 @@ gulp watch
 ```
 gulp clean
 gulp build
+gulp publish
 ```
 
 
