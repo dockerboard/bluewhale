@@ -1,6 +1,7 @@
 {
   "bitwise": true,
   "boss": true,
+  "browser": true,
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
@@ -18,12 +19,11 @@
   "node": true,
   "noempty": true,
   "nonew": true,
+  "predef": ["angular", "dockerboardApp"],
   "quotmark": "single",
-  "sub": true,
   "strict": true,
+  "sub": true,
   "trailing": true,
   "undef": true,
-  "unused": true,
-  "browser": true,
-  "predef": ["angular", "dockerboardApp"]
+  "unused": true
 }
