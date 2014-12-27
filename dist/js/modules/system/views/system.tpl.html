@@ -1,0 +1,13 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="SystemCtrl" flex="flex" class="images system">
+  <md-content style="word-wrap: break-word;" class="md-padding">
+    <md-list>
+      <md-item ng-repeat="(key, value) in system">
+        <md-item-content>
+          <div flex="25" class="key">{{ key }}</div>
+          <div flex="flex" class="value">{{ value }}</div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-content>
+</div>
