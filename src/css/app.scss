@@ -1,3 +1,8 @@
+html, body {
+  font-size: 14px;
+  line-height: 1.864;
+}
+
 .menu-item {
   background: none;
   border-width: 0;
@@ -160,5 +165,18 @@ md-input-group {
   }
   input {
     width: 100%;
+  }
+}
+
+.system {
+  md-list md-item md-item-content {
+    padding: 6px;
+
+    .key {
+      color: #4285f4;
+    }
+  }
+  md-list md-item:nth-child(even) md-item-content {
+    background-color: #f5f5f5;
   }
 }

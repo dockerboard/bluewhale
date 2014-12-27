@@ -244,7 +244,7 @@ function buildJade(isWatching) {
 
   if (isWatching) {
     task = task
-      .pipe(watch(dir))
+      .pipe(watch(dir, { emit: 'all' }))
       .pipe(debug())
       .pipe(plumber());
   }
