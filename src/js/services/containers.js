@@ -1,38 +1,37 @@
 (function () {
-  'use strict';
+'use strict';
 
-  angular.module('dockerboard.services')
-    .factory('Containers', ['$resource', function ($resource) {
-      var res = $resource('/api/containers/:Id', {
-        Id: '@Id'
-      }, {
-        delete: {
-          method: 'POST',
-          headers: {
-            'X-HTTP-Method-Override': 'DELETE'
-          },
-          params: {
-            force: false,
-            v: false
-          }
+angular.module('dockerboard.services')
+  .factory('Containers', ['$resource', function ($resource) {
+    var res = $resource('/api/containers/:Id', {
+      Id: '@Id'
+    }, {
+      delete: {
+        method: 'POST',
+        headers: {
+          'X-HTTP-Method-Override': 'DELETE'
+        },
+        params: {
+          force: false,
+          v: false
         }
-      });
+      }
+    });
 
-      res.queryParams = {
-        all: false,
-        limit: '',
-        size: false,
-        since: '',
-        before: ''
-      };
+    res.queryParams = {
+      all: false,
+      limit: '',
+      size: false,
+      since: '',
+      before: ''
+    };
 
-      res.basicAttributes = [
-        'Id',
-        'Name',
-        'Created',
-        'Image'
-      ];
-      return res;
-    }]);
-
+    res.basicAttributes = [
+      'Id',
+      'Name',
+      'Created',
+      'Image'
+    ];
+    return res;
+  }]);
 })();
