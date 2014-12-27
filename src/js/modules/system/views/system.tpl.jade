@@ -1,0 +1,7 @@
+div(layout="column" layout-fill class="images system" ng-controller="SystemCtrl" flex)
+  md-content.md-padding(style="word-wrap: break-word;")
+    md-list
+      md-item(ng-repeat="(key, value) in system")
+        md-item-content
+          div.key(flex="25") {{ key }}
+          div.value(flex) {{ value }}
