@@ -80,6 +80,7 @@ function ContainerController($scope, $stateParams, $location, $mdDialog, limitTo
     })
     .then(function (running) {
       $scope.container.State.Running = running;
+      $scope.container.State[running ? 'StartedAt' : 'FinishedAt'] = Date.now();
     });
   };
 

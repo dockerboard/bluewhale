@@ -28,6 +28,5 @@ div(layout="column" layout-fill class="images" ng-controller="ContainerCtrl" fle
         tr
           th State
           th
-            span {{ container.State.Running }} 
-            span(ng-if="container.State.Running") Uptime 
-            span(am-time-ago="container.State.StartedAt" am-without-suffix="true")
+            span {{ container.State.Running ? 'Uptime' : 'Downtime' }} 
+            span(am-time-ago="container.State.Running ? container.State.StartedAt : container.State.FinishedAt" am-without-suffix="true")
