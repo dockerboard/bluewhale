@@ -3,7 +3,7 @@
 
 The [Dockerboard][] Web Client.
 
-[![badge](http://dockeri.co/image/dockerboard/bluewhale)](https://registry.hub.docker.com/u/dockerboard/bluewhare/)
+[![badge](http://dockeri.co/image/dockerboard/bluewhale)](https://registry.hub.docker.com/u/dockerboard/bluewhale/)
 
 
 ## Screenshot
