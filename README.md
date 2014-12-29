@@ -8,7 +8,7 @@ The [Dockerboard][] Web Client.
 
 ## Screenshot
 
-![Dockerboard Screenshot](https://github.com/dockerboard/bluewhale/blob/master/screenshots/dockerboard.gif?raw=true)
+![Dockerboard Screenshot](https://raw.githubusercontent.com/dockerboard/bluewhale/master/screenshots/dockerboard.gif)
 
 ## Quickstart
 
