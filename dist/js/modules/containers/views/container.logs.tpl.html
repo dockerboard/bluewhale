@@ -1,0 +1,57 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="ContainerLogsCtrl" flex="flex" class="images">
+  <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
+    <md-list layout="row" md-theme="blue" role="list">
+      <md-item flex="10" layout-align="center center" layout="column">
+        <md-item-content>
+          <md-tooltip>Follow</md-tooltip>
+          <md-switch ng-disabled="true" ng-model="queryParams.follow" aria-label="Follow"></md-switch>
+        </md-item-content>
+      </md-item>
+      <md-item flex="10" layout-align="center center" layout="column">
+        <md-item-content>
+          <md-tooltip>Stdout</md-tooltip>
+          <md-switch ng-model="queryParams.stdout" aria-label="Stdout"></md-switch>
+        </md-item-content>
+      </md-item>
+      <md-item flex="10" layout-align="center center" layout="column">
+        <md-item-content>
+          <md-tooltip>Stderr</md-tooltip>
+          <md-switch ng-model="queryParams.stderr" aria-label="Stderr"></md-switch>
+        </md-item-content>
+      </md-item>
+      <md-item flex="10" layout-align="center center" layout="column">
+        <md-item-content>
+          <md-tooltip>Timestamps</md-tooltip>
+          <md-switch ng-model="queryParams.timestamps" aria-label="Timestamps"></md-switch>
+        </md-item-content>
+      </md-item>
+      <md-item flex="20" layout-align="center center" layout="column">
+        <md-item-content>
+          <md-tooltip>Tail, all or number</md-tooltip>
+          <md-text-float label="Tail" ng-model="queryParams.tail"></md-text-float>
+        </md-item-content>
+      </md-item>
+      <md-item style="position: absolute; right: 0;">
+        <md-item-content>
+          <md-tooltip>Search</md-tooltip>
+          <md-button aria-label="Search" ng-click="search()">
+            <div class="icon svg-ic_search_24px"></div>
+          </md-button>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-toolbar>
+  <md-content style="margin-top: 16px;" class="md-padding logs">
+    <div ng-if="logs.length === 0" layout-align="center center" layout="layout">
+      <div>No Logs</div>
+    </div>
+    <div ng-if="logs.length" class="log-container">
+      <md-button aria-label="Scroll To End" ng-click="scrollToEnd($event)" class="md-raised to-end-btn">
+        <md-tooltip>Scroll to End of Log</md-tooltip>
+        <div class="icon svg-ic_arrow_drop_down_24px"></div>
+      </md-button>
+      <pre>{{ logs }}</pre>
+    </div>
+  </md-content>
+</div>
