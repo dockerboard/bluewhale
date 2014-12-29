@@ -6,6 +6,7 @@ dockerboardApp.registerModule('containers.ctrl');
 angular.module('containers.ctrl')
   .controller('ContainersCtrl', ContainersController)
   .controller('ContainerCtrl', ContainerController)
+  .controller('ContainerLogsCtrl', ContainerLogsController)
   .config(['$stateProvider',
     function ($stateProvider) {
       $stateProvider.
@@ -16,6 +17,10 @@ angular.module('containers.ctrl')
         .state('containeritem', {
           url: '/containers/:Id',
           templateUrl: '/js/modules/containers/views/container.tpl.html'
+        })
+        .state('containerLogs', {
+          url: '/containers/{Id}/logs',
+          templateUrl: '/js/modules/containers/views/container.logs.tpl.html'
         });
     }
   ]);
@@ -217,6 +222,33 @@ function PausedDialogController($scope, $location, $mdDialog, parentScope, Conta
     }, function (e) {
       $scope.content = e.data;
     });
+  };
+}
+
+ContainerLogsController.$inject = ['$scope', '$stateParams', 'ContainerActions'];
+function ContainerLogsController($scope, $stateParams, ContainerActions) {
+  $scope.containerShortId = $stateParams.Id;
+  $scope.queryParams = ContainerActions.logsQueryParams;
+
+  $scope.fetch = function (Id, queryParams) {
+    var params = angular.copy(queryParams, {});
+    params.Id = Id;
+    ContainerActions.logs(params, function (data) {
+      $scope.logs = data.text || '';
+    })
+  };
+
+  $scope.fetch($scope.containerShortId, $scope.queryParams);
+
+  $scope.search = function () {
+    $scope.fetch($scope.containerShortId, $scope.queryParams);
+  };
+
+  $scope.scrollToEnd = function ($ev) {
+    var logContent = angular.element($ev.currentTarget).parent().parent()[0];
+    if (logContent) {
+      logContent.scrollTop = logContent.scrollHeight;
+    }
   };
 }
 

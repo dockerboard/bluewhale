@@ -1,0 +1,37 @@
+div(layout="column" layout-fill class="images" ng-controller="ContainerLogsCtrl" flex)
+  md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
+    md-list(layout="row" md-theme="blue" role="list")
+      md-item(flex=10 layout-align="center center" layout="column")
+        md-item-content
+          md-tooltip Follow
+          md-switch(ng-disabled="true" ng-model="queryParams.follow" aria-label="Follow")
+      md-item(flex=10 layout-align="center center" layout="column")
+        md-item-content
+          md-tooltip Stdout
+          md-switch(ng-model="queryParams.stdout" aria-label="Stdout")
+      md-item(flex=10 layout-align="center center" layout="column")
+        md-item-content
+          md-tooltip Stderr
+          md-switch(ng-model="queryParams.stderr" aria-label="Stderr")
+      md-item(flex=10 layout-align="center center" layout="column")
+        md-item-content
+          md-tooltip Timestamps
+          md-switch(ng-model="queryParams.timestamps" aria-label="Timestamps")
+      md-item(flex=20 layout-align="center center" layout="column")
+        md-item-content
+          md-tooltip Tail, all or number
+          md-text-float(label="Tail" ng-model="queryParams.tail")
+      md-item(style="position: absolute; right: 0;")
+        md-item-content
+          md-tooltip Search
+          md-button(aria-label="Search" ng-click="search()")
+            div.icon.svg-ic_search_24px
+
+  md-content.md-padding.logs(style="margin-top: 16px;")
+    div(ng-if="logs.length === 0" layout-align="center center" layout)
+      div No Logs
+    div.log-container(ng-if="logs.length")
+      md-button.md-raised.to-end-btn(aria-label="Scroll To End" ng-click="scrollToEnd($event)")
+        md-tooltip Scroll to End of Log
+        div.icon.svg-ic_arrow_drop_down_24px
+      pre {{ logs }}

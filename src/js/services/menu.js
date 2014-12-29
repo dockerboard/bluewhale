@@ -23,8 +23,14 @@ angular.module('dockerboard.services')
         url: '/images'
       },
       {
+        name: 'Hosts',
+        url: '/hosts',
+        tooltip: 'Docker Hosts'
+      },
+      {
         name: 'System',
-        url: '/system'
+        url: '/system',
+        tooltip: 'System Info'
       },
       {
         name: 'Canvas',
