@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="css/dockerboard-dad6fa5b.css"/>
-    <link rel="stylesheet" href="css/dockerboard-app-f7a88fd8.css"/>
+    <link rel="stylesheet" href="css/dockerboard-app-631756d0.css"/>
   </head>
   <body md-theme="blue" layout="row" ng-controller="SidenavCtrl">
     <md-sidenav layout="column" md-component-id="left" md-is-locked-open="$media('gt-sm')" class="md-sidenav-left md-whiteframe-z2">
@@ -29,7 +29,8 @@
       </md-toolbar>
       <md-content flex>
         <div ng-repeat="section in menu.sections">
-          <button ng-if="!section.url" ng-click="menu.toggleSelectSection(section)" ng-href="#{{section.url}}" md-highlight="menu.isSectionSelected(section)" md-ink-ripple="#bbb" class="menu-item menu-title md-menu-item">{{ section.name }}</button><a ng-if="section.url" ng-click="menu.toggleSelectSection(section)" ng-href="#{{section.url}}" md-highlight="menu.isSectionSelected(section)" md-ink-ripple="#bbb" class="menu-item menu-title md-menu-item">{{ section.name }}</a>
+          <button ng-if="!section.url" ng-click="menu.toggleSelectSection(section)" ng-href="#{{ section.url }}" md-highlight="menu.isSectionSelected(section)" md-ink-ripple="#bbb" ng-bind="section.name" class="menu-item menu-title md-menu-item"></button><a ng-if="section.url" ng-click="menu.toggleSelectSection(section)" ng-href="#{{ section.url }}" md-highlight="menu.isSectionSelected(section)" md-ink-ripple="#bbb" class="menu-item menu-title md-menu-item"><span ng-bind="section.name">
+              <md-tooltip ng-if="section.tooltip"><span ng-bind="section.tooltip"></span></md-tooltip></span></a>
         </div>
         <nav class="app-footer">
           <div><a href="https://github.com/dockerboard"><img src="images/github.svg" width="16"></a></div>
@@ -61,6 +62,6 @@
       <md-content layout="column" ui-view flex class="md-padding"></md-content>
     </div>
     <script src="js/dockerboard-79dba5fa.js"></script>
-    <script src="js/dockerboard-app-55cd7fe9.js"></script>
+    <script src="js/dockerboard-app-fd1a4fd7.js"></script>
   </body>
 </html>

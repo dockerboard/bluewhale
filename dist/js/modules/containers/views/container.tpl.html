@@ -1,23 +1,28 @@
 
 <div layout="column" layout-fill="layout-fill" ng-controller="ContainerCtrl" flex="flex" class="images">
   <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
-    <md-list role="list">
+    <md-list md-theme="blue" role="list">
       <md-item>
-        <md-button md-theme="blue" aria-label="Running" ng-click="toggleRunning($event)">
+        <md-button aria-label="Running" ng-click="toggleRunning($event)">
           <md-tooltip>{{ container.State.Running ? 'Stop' : 'Start' }}</md-tooltip>
           <div ng-class="container.State.Running ? 'svg-ic_stop_24px': 'svg-ic_play_arrow_24px'" class="icon"></div>
         </md-button>
       </md-item>
       <md-item>
-        <md-button md-theme="blue" aria-label="Paused" ng-click="togglePaused($event)">
+        <md-button aria-label="Paused" ng-click="togglePaused($event)">
           <md-tooltip>{{ container.State.Paused ? 'UnPause' : 'Pause' }}</md-tooltip>
           <div ng-class="container.State.Paused ? 'svg-ic_play_circle_outline_24px': 'svg-ic_pause_circle_outline_24px'" class="icon"></div>
         </md-button>
       </md-item>
       <md-item>
-        <md-button md-theme="blue" aria-label="Remove" ng-click="destory($event)">
+        <md-button aria-label="Remove" ng-click="destory($event)">
           <md-tooltip>Remove</md-tooltip>
           <div class="icon svg-ic_clear_24px"></div>
+        </md-button>
+      </md-item>
+      <md-item>
+        <md-button aria-label="Logs">
+          <md-tooltip>Logs</md-tooltip><a ng-href="#/containers/{{containerShortId}}/logs" layout="layout" class="icon svg-ic_history_24px"></a>
         </md-button>
       </md-item>
     </md-list>
@@ -37,7 +42,7 @@
         </tr>
         <tr>
           <th>State</th>
-          <th><span>{{ container.State.Running }} </span><span ng-if="container.State.Running">Uptime </span><span am-time-ago="container.State.StartedAt" am-without-suffix="true"></span></th>
+          <th><span>{{ container.State.Running ? 'Uptime' : 'Downtime' }} </span><span am-time-ago="container.State.Running ? container.State.StartedAt : container.State.FinishedAt" am-without-suffix="true"></span></th>
         </tr>
       </tbody>
     </table>

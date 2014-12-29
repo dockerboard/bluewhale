@@ -1,14 +1,16 @@
 
 <div layout="column" layout-fill="layout-fill" ng-controller="CanvasCtrl" flex="flex" class="images canvas">
   <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
-    <md-list role="list">
+    <md-list md-theme="blue" role="list">
       <md-item>
-        <md-button ng-click="addNode()" md-theme="blue" aria-label="Add Component" title="Add Component">
+        <md-button ng-click="addNode()" aria-label="Add Component">
+          <md-tooltip>Add Component</md-tooltip>
           <div class="icon svg-ic_add_24px"></div>
         </md-button>
       </md-item>
       <md-item>
-        <md-button ng-disabled="true" md-theme="blue" aria-label="Remove Component" title="Remove Component">
+        <md-button aria-label="Remove Component">
+          <md-tooltip>Remove Component</md-tooltip>
           <div class="icon svg-ic_clear_24px"></div>
         </md-button>
       </md-item>
