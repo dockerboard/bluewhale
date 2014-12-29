@@ -180,3 +180,30 @@ md-input-group {
     background-color: #f5f5f5;
   }
 }
+
+.logs {
+  background-color: #2a2a2a !important;
+  color: #F1F1F1;
+  .log-container {
+    position: relative;
+  }
+  .to-end-btn {
+    position: fixed;
+    right: 36px;
+    z-index: 1;
+  }
+  pre {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    clear: left;
+    min-height: 12px;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 19px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #2a2a2a;
+    counter-reset: line-numbering;
+  }
+}
