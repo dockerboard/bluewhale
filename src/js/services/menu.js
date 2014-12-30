@@ -96,7 +96,8 @@ angular.module('dockerboard.services')
           var segments = path.split('/');
           var currSection = segments.slice(0, 2).join('/');
           if (currSection === section.url) {
-            self.selectPage(segments[2], segments[3]);
+            // Force escape image repo
+            self.selectPage(escape(segments[2]), escape(segments[3]));
             self.selectSection(section);
             activated = true;
           }
@@ -109,5 +110,9 @@ angular.module('dockerboard.services')
       }
     }
   }]);
+
+  function escape(s) {
+    return s && s.replace(/%/g, '%25');
+  }
 
 })();
