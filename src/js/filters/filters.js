@@ -18,7 +18,7 @@
 
     .filter('unescape', ['$window', function ($window) {
       return function (url) {
-        return url ? $window.decodeURIComponent(url) : '';
+        return url ? $window.decodeURIComponent($window.decodeURIComponent(url)) : '';
       }
     }])
 
