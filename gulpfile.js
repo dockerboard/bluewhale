@@ -5,11 +5,11 @@ var del = require('del');
 var glob = require('glob');
 var gulp = require('gulp');
 var pkg = require('./package.json');
-var proxyMiddleware = require('proxy-middleware');
 var plugins = require('gulp-load-plugins')();
+var proxyMiddleware = require('proxy-middleware');
+var runSequence = require('run-sequence');
 var url = require('url');
 var vinylPaths = require('vinyl-paths');
-var runSequence = require('run-sequence');
 
 var AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
@@ -26,7 +26,6 @@ var AUTOPREFIXER_BROWSERS = [
 /** Gulp dependencies */
 
 var autoprefixer = plugins.autoprefixer;
-var concat = plugins.concat;
 var csso = plugins.csso;
 var debug = plugins.debug;
 var filter = plugins.filter;
