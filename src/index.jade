@@ -3,6 +3,9 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
   head
     meta(charset='utf-8')
     title Dockerboard | Simple dashboards, visualizations, managements for your dockers
+    meta(name="description" content="Simple dashboards, visualizations, managements for your dockers.")
+    meta(name="keywords" content="docker, dockers, docker dashboards, docker visualizations, docer managements")
+    base(href="/")
     script.
       if (window.nwDispatcher) {
         require('./koa');
@@ -10,9 +13,6 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
         window.location.assign('http://localhost:3000/#/');
         window.node_require = window.require;
       }
-    base(href="/")
-    meta(name="description" content="Simple dashboards, visualizations, managements for your dockers.")
-    meta(name="keywords" content="docker, dockers, docker dashboards, docker visualizations, docer managements")
     meta(name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no")
     meta(name="mobile-web-app-capable" content="yes")
     meta(name="apple-mobile-web-app-capable" content="yes")
@@ -81,7 +81,7 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
           md-item(ng-repeat="breadcrumb in menu.breadcrumbs" layout="column")
             md-item-content(layout-align="left center" flex)
               div
-                a(ng-href="#{{menu.breadcrumbUrl($index)}}") {{ breadcrumb.name || breadcrumb }}
+                a(ng-href="#{{menu.breadcrumbUrl($index)}}") {{ (breadcrumb.name || breadcrumb) | unescape }}
               div(ng-if="$index < menu.breadcrumbs.length - 1" class="menu-separator-icon" style="padding-right: 3px; padding-left: 3px;")
                 div.icon.svg-ic_chevron_right_24px(aria-hidden="true" hide-sm)
       md-content(layout="column" class="md-padding" ui-view flex)
