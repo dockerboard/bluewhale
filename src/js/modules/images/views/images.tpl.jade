@@ -29,7 +29,7 @@ div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
             h3(ng-init="image.Id = (image.Id | limitTo: 12)" title="{{ image.Id }}")
               span ID: 
               a(ng-href="#/images/{{ image.Id }}") {{ image.Id }}
-            h4 Repo: {{ getRepo(image.RepoTags) }}
+            h4 Repository: {{ getRepo(image.RepoTags) }}
             p Tags: {{ getTags(image.RepoTags) }}
             p Size: {{ image.Size | prettyBytes }}
             p VirtualSize: {{ image.VirtualSize | prettyBytes }}

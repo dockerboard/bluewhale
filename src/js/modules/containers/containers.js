@@ -42,6 +42,20 @@ function ContainersController($scope, Containers, Hosts) {
   $scope.search = function () {
     $scope.fetch();
   };
+
+  $scope.displayablePorts = function (ports) {
+    var result = [];
+    for (var i = 0, l = ports.length; i < l; ++i) {
+      var port = ports[i];
+      if (port.IP === '') {
+        result.push(port.PrivatePort + '/' + port.Type);
+      } else {
+        result.push(port.IP + ':' + port.PublicPort + '->' + port.PrivatePort + '/' + port.Type);
+      }
+    }
+    return result.join(', ');
+  };
+
 }
 
 ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'Containers', 'Hosts'];

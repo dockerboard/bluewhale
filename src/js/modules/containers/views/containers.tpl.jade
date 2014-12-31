@@ -48,7 +48,7 @@ div(layout="column" layout-fill class="images" ng-controller="ContainersCtrl" fl
             p
               span Status: 
               span {{ container.Status }}
-            p Ports: {{ container.Ports.join(', ') }}
+            p Ports: {{ displayablePorts(container.Ports) }}
             p(ng-if="container.SizeRw >= 0") SizeRw: {{ container.SizeRw | prettyBytes }}
             p(ng-if="container.SizeRootFs >= 0") SizeRootFs: {{ container.SizeRootFs | prettyBytes }}
             p
