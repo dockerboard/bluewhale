@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Dockerboard | Simple dashboards, visualizations, managements for your dockers</title>
+    <meta name="description" content="Simple dashboards, visualizations, managements for your dockers.">
+    <meta name="keywords" content="docker, dockers, docker dashboards, docker visualizations, docer managements">
+    <base href="/">
     <script>
       if (window.nwDispatcher) {
         require('./koa');
@@ -11,16 +14,13 @@
         window.node_require = window.require;
       }
     </script>
-    <base href="/">
-    <meta name="description" content="Simple dashboards, visualizations, managements for your dockers.">
-    <meta name="keywords" content="docker, dockers, docker dashboards, docker visualizations, docer managements">
     <meta name="viewport" content="width=device-width, maximum-scale=1, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="css/dockerboard-dad6fa5b.css"/>
-    <link rel="stylesheet" href="css/dockerboard-app-631756d0.css"/>
+    <link rel="stylesheet" href="css/dockerboard-app-77303bf7.css"/>
   </head>
   <body md-theme="blue" layout="row" ng-controller="SidenavCtrl">
     <md-sidenav layout="column" md-component-id="left" md-is-locked-open="$media('gt-sm')" class="md-sidenav-left md-whiteframe-z2">
@@ -42,6 +42,11 @@
     <div layout="column" tabindex="-1" role="main" flex>
       <md-toolbar layout="column" ng-click="openMenu()" flex class="md-blue-theme md-toolbar-tools">
         <md-list layout="row" layout-align="left center" flex>
+          <md-item style="position: absolute; right: 26px;" hide-sm>
+            <md-item-content>
+              <div>Host: {{ host || 'Local' }}</div>
+            </md-item-content>
+          </md-item>
           <md-item>
             <md-item-content>
               <md-button hide-gt-sm aria-label="Toggle Menu" class="menu-icon">
@@ -51,7 +56,7 @@
           </md-item>
           <md-item ng-repeat="breadcrumb in menu.breadcrumbs" layout="column">
             <md-item-content layout-align="left center" flex>
-              <div><a ng-href="#{{menu.breadcrumbUrl($index)}}">{{ breadcrumb.name || breadcrumb }}</a></div>
+              <div><a ng-href="#{{menu.breadcrumbUrl($index)}}">{{ (breadcrumb.name || breadcrumb) | unescape }}</a></div>
               <div ng-if="$index &lt; menu.breadcrumbs.length - 1" style="padding-right: 3px; padding-left: 3px;" class="menu-separator-icon">
                 <div aria-hidden="true" hide-sm class="icon svg-ic_chevron_right_24px"></div>
               </div>
@@ -62,6 +67,6 @@
       <md-content layout="column" ui-view flex class="md-padding"></md-content>
     </div>
     <script src="js/dockerboard-79dba5fa.js"></script>
-    <script src="js/dockerboard-app-fd1a4fd7.js"></script>
+    <script src="js/dockerboard-app-8476518c.js"></script>
   </body>
 </html>

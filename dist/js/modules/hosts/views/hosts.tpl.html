@@ -1,0 +1,44 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="HostsCtrl" flex="flex" class="images">
+  <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
+    <md-list layout="row" role="list" md-theme="blue">
+      <md-item>
+        <md-button aria-label="Add Host" ng-click="create($event)">
+          <md-tooltip>Add Host</md-tooltip>
+          <div class="icon svg-ic_add_24px"></div>
+        </md-button>
+      </md-item>
+    </md-list>
+  </md-toolbar>
+  <md-content style="margin-top: 16px;">
+    <md-list>
+      <md-item ng-if="hosts.length === 0">
+        <md-item-content layout-align="center center">
+          <div>No History</div>
+        </md-item-content>
+      </md-item>
+      <md-item ng-repeat="host in hosts" id="host-{{$index}}">
+        <md-divider ng-if="!$first"></md-divider>
+        <md-item-content>
+          <div class="md-tile-left">
+            <div style="margin: 0 auto;" class="icon svg-ic_photo_24px"></div>
+          </div>
+          <div class="md-tile-content">
+            <h3><span>Name: </span><span>{{ host.Name }}</span></h3>
+            <p>Host: {{ host.URL.Scheme + '://' + host.URL.Host }}</p>
+            <p>TLSVerify: {{ host.TLSVerify }}</p>
+            <P>TLSCaFile: {{ host.TLSCaFile }}</P>
+            <p>TLSCertFile: {{ host.TLSCertFile }}</p>
+            <p>TLSKeyFile: {{ host.TLSKeyFile }}</p>
+            <p>TLSCertPath: {{ host.TLSCertPath }}</p>
+          </div>
+          <div style="padding: 0 16px;" class="md-tile-right">
+            <md-tooltip>Select Host</md-tooltip>
+            <md-button ng-click="select($index)" class="md-raised">Select</md-button>
+            <md-button ng-if="$index &gt; 0" ng-click="destroy($index)" class="md-raised">Delete</md-button>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-content>
+</div>

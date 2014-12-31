@@ -38,7 +38,7 @@
             <div style="margin: 0 auto;" class="icon svg-ic_photo_24px"></div>
           </div>
           <div class="md-tile-content">
-            <h3 ng-init="image.Id = (image.Id | limitTo: 12)" title="{{ image.Id }}"><span>ID:</span><a ng-href="#/images/{{ image.Id }}">{{ image.Id }}</a></h3>
+            <h3 ng-init="image.Id = (image.Id | limitTo: 12)" title="{{ image.Id }}"><span>ID: </span><a ng-href="#/images/{{ image.Id }}">{{ image.Id }}</a></h3>
             <h4>Repo: {{ getRepo(image.RepoTags) }}</h4>
             <p>Tags: {{ getTags(image.RepoTags) }}</p>
             <p>Size: {{ image.Size | prettyBytes }}</p>
