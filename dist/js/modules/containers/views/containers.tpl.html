@@ -60,7 +60,7 @@
             <p>Names: {{ container.Names.join(', ') }}</p>
             <p><span>Created: </span><span am-time-ago="container.Created" am-preprocess="unix"></span></p>
             <p><span>Status: </span><span>{{ container.Status }}</span></p>
-            <p>Ports: {{ container.Ports.join(', ') }}</p>
+            <p>Ports: {{ displayablePorts(container.Ports) }}</p>
             <p ng-if="container.SizeRw &gt;= 0">SizeRw: {{ container.SizeRw | prettyBytes }}</p>
             <p ng-if="container.SizeRootFs &gt;= 0">SizeRootFs: {{ container.SizeRootFs | prettyBytes }}</p>
             <p>Command: <span style="background: #eee;">{{ container.Command }}</span></p>
