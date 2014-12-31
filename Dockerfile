@@ -1,4 +1,4 @@
-FROM node:0.11.14
+FROM node:0.10.35
 
 MAINTAINER fundon cfddream@gmail.com
 
