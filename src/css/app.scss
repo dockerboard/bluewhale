@@ -160,11 +160,16 @@ md-dialog {
 }
 
 md-input-group {
-  label {
-    display: none;
-  }
   input {
     width: 100%;
+  }
+}
+
+md-toolbar {
+  md-input-group {
+    label {
+      display: none;
+    }
   }
 }
 

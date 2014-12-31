@@ -25,10 +25,11 @@ angular.module('containers.ctrl')
     }
   ]);
 
-ContainersController.$inject = ['$scope', 'Containers'];
-function ContainersController($scope, Containers) {
+ContainersController.$inject = ['$scope', 'Containers', 'Hosts'];
+function ContainersController($scope, Containers, Hosts) {
 
-  $scope.queryParams = Containers.queryParams;
+  $scope.queryParams = angular.copy(Containers.queryParams);
+  $scope.queryParams.host = Hosts.getCurrentHostUrl()
 
   $scope.fetch = function () {
     Containers.query($scope.queryParams, function (data) {
@@ -43,9 +44,9 @@ function ContainersController($scope, Containers) {
   };
 }
 
-ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'Containers'];
-function ContainerController($scope, $stateParams, $location, $mdDialog, limitToFilter, amTimeAgoFilter, Containers) {
-  Containers.get({Id: $stateParams.Id}, function (data) {
+ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'Containers', 'Hosts'];
+function ContainerController($scope, $stateParams, $location, $mdDialog, limitToFilter, amTimeAgoFilter, Containers, Hosts) {
+  Containers.get({Id: $stateParams.Id, host: Hosts.getCurrentHostUrl()}, function (data) {
     formatBasicAttributes(data);
     $scope.container = data;
     $scope.containerShortId =  limitToFilter(data.Id, 12);

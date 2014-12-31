@@ -1,0 +1,32 @@
+div(layout="column" layout-fill class="images" ng-controller="HostsCtrl" flex)
+  md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
+    md-list(layout="row" role="list" md-theme="blue")
+      md-item
+        md-button(aria-label="Add Host" ng-click="create($event)")
+          md-tooltip Add Host
+          div.icon.svg-ic_add_24px
+
+  md-content(style="margin-top: 16px;")
+    md-list
+      md-item(ng-if="hosts.length === 0")
+        md-item-content(layout-align="center center")
+          div No History
+      md-item(ng-repeat="host in hosts" id="host-{{$index}}")
+        md-divider(ng-if="!$first")
+        md-item-content
+          div(class="md-tile-left")
+            div.icon.svg-ic_photo_24px(style="margin: 0 auto;")
+          div(class="md-tile-content")
+            h3
+              span Name: 
+              span {{ host.Name }}
+            p Host: {{ host.URL.Scheme + '://' + host.URL.Host }}
+            p TLSVerify: {{ host.TLSVerify }}
+            P TLSCaFile: {{ host.TLSCaFile }}
+            p TLSCertFile: {{ host.TLSCertFile }}
+            p TLSKeyFile: {{ host.TLSKeyFile }}
+            p TLSCertPath: {{ host.TLSCertPath }}
+          div(class="md-tile-right" style="padding: 0 16px;")
+              md-tooltip Select Host
+              md-button(class="md-raised" ng-click="select($index)") Select
+              md-button(ng-if="$index > 0" class="md-raised" ng-click="destroy($index)") Delete

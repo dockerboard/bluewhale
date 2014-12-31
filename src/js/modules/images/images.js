@@ -25,10 +25,11 @@ angular.module('images.ctrl')
     }
   ]);
 
-ImagesController.$inject = ['$scope', 'Images'];
-function ImagesController($scope, Images) {
+ImagesController.$inject = ['$scope', 'Images', 'Hosts'];
+function ImagesController($scope, Images, Hosts) {
 
-  $scope.queryParams = Images.queryParams;
+  $scope.queryParams = angular.copy(Images.queryParams);
+  $scope.queryParams.host = Hosts.getCurrentHostUrl();
 
   $scope.queryParamsFilters = '';
 
@@ -82,8 +83,8 @@ function ImagesController($scope, Images) {
   };
 }
 
-ImageController.$inject = ['$scope', '$location', '$stateParams', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'prettyBytesFilter', 'Images', 'ImageActions'];
-function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilter, amTimeAgoFilter, prettyBytesFilter, Images, ImageActions) {
+ImageController.$inject = ['$scope', '$location', '$stateParams', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'prettyBytesFilter', 'Images', 'ImageActions', 'Hosts'];
+function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilter, amTimeAgoFilter, prettyBytesFilter, Images, ImageActions, Hosts) {
   // Fix contains `/` issue.
   $stateParams.Id = $stateParams.Id.replace(/%(25)/g, '%').replace(/\//g, '%2F');
 
@@ -118,7 +119,7 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
     }, $scope.basicAttributes);
   }
 
-  Images.get({Id: $stateParams.Id}, function (data) {
+  Images.get({Id: $stateParams.Id, host: Hosts.getCurrentHostUrl()}, function (data) {
     formatBasicAttributes(data);
     $scope.image = data;
     $scope.imageShortId = limitToFilter(data.Id, 12);
@@ -138,8 +139,8 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
   };
 }
 
-DestoryDialogController.$inject = ['$scope', '$location', '$mdDialog', 'Images', 'image', 'imageShortId'];
-function DestoryDialogController($scope, $location, $mdDialog, Images, image, imageShortId) {
+DestoryDialogController.$inject = ['$scope', '$location', '$mdDialog', 'Images', 'image', 'imageShortId', 'Hosts'];
+function DestoryDialogController($scope, $location, $mdDialog, Images, image, imageShortId, Hosts) {
   $scope.image = image;
   $scope.imageShortId = imageShortId;
 
@@ -159,7 +160,8 @@ function DestoryDialogController($scope, $location, $mdDialog, Images, image, im
       {
         Id: $scope.imageShortId,
         force: $scope.params.force,
-        noprune: $scope.params.noprune
+        noprune: $scope.params.noprune,
+        host: Hosts.getCurrentHostUrl()
       },
       null,
       function (data) {
@@ -179,11 +181,11 @@ function DestoryDialogController($scope, $location, $mdDialog, Images, image, im
 }
 
 
-ImageHistoryController.$inject = ['$scope', '$stateParams', 'ImageActions'];
-function ImageHistoryController($scope, $stateParams, ImageActions) {
+ImageHistoryController.$inject = ['$scope', '$stateParams', 'ImageActions', 'Hosts'];
+function ImageHistoryController($scope, $stateParams, ImageActions, Hosts) {
   $scope.imageShortId = $stateParams.Id;
   ImageActions.history(
-    { Id: $scope.imageShortId },
+    { Id: $scope.imageShortId, host: Hosts.getCurrentHostUrl() },
     function (data) {
       $scope.commits = data;
     },

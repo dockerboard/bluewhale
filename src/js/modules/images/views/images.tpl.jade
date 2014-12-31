@@ -27,7 +27,7 @@ div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
             div.icon.svg-ic_photo_24px(style="margin: 0 auto;")
           div(class="md-tile-content")
             h3(ng-init="image.Id = (image.Id | limitTo: 12)" title="{{ image.Id }}")
-              span ID:
+              span ID: 
               a(ng-href="#/images/{{ image.Id }}") {{ image.Id }}
             h4 Repo: {{ getRepo(image.RepoTags) }}
             p Tags: {{ getTags(image.RepoTags) }}

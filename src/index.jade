@@ -74,6 +74,9 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
     div(layout="column" tabindex="-1" role="main" flex)
       md-toolbar(layout="column" ng-click="openMenu()" class="md-blue-theme md-toolbar-tools" flex)
         md-list(layout="row" layout-align="left center" flex)
+          md-item(style="position: absolute; right: 26px;" hide-sm)
+            md-item-content
+              div Host: {{ host || 'Local' }}
           md-item
             md-item-content
               md-button(class="menu-icon" hide-gt-sm aria-label="Toggle Menu")
@@ -114,11 +117,13 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
     script(src="js/services/images.js")
     script(src="js/services/image_actions.js")
     script(src="js/services/system.js")
+    script(src="js/services/hosts.js")
     script(src="js/modules/site/site.js")
     script(src="js/modules/sidenav/sidenav.js")
     script(src="js/modules/containers/containers.js")
     script(src="js/modules/images/images.js")
     script(src="js/modules/system/system.js")
+    script(src="js/modules/hosts/hosts.js")
     script(src="js/modules/canvas/canvas.js")
     // endbuild
 
