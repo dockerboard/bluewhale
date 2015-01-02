@@ -1,0 +1,22 @@
+
+<md-dialog aria-label="Kill Container" class="container-dialog">
+  <md-toolbar layout="column" layout-align="center center" md-theme="blue">
+    <md-subheader class="md-sticky-no-effect">Kill Container {{ containerShortId }}</md-subheader>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-item>
+        <md-text-float label="Signal" ng-model="params.signal" flex="flex"></md-text-float>
+        <div style="font-size: 0.5em;">Signal to send to the container: integer or string like "SIGINT".</div>
+        <div style="font-size: 0.5em;">When not set, SIGKILL is assumed and the call will waits for the container to exit.</div>
+      </md-item>
+      <md-item>
+        <p>{{ content }}</p>
+      </md-item>
+    </md-list>
+  </md-content>
+  <div layout="row" class="md-actions">
+    <md-button ng-click="cancel()">Cancel</md-button>
+    <md-button ng-click="ok()" class="md-primary">Yes</md-button>
+  </div>
+</md-dialog>

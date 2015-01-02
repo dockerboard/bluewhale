@@ -1,0 +1,16 @@
+md-dialog.container-dialog(aria-label="Kill Container")
+  md-toolbar(layout="column" layout-align="center center" md-theme="blue")
+    md-subheader(class="md-sticky-no-effect") Kill Container {{ containerShortId }}
+  md-content
+    md-list
+      md-item
+        md-text-float(label="Signal" ng-model="params.signal" flex)
+        div(style="font-size: 0.5em;") Signal to send to the container: integer or string like "SIGINT".
+        div(style="font-size: 0.5em;") When not set, SIGKILL is assumed and the call will waits for the container to exit.
+      md-item
+        p {{ content }}
+
+  div(class="md-actions" layout="row")
+    md-button(ng-click="cancel()") Cancel
+    md-button(ng-click="ok()" class="md-primary") Yes
+

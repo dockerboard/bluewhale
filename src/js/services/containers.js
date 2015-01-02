@@ -23,7 +23,8 @@ angular.module('dockerboard.services')
       limit: '',
       size: false,
       since: '',
-      before: ''
+      before: '',
+      filters: ''
     };
 
     res.basicAttributes = [

@@ -1,29 +1,44 @@
 
 <div layout="column" layout-fill="layout-fill" ng-controller="ContainerCtrl" flex="flex" class="images">
   <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
-    <md-list md-theme="blue" role="list">
+    <md-list layout="row" md-theme="blue" role="list">
       <md-item>
-        <md-button aria-label="Running" ng-click="toggleRunning($event)">
-          <md-tooltip>{{ container.State.Running ? 'Stop' : 'Start' }}</md-tooltip>
-          <div ng-class="container.State.Running ? 'svg-ic_stop_24px': 'svg-ic_play_arrow_24px'" class="icon"></div>
-        </md-button>
+        <md-item-content>
+          <md-button aria-label="Running" ng-click="toggleRunning($event)">
+            <md-tooltip>{{ container.State.Running ? 'Stop' : 'Start' }}</md-tooltip>
+            <div ng-class="container.State.Running ? 'svg-ic_stop_24px': 'svg-ic_play_arrow_24px'" class="icon"></div>
+          </md-button>
+        </md-item-content>
       </md-item>
       <md-item>
-        <md-button aria-label="Paused" ng-click="togglePaused($event)">
-          <md-tooltip>{{ container.State.Paused ? 'UnPause' : 'Pause' }}</md-tooltip>
-          <div ng-class="container.State.Paused ? 'svg-ic_play_circle_outline_24px': 'svg-ic_pause_circle_outline_24px'" class="icon"></div>
-        </md-button>
+        <md-item-content>
+          <md-button aria-label="Paused" ng-click="togglePaused($event)">
+            <md-tooltip>{{ container.State.Paused ? 'UnPause' : 'Pause' }}</md-tooltip>
+            <div ng-class="container.State.Paused ? 'svg-ic_play_circle_outline_24px': 'svg-ic_pause_circle_outline_24px'" class="icon"></div>
+          </md-button>
+        </md-item-content>
       </md-item>
       <md-item>
-        <md-button aria-label="Remove" ng-click="destory($event)">
-          <md-tooltip>Remove</md-tooltip>
-          <div class="icon svg-ic_clear_24px"></div>
-        </md-button>
+        <md-item-content>
+          <md-button aria-label="Remove" ng-click="destory($event)">
+            <md-tooltip>Remove</md-tooltip>
+            <div class="icon svg-ic_clear_24px"></div>
+          </md-button>
+        </md-item-content>
       </md-item>
       <md-item>
-        <md-button aria-label="Logs">
-          <md-tooltip>Logs</md-tooltip><a ng-href="#/containers/{{containerShortId}}/logs" layout="layout" class="icon svg-ic_history_24px"></a>
-        </md-button>
+        <md-item-content>
+          <md-button aria-label="Logs">
+            <md-tooltip>Logs</md-tooltip><a ng-href="#/containers/{{containerShortId}}/logs" layout="layout" class="icon svg-ic_history_24px"></a>
+          </md-button>
+        </md-item-content>
+      </md-item>
+      <md-item layout-align="center center" layout="column">
+        <md-item-content>
+          <md-button ng-disabled="!container.State.Running" aria-label="kill" ng-click="kill($event)" class="md-warn md-hue-1">Kill
+            <md-tooltip>Kill Container</md-tooltip>
+          </md-button>
+        </md-item-content>
       </md-item>
     </md-list>
   </md-toolbar>

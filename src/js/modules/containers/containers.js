@@ -31,7 +31,10 @@ function ContainersController($scope, Containers, Hosts) {
   $scope.queryParams = angular.copy(Containers.queryParams);
   $scope.queryParams.host = Hosts.getCurrentHostUrl()
 
+  $scope.queryParamsFilters = '';
+
   $scope.fetch = function () {
+    $scope.queryParams.filters = parseFilters($scope.queryParamsFilters);
     Containers.query($scope.queryParams, function (data) {
       $scope.containers = data;
     });
@@ -56,6 +59,24 @@ function ContainersController($scope, Containers, Hosts) {
     return result.join(', ');
   };
 
+  function parseFilters(text) {
+    if (!text) return '';
+    var filters = {};
+    var arr = text.split(/\s+/g);
+    for (var i = 0, l = arr.length; i < l; ++i) {
+      var f = arr[i].split('=');
+      if (f.length !== 2) {
+        continue;
+      }
+      var name = f[0];
+      var value = f[1];
+      if (name && value) {
+        filters[name] = filters[name] || [];
+        filters[name].push(value);
+      }
+    }
+    return JSON.stringify(filters);
+  }
 }
 
 ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'Containers', 'Hosts'];
@@ -125,6 +146,18 @@ function ContainerController($scope, $stateParams, $location, $mdDialog, limitTo
     });
   };
 
+  $scope.kill = function (ev) {
+    $mdDialog.show({
+      controller: KillDialogController,
+      templateUrl: '/js/modules/containers/views/container.kill.dialog.tpl.html',
+      locals: { parentScope: $scope },
+      targetEvent: ev,
+    })
+    .then(function (running) {
+      $scope.container.State.Running = running;
+      $scope.container.State.Pid = 0;
+    });
+  };
 }
 
 DestoryDialogController.$inject = ['$scope', '$location', '$mdDialog', 'Containers', 'parentScope'];
@@ -197,13 +230,16 @@ function RunningDialogController($scope, $location, $mdDialog, parentScope, Cont
     ContainerActions.update({
       Id: $scope.containerShortId,
       action: $scope.action
-    }, $scope.params, function (data) {
+    },
+    $scope.params,
+    function (data) {
       var running =  !$scope.container.State.Running;
       if ($scope.action == 'restart') {
         running = true;
       }
       $mdDialog.hide(running);
-    }, function (e) {
+    },
+    function (e) {
       if (e.status === 304) {
         var running =  !$scope.container.State.Running;
         $mdDialog.hide(running);
@@ -264,6 +300,37 @@ function ContainerLogsController($scope, $stateParams, ContainerActions) {
     if (logContent) {
       logContent.scrollTop = logContent.scrollHeight;
     }
+  };
+}
+
+KillDialogController.$inject = ['$scope', '$mdDialog', 'parentScope', 'ContainerActions'];
+function KillDialogController($scope, $mdDialog, parentScope, ContainerActions) {
+  $scope.container = parentScope.container;
+  $scope.containerShortId = parentScope.containerShortId;
+  $scope.action = 'kill';
+
+  $scope.params = {
+    signal: ''
+  };
+
+  $scope.content = '';
+
+  $scope.cancel = function () {
+    $mdDialog.cancel();
+  };
+
+  $scope.ok = function () {
+    ContainerActions.update({
+      Id: $scope.containerShortId,
+      action: $scope.action
+    },
+    $scope.params,
+    function (data) {
+      $mdDialog.hide(false);
+    },
+    function (e) {
+      $scope.content = e.data;
+    });
   };
 }
 
