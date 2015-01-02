@@ -68,3 +68,4 @@ gulp publish
 [Angular.js]: https://www.angularjs.org/
 [D3.js]: http://d3js.org/
 [Material Design]: https://material.angularjs.org/
+[Angular Material]: https://material.angularjs.org/
