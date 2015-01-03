@@ -3,6 +3,8 @@
 
 The [Dockerboard][] Web Client.
 
+  [![NPM version][npm-image]][npm-url]
+
 [![badge](http://dockeri.co/image/dockerboard/bluewhale)](https://registry.hub.docker.com/u/dockerboard/bluewhale/)
 
 
@@ -69,3 +71,6 @@ gulp publish
 [D3.js]: http://d3js.org/
 [Material Design]: https://material.angularjs.org/
 [Angular Material]: https://material.angularjs.org/
+
+[npm-image]: https://img.shields.io/npm/v/bluewhale.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/bluewhale
