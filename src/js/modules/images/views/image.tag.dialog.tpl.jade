@@ -1,0 +1,22 @@
+md-dialog.container-dialog(aria-label="Add Tag")
+  md-toolbar(layout="column" layout-align="center center" md-theme="blue")
+    md-subheader.md-sticky-no-effect
+      span.action Tag 
+      | Image 
+      span.short-id {{ imageShortId }}
+  md-content
+    md-list
+      md-item
+        md-text-float(label="Repo" ng-model="queryParams.repo" flex)
+      md-item
+        md-text-float(label="Tag" ng-model="queryParams.tag" flex)
+      md-item
+        div Force:
+        md-checkbox(ng-model="queryParams.force" aria-label="Force")
+      md-item
+        p {{ content }}
+
+  div(class="md-actions" layout="row")
+    md-button(ng-click="cancel()") Cancel
+    md-button(ng-click="ok()" class="md-primary") Yes
+

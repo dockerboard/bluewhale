@@ -137,6 +137,15 @@ function ImageController($scope, $location, $stateParams, $mdDialog, limitToFilt
       targetEvent: ev,
     });
   };
+
+  $scope.tag = function (ev) {
+    $mdDialog.show({
+      controller: TagDialogController,
+      templateUrl: '/js/modules/images/views/image.tag.dialog.tpl.html',
+      locals: { image: $scope.image, imageShortId: $scope.imageShortId },
+      targetEvent: ev,
+    });
+  };
 }
 
 DestoryDialogController.$inject = ['$scope', '$location', '$mdDialog', 'Images', 'image', 'imageShortId', 'Hosts'];
@@ -192,7 +201,48 @@ function ImageHistoryController($scope, $stateParams, ImageActions, Hosts) {
     function (e) {
     }
   );
+}
 
+TagDialogController.$inject = ['$scope', '$mdDialog', 'ImageActions', 'Hosts', 'image', 'imageShortId'];
+function TagDialogController($scope, $mdDialog, ImageActions, Hosts, image, imageShortId) {
+  $scope.image = image;
+  $scope.imageShortId = imageShortId;
+  $scope.action = 'tag';
+
+  $scope.cancel = function () {
+    $mdDialog.cancel();
+  };
+
+  $scope.queryParams = {
+    force: false,
+    repo: '',
+    tag: ''
+  };
+
+  $scope.content = '';
+
+  $scope.ok = function () {
+    var queryParams = {
+      Id: $scope.imageShortId,
+      action: $scope.action,
+      host: Hosts.getCurrentHostUrl()
+    };
+    angular.extend(queryParams, $scope.queryParams);
+    ImageActions.update(
+      queryParams,
+      null,
+      function (data) {
+        $mdDialog.hide();
+      },
+      function (e) {
+        if (e.status === 404) {
+          $scope.hide();
+          return;
+        }
+        $scope.content = e.data;
+      }
+    );
+  };
 }
 
 })();
