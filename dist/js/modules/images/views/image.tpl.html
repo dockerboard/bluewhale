@@ -1,23 +1,37 @@
 
 <div layout="column" layout-fill="layout-fill" ng-controller="ImageCtrl" flex="flex" class="images">
   <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
-    <md-list md-theme="blue" role="list">
+    <md-list layout="row" md-theme="blue" role="list">
       <md-item>
-        <md-button aria-label="Add Container">
-          <md-tooltip>Add Container</md-tooltip>
-          <div class="icon svg-ic_add_24px"></div>
-        </md-button>
+        <md-item-content>
+          <md-button aria-label="Add Container">
+            <md-tooltip>Add Container</md-tooltip>
+            <div class="icon svg-ic_add_24px"></div>
+          </md-button>
+        </md-item-content>
       </md-item>
       <md-item>
-        <md-button aria-label="Remove Image" ng-click="destory($event)">
-          <md-tooltip>Remove Image</md-tooltip>
-          <div class="icon svg-ic_clear_24px"></div>
-        </md-button>
+        <md-item-content>
+          <md-button aria-label="Remove Image" ng-click="destory($event)">
+            <md-tooltip>Remove</md-tooltip>
+            <div class="icon svg-ic_delete_24px"></div>
+          </md-button>
+        </md-item-content>
       </md-item>
       <md-item>
-        <md-button aria-label="History">
-          <md-tooltip>Image History</md-tooltip><a ng-href="#/images/{{imageShortId}}/history" layout="layout" class="icon svg-ic_history_24px"></a>
-        </md-button>
+        <md-item-content>
+          <md-button aria-label="Tag Image" ng-click="tag($event)">
+            <md-tooltip>Tag</md-tooltip>
+            <div class="icon svg-ic_bookmark_24px"></div>
+          </md-button>
+        </md-item-content>
+      </md-item>
+      <md-item>
+        <md-item-content>
+          <md-button aria-label="History">
+            <md-tooltip>Image History</md-tooltip><a ng-href="#/images/{{imageShortId}}/history" layout="layout" class="icon svg-ic_history_24px"></a>
+          </md-button>
+        </md-item-content>
       </md-item>
     </md-list>
   </md-toolbar>

@@ -1,0 +1,27 @@
+
+<md-dialog aria-label="Add Tag" class="container-dialog">
+  <md-toolbar layout="column" layout-align="center center" md-theme="blue">
+    <md-subheader class="md-sticky-no-effect"><span class="action">Tag </span>Image <span class="short-id">{{ imageShortId }}</span></md-subheader>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-item>
+        <md-text-float label="Repo" ng-model="queryParams.repo" flex="flex"></md-text-float>
+      </md-item>
+      <md-item>
+        <md-text-float label="Tag" ng-model="queryParams.tag" flex="flex"></md-text-float>
+      </md-item>
+      <md-item>
+        <div>Force:</div>
+        <md-checkbox ng-model="queryParams.force" aria-label="Force"></md-checkbox>
+      </md-item>
+      <md-item>
+        <p>{{ content }}</p>
+      </md-item>
+    </md-list>
+  </md-content>
+  <div layout="row" class="md-actions">
+    <md-button ng-click="cancel()">Cancel</md-button>
+    <md-button ng-click="ok()" class="md-primary">Yes</md-button>
+  </div>
+</md-dialog>
