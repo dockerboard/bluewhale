@@ -27,6 +27,10 @@ div(layout="column" layout-fill class="images" ng-controller="HostsCtrl" flex)
             p TLSKeyFile: {{ host.TLSKeyFile }}
             p TLSCertPath: {{ host.TLSCertPath }}
           div(class="md-tile-right" style="padding: 0 16px;")
-              md-tooltip Select Host
-              md-button(class="md-raised" ng-click="select($index)") Select
-              md-button(ng-if="$index > 0" class="md-raised" ng-click="destroy($index)") Delete
+            md-list
+              md-item
+                md-button(class="md-raised" ng-click="select($index)") Select
+              md-item
+                md-button(class="md-raised" ng-click="ping($index)") Ping
+              md-item
+                md-button(ng-if="$index > 0" class="md-raised" ng-click="destroy($index)") Delete

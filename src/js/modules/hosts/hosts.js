@@ -16,8 +16,8 @@ angular.module('hosts.ctrl')
   ]);
 
 
-HostsController.$inject = ['$scope', '$rootScope', '$mdDialog', 'Hosts'];
-function HostsController($scope, $rootScope, $mdDialog, Hosts) {
+HostsController.$inject = ['$scope', '$rootScope', '$mdDialog', '$mdToast', 'Hosts', 'HostActions'];
+function HostsController($scope, $rootScope, $mdDialog, $mdToast, Hosts, HostActions) {
   Hosts.query(function (data) {
     $scope.hosts = data;
   });
@@ -47,6 +47,32 @@ function HostsController($scope, $rootScope, $mdDialog, Hosts) {
     }, function (data) {
       $scope.hosts.splice(index, 1);
     });
+  };
+
+  $scope.ping = function (index) {
+    HostActions.ping({
+      Id: encodeURIComponent(Hosts.getCurrentHostUrl($scope.hosts[index]))
+    },
+    function (data) {
+      if (data.text === 'OK') {
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Ping OK!')
+            .position('top right')
+            .action('Close')
+            .hideDelay(1500)
+        );
+      }
+    },
+    function () {
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Ping Faild!')
+          .position('top right')
+          .action('Close')
+          .hideDelay(1500)
+      );
+    })
   };
 
   function updateHost(host) {
