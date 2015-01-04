@@ -16,7 +16,7 @@ The [Dockerboard][] Web Client.
 
 ## Quickstart
 
-Dockerboard Restful API Prefix: `http://localhost:8001/api`.
+Dockerboard RESTful API Prefix: `http://localhost:8001/api`.
 
 ### Prerequisites
 
