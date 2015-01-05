@@ -1,0 +1,24 @@
+md-dialog.container-dialog(aria-label="Push image")
+  md-toolbar(layout="column" layout-align="center center" md-theme="blue")
+    md-subheader.md-sticky-no-effect
+      span.action Push 
+      | Image on the Registry
+  md-content
+    md-list
+      md-item
+        md-text-float(label="Repository, Image name" ng-model="repository")
+      md-item
+        md-text-float(label="Tag" ng-model="queryParams.tag")
+      md-item
+        md-text-float(label="Username" ng-model="username")
+      md-item
+        md-text-float(label="Email" type="email" ng-model="email")
+      md-item
+        md-text-float(label="Password" type="password" ng-model="password")
+      md-item
+        p {{ content }}
+
+  div(class="md-actions" layout="row")
+    md-button(ng-click="cancel()") Cancel
+    md-button(ng-click="ok()" class="md-primary") Yes
+
