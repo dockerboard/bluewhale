@@ -25,8 +25,8 @@ angular.module('images.ctrl')
     }
   ]);
 
-ImagesController.$inject = ['$scope', 'Images', 'Hosts'];
-function ImagesController($scope, Images, Hosts) {
+ImagesController.$inject = ['$scope', '$mdDialog', 'Images', 'Hosts'];
+function ImagesController($scope, $mdDialog, Images, Hosts) {
 
   $scope.queryParams = angular.copy(Images.queryParams);
   $scope.queryParams.host = Hosts.getCurrentHostUrl();
@@ -80,6 +80,15 @@ function ImagesController($scope, Images, Hosts) {
       if (tag) this.push(tag);
     }, tags);
     return tags.join(', ');
+  };
+
+
+  $scope.push = function (ev) {
+    $mdDialog.show({
+      controller: PushDialogController,
+      templateUrl: '/js/modules/images/views/image.push.dialog.tpl.html',
+      targetEvent: ev
+    });
   };
 }
 
@@ -236,12 +245,58 @@ function TagDialogController($scope, $mdDialog, ImageActions, Hosts, image, imag
       },
       function (e) {
         if (e.status === 404) {
-          $scope.hide();
+          $mdDialog.hide();
           return;
         }
         $scope.content = e.data;
       }
     );
+  };
+}
+
+PushDialogController.$inject = ['$scope', '$mdDialog', 'ImageActions', 'Hosts'];
+function PushDialogController($scope, $mdDialog, ImageActions, Hosts) {
+  $scope.action = 'push';
+
+  $scope.cancel = function () {
+    $mdDialog.cancel();
+  };
+
+  $scope.queryParams = {
+    tag: ''
+  };
+
+  // Authorization
+  $scope.username = '';
+  $scope.password = '';
+
+  $scope.content = '';
+
+  $scope.ok = function () {
+    if ($scope.repository) {
+      var queryParams = {
+        Id: encodeURIComponent($scope.repository),
+        host: Hosts.getCurrentHostUrl()
+      };
+      angular.extend(queryParams, $scope.queryParams);
+      ImageActions.push(
+        queryParams,
+        {
+          username: $scope.username,
+          password: $scope.password
+        },
+        function (data) {
+          $mdDialog.hide();
+        },
+        function (e) {
+          if (e.status === 404) {
+            $mdDialog.hide();
+            return;
+          }
+          $scope.content = e.data;
+        }
+      );
+    }
   };
 }
 

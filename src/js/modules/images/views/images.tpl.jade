@@ -9,6 +9,11 @@ div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
         md-item-content(layout-align="center center")
           md-tooltip Filters
           md-text-float(label="Filters" ng-model="queryParamsFilters")
+      md-item
+        md-item-content
+          md-button(aria-label="Push Image" ng-click="push($event)")
+            md-tooltip Push on the registry
+            div.icon.svg-ic_cloud_upload_24px
       md-item(style="position: absolute; right: 0;")
         md-item-content
           md-tooltip Search
