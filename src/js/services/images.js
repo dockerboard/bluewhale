@@ -15,6 +15,12 @@
             force: false,
             noprune: false
           }
+        },
+        search: {
+          params: {
+            Id: 'search'
+          },
+          isArray: true
         }
       });
 

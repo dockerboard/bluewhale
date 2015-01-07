@@ -28,6 +28,11 @@ angular.module('dockerboard.services')
         tooltip: 'Docker Hosts'
       },
       {
+        name: 'Hub',
+        url: '/hub',
+        tooltip: 'Docker Hub'
+      },
+      {
         name: 'System',
         url: '/system',
         tooltip: 'System Info'

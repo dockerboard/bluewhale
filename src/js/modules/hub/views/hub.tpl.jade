@@ -1,0 +1,51 @@
+div(layout="column" layout-fill class="images" ng-controller="HubCtrl" flex)
+  md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
+    md-list(layout="row" role="list" md-theme="blue")
+      md-item(flex=25 layout-align="center center" layout="column")
+        md-item-content(layout-align="center center")
+          md-tooltip Term to search
+          md-text-float(label="Term" ng-model="queryParamsTerm")
+      md-item(style="position: absolute; right: 0;")
+        md-item-content
+          md-tooltip Search
+          md-button(aria-label="Search" ng-click="search()")
+            div.icon.svg-ic_search_24px
+
+  md-content(style="margin-top: 16px;")
+    md-list
+      md-item(ng-if="!images || images.length === 0")
+        md-item-content(layout-align="center center")
+          div No Images
+      md-item(ng-repeat="image in images")
+        md-divider(ng-if="!$first")
+        md-item-content
+          div(class="md-tile-left")
+            div.icon.svg-ic_photo_24px(style="margin: 0 auto;")
+          div(class="md-tile-content")
+            h3
+              span Name: 
+              a(href="https://hub.docker.com/u/{{image.name}}" target="_blank") {{ image.name }}
+
+            div {{ image.description }}
+
+            md-list(layout="row")
+              md-item
+                md-item-content
+                  .md-button
+                    .md-icon-container(layout-align="center" layout="row")
+                      .md-inline-grid-icon.icon(ng-class="image.is_official ? 'svg-ic_check_box_24px' : 'svg-ic_check_box_outline_blank_24px' ")
+                    .md-grid-text Official
+              md-item
+                md-item-content
+                  .md-button
+                    .md-icon-container(layout-align="center" layout="row")
+                      .md-inline-grid-icon.icon(ng-class="image.is_trusted ? 'svg-ic_check_box_24px' : 'svg-ic_check_box_outline_blank_24px' ")
+                    .md-grid-text Trusted
+              md-item
+                md-item-content(layout-align="center")
+                  .md-button
+                    .md-icon-container(layout-align="center" layout="row")
+                      .md-inline-grid-icon.icon(ng-class="image.star_count > 0  ? 'svg-ic_star_24px' : 'svg-ic_star_outline_24px' ")
+                    .md-grid-text(ng-bind="'Star ' + image.star_count")
+
+
