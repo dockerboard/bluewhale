@@ -46,6 +46,6 @@ div(layout="column" layout-fill class="images" ng-controller="HubCtrl" flex)
                   .md-button
                     .md-icon-container(layout-align="center" layout="row")
                       .md-inline-grid-icon.icon(ng-class="image.star_count > 0  ? 'svg-ic_star_24px' : 'svg-ic_star_outline_24px' ")
-                    .md-grid-text(ng-bind="'Star ' + image.star_count")
+                    .md-grid-text(ng-bind="'Star ' + (image.star_count || '')")
 
 

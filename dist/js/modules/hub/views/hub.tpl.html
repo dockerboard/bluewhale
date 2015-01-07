@@ -61,7 +61,7 @@
                     <div layout-align="center" layout="row" class="md-icon-container">
                       <div ng-class="image.star_count &gt; 0  ? 'svg-ic_star_24px' : 'svg-ic_star_outline_24px' " class="md-inline-grid-icon icon"></div>
                     </div>
-                    <div ng-bind="'Star ' + image.star_count" class="md-grid-text"></div>
+                    <div ng-bind="'Star ' + (image.star_count || '')" class="md-grid-text"></div>
                   </div>
                 </md-item-content>
               </md-item>
