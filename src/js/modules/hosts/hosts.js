@@ -89,6 +89,30 @@ function HostsController($scope, $rootScope, $mdDialog, $mdToast, Hosts, HostAct
       $scope.hosts.push(host);
     }
   }
+
+  $scope.version = function (ev, index) {
+    HostActions.get({
+      Id: encodeURIComponent(Hosts.getCurrentHostUrl($scope.hosts[index])),
+      action: 'version'
+    },
+    function (data) {
+      $mdDialog.show({
+        controller: VersionDialogController,
+        templateUrl: '/js/modules/hosts/views/host.version.dialog.tpl.html',
+        locals: { docker: data },
+        targetEvent: ev
+      });
+    },
+    function () {
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Get Docker Version Faild!')
+          .position('top right')
+          .action('Close')
+          .hideDelay(1500)
+      );
+    })
+  };
 }
 
 CreateDialogController.$inject = ['$scope', '$mdDialog', 'Hosts'];
@@ -112,6 +136,18 @@ function CreateDialogController($scope, $mdDialog, Hosts) {
     }, function (data) {
       $scope.content = data;
     });
+  };
+}
+
+VersionDialogController.$inject = ['$scope', '$mdDialog', 'docker'];
+function VersionDialogController($scope, $mdDialog, docker) {
+  $scope.docker = docker;
+  $scope.cancel = function () {
+    $mdDialog.cancel();
+  };
+
+  $scope.ok = function () {
+    $mdDialog.hide();
   };
 }
 

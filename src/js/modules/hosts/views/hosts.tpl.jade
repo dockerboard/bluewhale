@@ -33,4 +33,6 @@ div(layout="column" layout-fill class="images" ng-controller="HostsCtrl" flex)
               md-item
                 md-button(class="md-raised" ng-click="ping($index)") Ping
               md-item
+                md-button(class="md-raised" ng-click="version($event, $index)") Version
+              md-item
                 md-button(ng-if="$index > 0" class="md-raised" ng-click="destroy($index)") Delete
