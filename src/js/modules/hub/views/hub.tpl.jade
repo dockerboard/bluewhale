@@ -8,7 +8,7 @@ div(layout="column" layout-fill class="images" ng-controller="HubCtrl" flex)
       md-item(style="position: absolute; right: 0;")
         md-item-content
           md-tooltip Search
-          md-button(aria-label="Search" ng-click="search()")
+          md-button(aria-label="Search" ng-click="search($event)")
             div.icon.svg-ic_search_24px
 
   md-content(style="margin-top: 16px;")
@@ -29,23 +29,19 @@ div(layout="column" layout-fill class="images" ng-controller="HubCtrl" flex)
             div {{ image.description }}
 
             md-list(layout="row")
-              md-item
-                md-item-content
-                  .md-button
-                    .md-icon-container(layout-align="center" layout="row")
-                      .md-inline-grid-icon.icon(ng-class="image.is_official ? 'svg-ic_check_box_24px' : 'svg-ic_check_box_outline_blank_24px' ")
-                    .md-grid-text Official
-              md-item
-                md-item-content
-                  .md-button
-                    .md-icon-container(layout-align="center" layout="row")
-                      .md-inline-grid-icon.icon(ng-class="image.is_trusted ? 'svg-ic_check_box_24px' : 'svg-ic_check_box_outline_blank_24px' ")
-                    .md-grid-text Trusted
-              md-item
-                md-item-content(layout-align="center")
-                  .md-button
-                    .md-icon-container(layout-align="center" layout="row")
-                      .md-inline-grid-icon.icon(ng-class="image.star_count > 0  ? 'svg-ic_star_24px' : 'svg-ic_star_outline_24px' ")
-                    .md-grid-text(ng-bind="'Star ' + (image.star_count || '')")
+              md-item(layout="row" flex=10)
+                .icon(ng-class="image.is_official ? 'svg-ic_check_box_24px' : 'svg-ic_check_box_outline_blank_24px' ")
+                span Official
+              md-item(layout="row" flex=10)
+                .icon(ng-class="image.is_trusted ? 'svg-ic_check_box_24px' : 'svg-ic_check_box_outline_blank_24px' ")
+                span Trusted
+              md-item(layout="row" flex=10)
+                .icon(ng-class="image.star_count > 0  ? 'svg-ic_star_24px' : 'svg-ic_star_outline_24px' ")
+                span(ng-bind="'Star ' + (image.star_count || '')")
+              md-item(layout="row" flex=10)
+                md-button(layout="row" style="padding: 0 6px;" ng-click="create($event, image)")
+                  md-tooltip Pull an image
+                  .icon.svg-ic_cloud_download_24px
+                  span Pull
 
 

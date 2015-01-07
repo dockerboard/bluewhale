@@ -15,12 +15,13 @@ angular.module('hub.ctrl')
     }
   ]);
 
-HubController.$inject = ['$scope', '$mdToast', 'Images'];
-function HubController($scope, $mdToast, Images) {
+HubController.$inject = ['$scope', '$mdToast', '$mdDialog', 'Images'];
+function HubController($scope, $mdToast, $mdDialog, Images) {
 
   $scope.queryParamsTerm = '';
 
-  $scope.search = function () {
+  $scope.search = function (ev) {
+    ev.preventDefault();
     if (!$scope.queryParamsTerm) {
       $mdToast.show(
         $mdToast.simple()
@@ -48,6 +49,16 @@ function HubController($scope, $mdToast, Images) {
         );
       }
     );
+    return false;
+  };
+
+  $scope.create = function (ev, image) {
+    $mdDialog.show({
+      controller: 'ImageCreateCtrl',
+      templateUrl: '/js/modules/images/views/image.create.dialog.tpl.html',
+      locals: { imageObject:  image},
+      targetEvent: ev
+    });
   };
 
 }

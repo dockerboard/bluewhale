@@ -7,6 +7,7 @@ angular.module('images.ctrl')
   .controller('ImagesCtrl', ImagesController)
   .controller('ImageCtrl', ImageController)
   .controller('ImageHistoryCtrl', ImageHistoryController)
+  .controller('ImageCreateCtrl', ImageCreateController)
   .config(['$stateProvider',
     function ($stateProvider) {
       $stateProvider.
@@ -298,6 +299,45 @@ function PushDialogController($scope, $mdDialog, ImageActions, Hosts) {
       );
     }
   };
+}
+
+ImageCreateController.$inject = ['$scope', '$mdDialog', 'imageObject', 'Images'];
+function ImageCreateController($scope, $mdDialog, imageObject, Images) {
+
+  $scope.image = angular.copy(imageObject);
+
+  $scope.queryParams = {
+    fromImage: $scope.image.name,
+    fromSrc: '',
+    repo: '',
+    tag: '',
+    registry: ''
+  };
+
+  $scope.content = '';
+
+  $scope.cancel = function () {
+    $mdDialog.cancel();
+  };
+
+  $scope.ok = function () {
+    Images.create(
+      $scope.queryParams,
+      null,
+      function (data) {
+        console.dir(data);
+        $mdDialog.hide();
+      },
+      function (e) {
+        if (e.status === 404) {
+          $mdDialog.hide();
+          return;
+        }
+        $scope.content = e.data;
+      }
+    );
+  };
+
 }
 
 })();

@@ -17,10 +17,18 @@
           }
         },
         search: {
+          // hack
           params: {
             Id: 'search'
           },
           isArray: true
+        },
+        create: {
+          method: 'POST',
+          // hack
+          params: {
+            Id: ''
+          }
         }
       });
 
