@@ -1,0 +1,23 @@
+
+<md-dialog aria-label="Docker Version" class="host-dialog">
+  <md-toolbar layout="column" layout-align="center center" md-theme="blue">
+    <md-subheader class="md-sticky-no-effect">Docker Version</md-subheader>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-item ng-repeat="(key, value) in docker">
+        <md-divider ng-if="!$first"></md-divider>
+        <md-item-content>
+          <div flex="flex" class="md-tile-left">{{ key }}</div>
+          <div flex="flex" class="md-title-content">{{ value }}</div>
+        </md-item-content>
+      </md-item>
+      <md-item></md-item>
+      <md-item></md-item>
+    </md-list>
+  </md-content>
+  <div layout="row" class="md-actions">
+    <md-button ng-click="cancel()">Cancel</md-button>
+    <md-button ng-click="ok()" class="md-primary">Yes</md-button>
+  </div>
+</md-dialog>

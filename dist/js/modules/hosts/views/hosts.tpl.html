@@ -41,6 +41,9 @@
                 <md-button ng-click="ping($index)" class="md-raised">Ping</md-button>
               </md-item>
               <md-item>
+                <md-button ng-click="version($event, $index)" class="md-raised">Version</md-button>
+              </md-item>
+              <md-item>
                 <md-button ng-if="$index &gt; 0" ng-click="destroy($index)" class="md-raised">Delete</md-button>
               </md-item>
             </md-list>
