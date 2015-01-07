@@ -22,7 +22,7 @@ div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
 
   md-content(style="margin-top: 16px;")
     md-list
-      md-item(ng-if="images.length === 0")
+      md-item(ng-if="!images || images.length === 0")
         md-item-content(layout-align="center center")
           div No Images
       md-item(ng-repeat="image in images")

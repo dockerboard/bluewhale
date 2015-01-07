@@ -33,7 +33,7 @@ div(layout="column" layout-fill class="images" ng-controller="ContainersCtrl" fl
 
   md-content(style="margin-top: 16px;")
     md-list
-      md-item(ng-if="containers.length === 0")
+      md-item(ng-if="!containers || containers.length === 0")
         md-item-content(layout-align="center center")
           div No Containers
       md-item(ng-repeat="container in containers")

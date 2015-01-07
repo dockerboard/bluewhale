@@ -20,7 +20,6 @@ SystemController.$inject = ['$scope', 'System'];
 function SystemController($scope, System) {
   System.get(function (data) {
     $scope.system = data;
-    console.log($scope.system);
   });
 }
 
