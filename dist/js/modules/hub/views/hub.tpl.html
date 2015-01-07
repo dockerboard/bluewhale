@@ -1,0 +1,74 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="HubCtrl" flex="flex" class="images">
+  <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
+    <md-list layout="row" role="list" md-theme="blue">
+      <md-item flex="25" layout-align="center center" layout="column">
+        <md-item-content layout-align="center center">
+          <md-tooltip>Term to search</md-tooltip>
+          <md-text-float label="Term" ng-model="queryParamsTerm"></md-text-float>
+        </md-item-content>
+      </md-item>
+      <md-item style="position: absolute; right: 0;">
+        <md-item-content>
+          <md-tooltip>Search</md-tooltip>
+          <md-button aria-label="Search" ng-click="search()">
+            <div class="icon svg-ic_search_24px"></div>
+          </md-button>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-toolbar>
+  <md-content style="margin-top: 16px;">
+    <md-list>
+      <md-item ng-if="!images || images.length === 0">
+        <md-item-content layout-align="center center">
+          <div>No Images</div>
+        </md-item-content>
+      </md-item>
+      <md-item ng-repeat="image in images">
+        <md-divider ng-if="!$first"></md-divider>
+        <md-item-content>
+          <div class="md-tile-left">
+            <div style="margin: 0 auto;" class="icon svg-ic_photo_24px"></div>
+          </div>
+          <div class="md-tile-content">
+            <h3><span>Name: </span><a href="https://hub.docker.com/u/{{image.name}}" target="_blank">{{ image.name }}</a></h3>
+            <div>{{ image.description }}</div>
+            <md-list layout="row">
+              <md-item>
+                <md-item-content>
+                  <div class="md-button">
+                    <div layout-align="center" layout="row" class="md-icon-container">
+                      <div ng-class="image.is_official ? 'svg-ic_check_box_24px' : 'svg-ic_check_box_outline_blank_24px' " class="md-inline-grid-icon icon"></div>
+                    </div>
+                    <div class="md-grid-text">Official</div>
+                  </div>
+                </md-item-content>
+              </md-item>
+              <md-item>
+                <md-item-content>
+                  <div class="md-button">
+                    <div layout-align="center" layout="row" class="md-icon-container">
+                      <div ng-class="image.is_trusted ? 'svg-ic_check_box_24px' : 'svg-ic_check_box_outline_blank_24px' " class="md-inline-grid-icon icon"></div>
+                    </div>
+                    <div class="md-grid-text">Trusted</div>
+                  </div>
+                </md-item-content>
+              </md-item>
+              <md-item>
+                <md-item-content layout-align="center">
+                  <div class="md-button">
+                    <div layout-align="center" layout="row" class="md-icon-container">
+                      <div ng-class="image.star_count &gt; 0  ? 'svg-ic_star_24px' : 'svg-ic_star_outline_24px' " class="md-inline-grid-icon icon"></div>
+                    </div>
+                    <div ng-bind="'Star ' + image.star_count" class="md-grid-text"></div>
+                  </div>
+                </md-item-content>
+              </md-item>
+            </md-list>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-content>
+</div>
