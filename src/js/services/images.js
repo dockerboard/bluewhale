@@ -28,6 +28,9 @@
           // hack
           params: {
             Id: ''
+          },
+          transformResponse: function (data, headers) {
+            return { text: data };
           }
         }
       });
