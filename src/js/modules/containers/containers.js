@@ -28,7 +28,7 @@ angular.module('containers.ctrl')
 ContainersController.$inject = ['$scope', 'Containers', 'Hosts'];
 function ContainersController($scope, Containers, Hosts) {
 
-  $scope.queryParams = angular.copy(Containers.queryParams);
+  $scope.queryParams = Containers.queryParams;
   $scope.queryParams.host = Hosts.getCurrentHostUrl()
 
   $scope.queryParamsFilters = '';

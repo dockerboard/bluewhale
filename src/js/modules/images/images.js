@@ -29,7 +29,7 @@ angular.module('images.ctrl')
 ImagesController.$inject = ['$scope', '$mdDialog', 'Images', 'Hosts'];
 function ImagesController($scope, $mdDialog, Images, Hosts) {
 
-  $scope.queryParams = angular.copy(Images.queryParams);
+  $scope.queryParams = Images.queryParams;
   $scope.queryParams.host = Hosts.getCurrentHostUrl();
 
   $scope.queryParamsFilters = '';
