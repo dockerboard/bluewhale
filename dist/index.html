@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="css/dockerboard-d4e7b68e.css"/>
     <link rel="stylesheet" href="css/dockerboard-app-77303bf7.css"/>
   </head>
-  <body md-theme="blue" layout="row" ng-controller="SidenavCtrl">
+  <body md-theme="default" layout="row" ng-controller="SidenavCtrl">
     <md-sidenav layout="column" md-component-id="left" md-is-locked-open="$media('gt-sm')" class="md-sidenav-left md-whiteframe-z2">
-      <md-toolbar md-theme="blue">
+      <md-toolbar>
         <h1 class="md-toolbar-tools"><a href="" ng-click="goHome()">Dockerboard</a></h1>
       </md-toolbar>
       <md-content flex>
@@ -40,7 +40,7 @@
       </md-content>
     </md-sidenav>
     <div layout="column" tabindex="-1" role="main" flex>
-      <md-toolbar layout="column" ng-click="openMenu()" flex class="md-blue-theme md-toolbar-tools">
+      <md-toolbar layout="column" ng-click="openMenu()" flex class="md-default-theme md-toolbar-tools">
         <md-list layout="row" layout-align="left center" flex>
           <md-item style="position: absolute; right: 26px;" hide-sm>
             <md-item-content>
