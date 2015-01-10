@@ -51,14 +51,14 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
           button(class="menu-item menu-title md-menu-item"
             ng-if="!section.url"
             ng-click="menu.toggleSelectSection(section)"
-            ng-href="{{ section.url }}"
+            ng-href="#{{ section.url }}"
             md-highlight="menu.isSectionSelected(section)"
             md-ink-ripple="#bbb"
             ng-bind="section.name")
           a(class="menu-item menu-title md-menu-item"
             ng-if="section.url"
             ng-click="menu.toggleSelectSection(section)"
-            ng-href="{{ section.url }}"
+            ng-href="#{{ section.url }}"
             md-highlight="menu.isSectionSelected(section)"
             md-ink-ripple="#bbb")
             span(ng-bind="section.name")
