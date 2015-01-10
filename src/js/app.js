@@ -1,15 +1,28 @@
+(function (angular) {
 'use strict';
 
 angular.module(dockerboardApp.name, dockerboardApp.dependencies)
-  .config(['$locationProvider', '$urlRouterProvider', function($locationProvider, $urlRouterProvider) {
+  .config([
+    '$locationProvider',
+    '$urlRouterProvider',
+    '$translateProvider',
+    function($locationProvider, $urlRouterProvider, $translateProvider) {
 
       // Redirect to home view when route not found
       $urlRouterProvider.otherwise('/');
 
       // use the HTML5 History API
       //$locationProvider.html5Mode(true);
+
+      // langs
+      $translateProvider.useStaticFilesLoader({
+        prefix: 'data/locale-',
+        suffix: '.json'
+      });
+      $translateProvider.preferredLanguage('en');
+      $translateProvider.useLocalStorage();
     }
-    ])
+  ])
   .run(['$rootScope', function($rootScope) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
         console.log('State Change: transition begins!');
@@ -47,3 +60,4 @@ angular.element(document).ready(function() {
   //Then init the app
   //angular.bootstrap(document, [dockerboardApp.name]);
 });
+})(angular);

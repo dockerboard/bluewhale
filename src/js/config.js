@@ -9,7 +9,9 @@ app.dependencies = [
   'ui.router',
   'prettyBytes',
   'angular-loading-bar',
-  'angularMoment'
+  'angularMoment',
+  'ngCookies',
+  'pascalprecht.translate'
 ];
 app.registerModule = registerModule;
 

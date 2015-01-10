@@ -51,14 +51,14 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
           button(class="menu-item menu-title md-menu-item"
             ng-if="!section.url"
             ng-click="menu.toggleSelectSection(section)"
-            ng-href="#{{ section.url }}"
+            ng-href="{{ section.url }}"
             md-highlight="menu.isSectionSelected(section)"
             md-ink-ripple="#bbb"
             ng-bind="section.name")
           a(class="menu-item menu-title md-menu-item"
             ng-if="section.url"
             ng-click="menu.toggleSelectSection(section)"
-            ng-href="#{{ section.url }}"
+            ng-href="{{ section.url }}"
             md-highlight="menu.isSectionSelected(section)"
             md-ink-ripple="#bbb")
             span(ng-bind="section.name")
@@ -104,6 +104,11 @@ html(lang="en" class="no-js" ng-app="dockerboard" ng-strict-di)
     script(src="bower_components/angular-loading-bar/build/loading-bar.js")
     script(src="bower_components/moment/moment.js")
     script(src="bower_components/angular-moment/angular-moment.js")
+    script(src="bower_components/angular-cookies/angular-cookies.js")
+    script(src="bower_components/angular-translate/angular-translate.js")
+    script(src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js")
+    script(src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js")
+    script(src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js")
     // endbuild
 
     // build:js js/dockerboard-app.js
