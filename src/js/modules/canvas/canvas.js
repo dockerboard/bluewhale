@@ -20,7 +20,7 @@ CanvasController.$inject = ['$scope', '$rootScope'];
 function CanvasController($scope, $rootScope) {
   $scope.addNode = function () {
     alert('add node');
-  }
+  };
 }
 
 })()

@@ -20,7 +20,7 @@ angular.module('dockerboard.services')
     res.getCurrentHostUrl = function (h) {
       h = h || res.CurrentHost;
       return h && (h.URL.Scheme + '://' + h.URL.Host);
-    }
+    };
     return res;
   }]);
 })();

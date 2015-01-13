@@ -32,7 +32,7 @@ function SidenavController($scope, $location, $mdSidenav, $timeout, $rootScope, 
     return $location.path();
   };
 
-  $scope.goHome = function($event) {
+  $scope.goHome = function() {
     $scope.menu.selectSection(null);
     $scope.menu.selectPage(null, null);
     $location.path( '/' );

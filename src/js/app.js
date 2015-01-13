@@ -22,42 +22,5 @@ angular.module(dockerboardApp.name, dockerboardApp.dependencies)
       $translateProvider.preferredLanguage('en');
       $translateProvider.useLocalStorage();
     }
-  ])
-  .run(['$rootScope', function($rootScope) {
-      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-        console.log('State Change: transition begins!');
-      });
-
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-        console.log('State Change: State change success!');
-      });
-
-      $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams) {
-        console.log('State Change: Error!');
-      });
-
-      $rootScope.$on('$stateNotFound', function(event, toState, toParams, fromState, fromParams) {
-        console.log('State Change: State not found!');
-      });
-
-      $rootScope.$on('$viewContentLoading', function(event, viewConfig) {
-        console.log('View Load: the view is loaded, and DOM rendered!');
-      });
-
-      $rootScope.$on('$viewcontentLoaded', function(event, viewConfig) {
-        console.log('View Load: the view is loaded, and DOM rendered!');
-      });
-
-  }]);
-
-//Then define the init function for starting up the application
-angular.element(document).ready(function() {
-  //Fixing facebook bug with redirect
-  if (window.location.hash === '#_=_') {
-    window.location.hash = '#!';
-  }
-
-  //Then init the app
-  //angular.bootstrap(document, [dockerboardApp.name]);
-});
+  ]);
 })(angular);

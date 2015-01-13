@@ -1,58 +1,57 @@
 (function () {
-  'use strict';
+'use strict';
 
-  angular.module('dockerboard.services')
-    .factory('Images', ['$resource', function ($resource) {
-      var res = $resource('/api/images/:Id', {
-        Id: '@Id'
-      }, {
-        delete: {
-          method: 'POST',
-          headers: {
-            'X-HTTP-Method-Override': 'DELETE'
-          },
-          params: {
-            force: false,
-            noprune: false
-          }
+angular.module('dockerboard.services')
+  .factory('Images', ['$resource', function ($resource) {
+    var res = $resource('/api/images/:Id', {
+      Id: '@Id'
+    }, {
+      delete: {
+        method: 'POST',
+        headers: {
+          'X-HTTP-Method-Override': 'DELETE'
         },
-        search: {
-          // hack
-          params: {
-            Id: 'search'
-          },
-          isArray: true
-        },
-        create: {
-          method: 'POST',
-          // hack
-          params: {
-            Id: ''
-          },
-          transformResponse: function (data, headers) {
-            return { text: data };
-          }
+        params: {
+          force: false,
+          noprune: false
         }
-      });
+      },
+      search: {
+        // hack
+        params: {
+          Id: 'search'
+        },
+        isArray: true
+      },
+      create: {
+        method: 'POST',
+        // hack
+        params: {
+          Id: ''
+        },
+        transformResponse: function (data) {
+          return { text: data };
+        }
+      }
+    });
 
-      res.queryParams = {
-        all: false,
-        filters: ''
-      };
+    res.queryParams = {
+      all: false,
+      filters: ''
+    };
 
-      res.basicAttributes = [
-        'Id',
-        'Author',
-        'Comment',
-        'DockerVersion',
-        'Architecture',
-        'Os',
-        'Size',
-        'VirtualSize',
-        'Created',
-        'Parent'
-      ];
-      return res;
-    }]);
-
+    res.basicAttributes = [
+      'Id',
+      'Author',
+      'Comment',
+      'DockerVersion',
+      'Architecture',
+      'Os',
+      'Size',
+      'VirtualSize',
+      'Created',
+      'Parent'
+    ];
+    return res;
+  }]);
 })();

@@ -15,7 +15,7 @@ angular.module('dockerboard.services')
         params: {
           action: 'logs'
         },
-        transformResponse: function (data, headers) {
+        transformResponse: function (data) {
           return { text: data };
         },
         isArray: false

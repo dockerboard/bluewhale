@@ -11,7 +11,7 @@ angular.module('system.ctrl')
         state('system', {
           url: '/system',
           templateUrl: '/js/modules/system/views/system.tpl.html'
-        })
+        });
     }
   ]);
 

@@ -25,7 +25,7 @@ function HubController($scope, $mdToast, $mdDialog, Images) {
     if (!$scope.queryParamsTerm) {
       $mdToast.show(
         $mdToast.simple()
-          .content("Please enter text for searching.")
+          .content('Please enter text for searching.')
           .position('top right')
           .action('Close')
           .hideDelay(1500)

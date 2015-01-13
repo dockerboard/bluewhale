@@ -44,7 +44,7 @@ function HostsController($scope, $rootScope, $mdDialog, $mdToast, Hosts, HostAct
   $scope.destroy = function (index) {
     Hosts.delete({
       Id: encodeURIComponent(Hosts.getCurrentHostUrl($scope.hosts[index]))
-    }, function (data) {
+    }, function () {
       $scope.hosts.splice(index, 1);
     });
   };
@@ -72,7 +72,7 @@ function HostsController($scope, $rootScope, $mdDialog, $mdToast, Hosts, HostAct
           .action('Close')
           .hideDelay(1500)
       );
-    })
+    });
   };
 
   function updateHost(host) {
@@ -111,7 +111,7 @@ function HostsController($scope, $rootScope, $mdDialog, $mdToast, Hosts, HostAct
           .action('Close')
           .hideDelay(1500)
       );
-    })
+    });
   };
 }
 

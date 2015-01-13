@@ -29,7 +29,7 @@ ContainersController.$inject = ['$scope', 'Containers', 'Hosts'];
 function ContainersController($scope, Containers, Hosts) {
 
   $scope.queryParams = Containers.queryParams;
-  $scope.queryParams.host = Hosts.getCurrentHostUrl()
+  $scope.queryParams.host = Hosts.getCurrentHostUrl();
 
   $scope.queryParamsFilters = '';
 
@@ -184,7 +184,7 @@ function DestoryDialogController($scope, $location, $mdDialog, Containers, paren
         v: $scope.params.v
       },
       null,
-      function (data) {
+      function () {
         $mdDialog.hide();
         $location.path('/containers');
       },
@@ -232,7 +232,7 @@ function RunningDialogController($scope, $location, $mdDialog, parentScope, Cont
       action: $scope.action
     },
     $scope.params,
-    function (data) {
+    function () {
       var running =  !$scope.container.State.Running;
       if ($scope.action == 'restart') {
         running = true;
@@ -286,7 +286,7 @@ function ContainerLogsController($scope, $stateParams, ContainerActions) {
     params.Id = Id;
     ContainerActions.logs(params, function (data) {
       $scope.logs = data.text || '';
-    })
+    });
   };
 
   $scope.fetch($scope.containerShortId, $scope.queryParams);

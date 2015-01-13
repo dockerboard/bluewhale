@@ -1,6 +1,6 @@
 {
   "name": "bluewhale",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Dockerboard Web Client",
   "main": "dist/index.html",
   "scripts": {

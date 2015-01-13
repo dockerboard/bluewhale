@@ -12,7 +12,7 @@ angular.module('dockerboard.services')
         params: {
           action: 'ping'
         },
-        transformResponse: function (data, headers) {
+        transformResponse: function (data) {
           return { text: data };
         },
         isArray: false

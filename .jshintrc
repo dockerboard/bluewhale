@@ -3,7 +3,7 @@
   "boss": true,
   "browser": true,
   "camelcase": true,
-  "curly": true,
+  "curly": false,
   "eqeqeq": true,
   "eqnull": true,
   "expr": true,
@@ -11,7 +11,7 @@
   "globalstrict": true,
   "immed": true,
   "indent": 2,
-  "latedef": "nofunc",
+  "latedef": true,
   "laxbreak": false,
   "loopfunc": true,
   "newcap": true,
@@ -25,5 +25,6 @@
   "sub": true,
   "trailing": true,
   "undef": true,
-  "unused": true
+  "unused": true,
+  "maxlen": 80
 }
