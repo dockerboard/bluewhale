@@ -3,7 +3,8 @@
 
 The [Dockerboard][] Web Client.
 
-  [![NPM version][npm-image]][npm-url]
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
 
 [![badge](http://dockeri.co/image/dockerboard/bluewhale)](https://registry.hub.docker.com/u/dockerboard/bluewhale/)
 
@@ -76,3 +77,5 @@ gulp publish
 
 [npm-image]: https://img.shields.io/npm/v/bluewhale.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/bluewhale
+[travis-image]: https://img.shields.io/travis/dockerboard/bluewhale/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/dockerboard/bluewhale
