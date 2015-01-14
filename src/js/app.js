@@ -16,10 +16,10 @@ angular.module(dockerboardApp.name, dockerboardApp.dependencies)
 
       // langs
       $translateProvider.useStaticFilesLoader({
-        prefix: 'data/locale-',
+        prefix: 'l10n/',
         suffix: '.json'
       });
-      $translateProvider.preferredLanguage('en');
+      $translateProvider.preferredLanguage('en_US');
       $translateProvider.useLocalStorage();
     }
   ]);
