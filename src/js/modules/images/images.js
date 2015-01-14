@@ -325,7 +325,6 @@ function ImageCreateController($scope, $mdDialog, imageObject, Images) {
       $scope.queryParams,
       null,
       function (data) {
-        console.dir(data);
         $mdDialog.hide();
       },
       function (e) {

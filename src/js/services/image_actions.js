@@ -39,7 +39,6 @@ angular.module('dockerboard.services')
         }
       }
     });
-    console.dir(res);
     return res;
   }]);
 })();
