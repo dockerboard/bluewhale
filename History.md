@@ -1,4 +1,11 @@
 
+0.6.3 / 2015-01-19
+==================
+
+  * upgrade angular@1.4
+  * upgrade node-modules
+  * list processes running inside container
+
 0.6.2 / 2015-01-13
 ==================
 
