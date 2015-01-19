@@ -1,0 +1,27 @@
+div(layout="column" layout-fill class="images" ng-controller="ContainerTopCtrl" flex)
+  md-toolbar(layout="column" md-theme="none" flex style="max-height: 64px;")
+    md-list(layout="row" md-theme="default" role="list")
+      md-item(flex=20 layout-align="center center" layout="column")
+        md-item-content
+          md-tooltip List processes
+          md-text-float(label="PS_args" ng-model="queryParams.ps_args")
+      md-item(style="position: absolute; right: 0;")
+        md-item-content
+          md-tooltip Search
+          md-button(aria-label="Search" ng-click="search()")
+            div.icon.svg-ic_search_24px
+
+  md-content(style="margin-top: 16px;")
+    div(layout="row" layout-sm="column")
+      md-list(role="list" layout="row" layout-align="space-around" flex)
+        md-item(ng-repeat="title in Titles" role="listitem" flex)
+          md-item-content
+            span {{ title }}
+    div(ng-if="Processes.length")
+      md-list(role="list" layout="row" layout-align="space-around" flex)
+        md-item(ng-repeat="process in Processes" role="listitem" flex)
+          md-list(style="padding: 0;" role="list" layout="row" layout-align="space-around" flex)
+            md-item(ng-repeat="item in process" role="listitem" flex)
+              md-item-content
+                span {{ item }}
+
