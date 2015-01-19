@@ -41,7 +41,7 @@ var sass = plugins.sass;
 var uglify = plugins.uglify;
 var watch = plugins.watch;
 var imagemin = plugins.imagemin;
-var usemin = plugins.usemin;
+var useref = plugins.useref;
 var rev = plugins.rev;
 
 
@@ -54,13 +54,20 @@ gulp.task('default', ['clean'], function() {
 gulp.task('build', ['build:scss', 'build:js', 'build:jade']);
 
 gulp.task('publish:html', function() {
+  var assets = useref.assets();
   return gulp.src('dist/**/*.html')
+    /*
     .pipe(usemin({
       css: [csso(), rev()],
       js: [uglify({
           preserveComments: 'some'
       }), rev()]
     }))
+   */
+    .pipe(assets)
+    .pipe(gif('*.js', uglify({ preserveComments: 'some' }), rev()))
+    .pipe(gif('*.css', csso(), rev()))
+    .pipe(assets.restore())
     .pipe(gulp.dest('tmp/'));
 });
 
