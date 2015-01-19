@@ -13,11 +13,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.3.x",
-    "angular-animate": "1.3.x",
-    "angular-aria": "1.3.x",
+    "angular": "1.4.x",
+    "angular-animate": "1.4.x",
+    "angular-aria": "1.4.x",
     "hammerjs": "2.0.x",
-    "angular-resource": "1.3.x",
+    "angular-resource": "1.4.x",
     "angular-ui-router": "0.2.x",
     "d3": "3.5.x",
     "lodash": "2.4.x",
@@ -26,11 +26,11 @@
     "material-design-icons": "1.0.x",
     "angular-pretty-bytes": "1.0.x",
     "angular-loading-bar": "0.6.x",
-    "angular-moment": "0.8.x",
+    "angular-moment": "0.9.x",
     "angular-translate": "2.5.x",
     "angular-translate-storage-local": "2.5.x",
-    "angular-translate-loader-static-files": "~2.5.2",
-    "angular-translate-storage-cookie": "~2.5.2",
-    "angular-cookies": "1.3.8"
+    "angular-translate-loader-static-files": "2.5.x",
+    "angular-translate-storage-cookie": "2.5.x",
+    "angular-cookies": "1.4.x"
   }
 }
