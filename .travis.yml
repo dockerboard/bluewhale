@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "0.10"
-script: 
+before_script:
   - "npm i npm@latest -g"
+script: 
   - "npm run prepublish"
