@@ -1,0 +1,41 @@
+
+<div layout="column" layout-fill="layout-fill" ng-controller="ContainerTopCtrl" flex="flex" class="images">
+  <md-toolbar layout="column" md-theme="none" flex="flex" style="max-height: 64px;">
+    <md-list layout="row" md-theme="default" role="list">
+      <md-item flex="20" layout-align="center center" layout="column">
+        <md-item-content>
+          <md-tooltip>List processes</md-tooltip>
+          <md-text-float label="PS_args" ng-model="queryParams.ps_args"></md-text-float>
+        </md-item-content>
+      </md-item>
+      <md-item style="position: absolute; right: 0;">
+        <md-item-content>
+          <md-tooltip>Search</md-tooltip>
+          <md-button aria-label="Search" ng-click="search()">
+            <div class="icon svg-ic_search_24px"></div>
+          </md-button>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-toolbar>
+  <md-content style="margin-top: 16px;">
+    <div layout="row" layout-sm="column">
+      <md-list role="list" layout="row" layout-align="space-around" flex="flex">
+        <md-item ng-repeat="title in Titles" role="listitem" flex="flex">
+          <md-item-content><span>{{ title }}</span></md-item-content>
+        </md-item>
+      </md-list>
+    </div>
+    <div ng-if="Processes.length">
+      <md-list role="list" layout="row" layout-align="space-around" flex="flex">
+        <md-item ng-repeat="process in Processes" role="listitem" flex="flex">
+          <md-list style="padding: 0;" role="list" layout="row" layout-align="space-around" flex="flex">
+            <md-item ng-repeat="item in process" role="listitem" flex="flex">
+              <md-item-content><span>{{ item }}</span></md-item-content>
+            </md-item>
+          </md-list>
+        </md-item>
+      </md-list>
+    </div>
+  </md-content>
+</div>

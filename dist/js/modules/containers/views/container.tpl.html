@@ -35,6 +35,13 @@
       </md-item>
       <md-item layout-align="center center" layout="column">
         <md-item-content>
+          <md-button aria-label="Top">
+            <md-tooltip>List processes</md-tooltip><a ng-href="#/containers/{{containerShortId}}/top" class="icon">Top</a>
+          </md-button>
+        </md-item-content>
+      </md-item>
+      <md-item layout-align="center center" layout="column">
+        <md-item-content>
           <md-button ng-disabled="!container.State.Running" aria-label="kill" ng-click="kill($event)" class="md-warn md-hue-1">Kill
             <md-tooltip>Kill Container</md-tooltip>
           </md-button>
