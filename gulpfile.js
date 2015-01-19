@@ -43,6 +43,7 @@ var watch = plugins.watch;
 var imagemin = plugins.imagemin;
 var useref = plugins.useref;
 var rev = plugins.rev;
+var revReplace = plugins.revReplace;
 
 
 /** Tasks **/
@@ -56,18 +57,12 @@ gulp.task('build', ['build:scss', 'build:js', 'build:jade']);
 gulp.task('publish:html', function() {
   var assets = useref.assets();
   return gulp.src('dist/**/*.html')
-    /*
-    .pipe(usemin({
-      css: [csso(), rev()],
-      js: [uglify({
-          preserveComments: 'some'
-      }), rev()]
-    }))
-   */
     .pipe(assets)
     .pipe(gif('*.js', uglify({ preserveComments: 'some' }), rev()))
     .pipe(gif('*.css', csso(), rev()))
     .pipe(assets.restore())
+    .pipe(useref())
+    .pipe(revReplace())
     .pipe(gulp.dest('tmp/'));
 });
 
