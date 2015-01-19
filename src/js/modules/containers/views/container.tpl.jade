@@ -23,6 +23,11 @@ div(layout="column" layout-fill class="images" ng-controller="ContainerCtrl" fle
             a.icon.svg-ic_history_24px(ng-href="#/containers/{{containerShortId}}/logs" layout)
       md-item(layout-align="center center" layout="column")
         md-item-content
+          md-button(aria-label="Top")
+            md-tooltip List processes
+            a.icon(ng-href="#/containers/{{containerShortId}}/top") Top
+      md-item(layout-align="center center" layout="column")
+        md-item-content
           md-button(class="md-warn md-hue-1" ng-disabled="!container.State.Running" aria-label="kill" ng-click="kill($event)") Kill
             md-tooltip Kill Container
 

@@ -7,6 +7,7 @@ angular.module('containers.ctrl')
   .controller('ContainersCtrl', ContainersController)
   .controller('ContainerCtrl', ContainerController)
   .controller('ContainerLogsCtrl', ContainerLogsController)
+  .controller('ContainerTopCtrl', ContainerTopController)
   .config(['$stateProvider',
     function ($stateProvider) {
       $stateProvider.
@@ -21,6 +22,10 @@ angular.module('containers.ctrl')
         .state('containerLogs', {
           url: '/containers/{Id}/logs',
           templateUrl: '/js/modules/containers/views/container.logs.tpl.html'
+        })
+        .state('containerTop', {
+          url: '/containers/{Id}/top',
+          templateUrl: '/js/modules/containers/views/container.top.tpl.html'
         });
     }
   ]);
@@ -332,6 +337,39 @@ function KillDialogController($scope, $mdDialog, parentScope, ContainerActions) 
       $scope.content = e.data;
     });
   };
+}
+
+ContainerTopController.$inject = ['$scope', '$stateParams', 'ContainerActions'];
+function ContainerTopController($scope, $stateParams, ContainerActions) {
+  $scope.containerShortId = $stateParams.Id;
+  $scope.action = 'top';
+
+  $scope.queryParams = {
+    ps_args: ''
+  };
+
+  $scope.fetch = function () {
+    ContainerActions.get(
+      {
+        Id: $scope.containerShortId,
+        action: $scope.action,
+        ps_args: $scope.queryParams.ps_args
+      },
+      function (data) {
+        $scope.Titles = data.Titles;
+        $scope.Processes = data.Processes;
+      },
+      function (data) {
+      }
+    );
+  };
+
+  $scope.fetch();
+
+  $scope.search = function () {
+    $scope.fetch();
+  };
+
 }
 
 })();
