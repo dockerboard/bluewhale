@@ -6,7 +6,8 @@ angular.module(dockerboardApp.name, dockerboardApp.dependencies)
     '$locationProvider',
     '$urlRouterProvider',
     '$translateProvider',
-    function($locationProvider, $urlRouterProvider, $translateProvider) {
+    '$mdThemingProvider',
+    function($locationProvider, $urlRouterProvider, $translateProvider, $mdThemingProvider) {
 
       // Redirect to home view when route not found
       $urlRouterProvider.otherwise('/');
@@ -21,6 +22,9 @@ angular.module(dockerboardApp.name, dockerboardApp.dependencies)
       });
       $translateProvider.preferredLanguage('en_US');
       $translateProvider.useLocalStorage();
+
+      $mdThemingProvider.theme('default')
+        .primaryPalette('blue');
     }
   ]);
 })(angular);

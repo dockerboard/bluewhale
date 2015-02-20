@@ -22,15 +22,15 @@
     "d3": "3.5.x",
     "lodash": "3.x.x",
     "metrics-graphics": "2.x.x",
-    "angular-material": "0.7.x",
+    "angular-material": "0.8.x",
     "material-design-icons": "1.0.x",
     "angular-pretty-bytes": "1.0.x",
     "angular-loading-bar": "0.6.x",
     "angular-moment": "0.9.x",
-    "angular-translate": "2.5.x",
-    "angular-translate-storage-local": "2.5.x",
-    "angular-translate-loader-static-files": "2.5.x",
-    "angular-translate-storage-cookie": "2.5.x",
+    "angular-translate": "2.6.x",
+    "angular-translate-storage-local": "2.6.x",
+    "angular-translate-loader-static-files": "2.6.x",
+    "angular-translate-storage-cookie": "2.6.x",
     "angular-cookies": "1.4.x"
   }
 }
