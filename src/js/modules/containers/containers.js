@@ -84,8 +84,8 @@ function ContainersController($scope, Containers, Hosts) {
   }
 }
 
-ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'Containers', 'Hosts'];
-function ContainerController($scope, $stateParams, $location, $mdDialog, limitToFilter, amTimeAgoFilter, Containers, Hosts) {
+ContainerController.$inject = ['$scope', '$stateParams', '$location', '$mdDialog', 'limitToFilter', 'amTimeAgoFilter', 'Containers', 'Hosts', 'ContainerActions'];
+function ContainerController($scope, $stateParams, $location, $mdDialog, limitToFilter, amTimeAgoFilter, Containers, Hosts, ContainerActions) {
   Containers.get({Id: $stateParams.Id, host: Hosts.getCurrentHostUrl()}, function (data) {
     formatBasicAttributes(data);
     $scope.container = data;

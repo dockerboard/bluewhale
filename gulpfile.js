@@ -121,6 +121,8 @@ gulp.task('images', function() {
 
 var proxyOptions = url.parse('http://localhost:8001/api');
 proxyOptions.route = '/api';
+var webSocketOptions = url.parse('http://localhost:8001/ws');
+webSocketOptions.route = '/ws';
 gulp.task('browser-sync', function() {
   browserSync({
     server: {
@@ -130,7 +132,7 @@ gulp.task('browser-sync', function() {
       routes: {
         '/bower_components': 'bower_components'
       },
-      middleware: [proxyMiddleware(proxyOptions)]
+      middleware: [proxyMiddleware(webSocketOptions), proxyMiddleware(proxyOptions)]
     }
   });
 });

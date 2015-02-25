@@ -6,8 +6,8 @@ dockerboardApp.registerModule('sidenav.component');
 angular.module('sidenav.component')
   .controller('SidenavCtrl', SidenavController);
 
-SidenavController.$inject = ['$scope', '$location', '$mdSidenav', '$timeout', '$rootScope', 'Menu', 'Hosts'];
-function SidenavController($scope, $location, $mdSidenav, $timeout, $rootScope, Menu, Hosts) {
+SidenavController.$inject = ['$scope', '$location', '$mdSidenav', '$timeout', '$rootScope', 'Menu', 'Hosts', 'iSockPromise'];
+function SidenavController($scope, $location, $mdSidenav, $timeout, $rootScope, Menu, Hosts, iSockPromise) {
   $scope.menu = Menu;
 
   var mainContentArea = document.querySelector('[role="main"]');
@@ -42,5 +42,10 @@ function SidenavController($scope, $location, $mdSidenav, $timeout, $rootScope, 
     $scope.closeMenu();
     mainContentArea && mainContentArea.focus();
   }
+
+  iSockPromise.then(function(sock) {
+    console.dir(sock);
+    sock.send("hello");
+  });
 }
 })();

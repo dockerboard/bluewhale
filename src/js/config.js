@@ -11,7 +11,8 @@ app.dependencies = [
   'angular-loading-bar',
   'angularMoment',
   'ngCookies',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  'bd.sockjs'
 ];
 app.registerModule = registerModule;
 
