@@ -5,7 +5,10 @@
       <md-item flex="25" layout-align="center center" layout="column">
         <md-item-content layout-align="center center">
           <md-tooltip>Term to search</md-tooltip>
-          <md-text-float label="Term" ng-model="queryParamsTerm"></md-text-float>
+          <md-input-container>
+            <label>Term</label>
+            <input ng-model="queryParamsTerm"/>
+          </md-input-container>
         </md-item-content>
       </md-item>
       <md-item style="position: absolute; right: 0;">

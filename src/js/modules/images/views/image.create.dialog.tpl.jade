@@ -6,15 +6,25 @@ md-dialog.container-dialog(aria-label="Create an image")
   md-content
     md-list
       md-item
-        md-text-float(label="From Image, name" ng-model="queryParams.fromImage")
+        md-input-container
+          label From Image, name
+          input(ng-model="queryParams.fromImage")
       md-item
-        md-text-float(label="From Src" ng-model="queryParams.fromSrc")
+        md-input-container
+          label From src
+          input(ng-model="queryParams.fromSrc")
       md-item
-        md-text-float(label="Repository" ng-model="queryParams.repo")
+        md-input-container
+          label Repository
+          input(ng-model="queryParams.repo")
       md-item
-        md-text-float(label="Tag" ng-model="queryParams.tag")
+        md-input-container
+          label Tag
+          input(ng-model="queryParams.tag")
       md-item
-        md-text-float(label="Registry" ng-model="queryParams.registry")
+        md-input-container
+          label Registry
+          input(ng-model="queryParams.registry")
       md-item
         p {{ content }}
 

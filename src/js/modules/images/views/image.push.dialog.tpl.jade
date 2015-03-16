@@ -6,15 +6,25 @@ md-dialog.container-dialog(aria-label="Push image")
   md-content
     md-list
       md-item
-        md-text-float(label="Repository, Image name" ng-model="repository")
+        md-input-container
+          label Repository, Image name
+          input(ng-model="repository")
       md-item
-        md-text-float(label="Tag" ng-model="queryParams.tag")
+        md-input-container
+          label Tag
+          input(ng-model="tag")
       md-item
-        md-text-float(label="Username" ng-model="username")
+        md-input-container
+          label Username
+          input(ng-model="username")
       md-item
-        md-text-float(label="Email" type="email" ng-model="email")
+        md-input-container
+          label Email
+          input(type="email" ng-model="email")
       md-item
-        md-text-float(label="Password" type="password" ng-model="password")
+        md-input-container
+          label Password
+          input(type="password" ng-model="password")
       md-item
         p {{ content }}
 

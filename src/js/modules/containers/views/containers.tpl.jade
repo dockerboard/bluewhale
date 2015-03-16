@@ -12,19 +12,27 @@ div(layout="column" layout-fill class="images" ng-controller="ContainersCtrl" fl
       md-item(flex=15 layout-align="center center" layout="column")
         md-item-content
           md-tooltip Since
-          md-text-float(label="Since" ng-model="queryParams.since")
+          md-input-container
+            label Since
+            input(ng-model="queryParams.since")
       md-item(flex=15 layout-align="center center" layout="column")
         md-item-content
           md-tooltip Before
-          md-text-float(label="Before" ng-model="queryParams.before")
+          md-input-container
+            label Before
+            input(ng-model="queryParams.before")
       md-item(flex=15 layout-align="center center" layout="column")
         md-item-content
           md-tooltip Limit
-          md-text-float(label="Limit" ng-model="queryParams.limit")
+          md-input-container
+            label Limit
+            input(ng-model="queryParams.limit")
       md-item(flex=15 layout-align="center center" layout="column")
         md-item-content
           md-tooltip Filters
-          md-text-float(label="Filters" ng-model="queryParamsFilters")
+          md-input-container
+            label Filters
+            input(ng-model="queryParamsFilters")
       md-item(style="position: absolute; right: 0;")
         md-item-content
           md-tooltip Search

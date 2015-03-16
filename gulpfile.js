@@ -1,6 +1,8 @@
 'use strict';
 
 var browserSync = require('browser-sync');
+// Save a reference to the `reload` method
+var reload = browserSync.reload;
 var del = require('del');
 var glob = require('glob');
 var gulp = require('gulp');
@@ -58,7 +60,9 @@ gulp.task('publish:html', function() {
   var assets = useref.assets();
   return gulp.src('dist/**/*.html')
     .pipe(assets)
-    .pipe(gif('*.js', uglify({ preserveComments: 'some' }), rev()))
+    .pipe(gif('*.js', uglify({
+      preserveComments: 'some'
+    }), rev()))
     .pipe(gif('*.css', csso(), rev()))
     .pipe(assets.restore())
     .pipe(useref())
@@ -87,7 +91,7 @@ gulp.task('clean:tmp', function(cb) {
   del(['tmp'], cb);
 });
 
-gulp.task('nw-files', function () {
+gulp.task('nw-files', function() {
   return gulp.src(['src/package.json', 'src/koa.js'])
     .pipe(gulp.dest('dist/'));
 });
@@ -126,16 +130,32 @@ webSocketOptions.route = '/ws';
 gulp.task('browser-sync', function() {
   browserSync({
     server: {
-      notify: false,
-      logPrefix: 'BW',
+      notify: true,
       baseDir: './dist',
       routes: {
         '/bower_components': 'bower_components'
       },
-      middleware: [proxyMiddleware(webSocketOptions), proxyMiddleware(proxyOptions)]
+      middleware: [
+        proxyMiddleware(proxyOptions),
+        proxyMiddleware(webSocketOptions)
+      ]
     }
   });
 });
+
+gulp.task('watch:gulpfile', function(a) {
+  return gulp.src('gulpfile.js')
+    .pipe(watch('gulpfile.js', {
+      emit: 'all',
+      verbose: true
+    }))
+    .pipe(debug())
+    .pipe(plumber())
+    .pipe(reload({
+      stream: true
+    }));
+});
+
 
 /*** Scss Tasks ***/
 
@@ -145,7 +165,7 @@ gulp.task('build:scss', function() {
 
 gulp.task('watch:scss', function(a) {
   return buildScss(true)
-    .pipe(browserSync.reload({
+    .pipe(reload({
       stream: true
     }));
 });
@@ -162,7 +182,7 @@ gulp.task('jshint', function() {
         codeCol: 'green,bold',
         reasonCol: 'cyan'
       }
-      ))
+    ))
     .pipe(jshint.reporter('fail'));
 });
 
@@ -177,7 +197,7 @@ gulp.task('build:js', function() {
 
 gulp.task('watch:js', function() {
   return buildJS(true)
-    .pipe(browserSync.reload({
+    .pipe(reload({
       stream: true
     }));
 });
@@ -189,7 +209,7 @@ gulp.task('build:jade', function() {
 
 gulp.task('watch:jade', function(a) {
   return buildJade(true)
-    .pipe(browserSync.reload({
+    .pipe(reload({
       stream: true
     }));
 });
@@ -203,7 +223,9 @@ function buildJS(isWatching) {
 
   if (isWatching) {
     task = task
-      .pipe(watch(dir))
+      .pipe(watch(dir, {
+        verbose: true
+      }))
       .pipe(debug())
       .pipe(plumber());
   }
@@ -223,7 +245,9 @@ function buildScss(isWatching) {
   var task = gulp.src(dir);
   if (isWatching) {
     task = task
-      .pipe(watch(dir))
+      .pipe(watch(dir, {
+        verbose: true
+      }))
       .pipe(debug())
   }
 
@@ -247,7 +271,10 @@ function buildJade(isWatching) {
 
   if (isWatching) {
     task = task
-      .pipe(watch(dir, { emit: 'all' }))
+      .pipe(watch(dir, {
+        emit: 'all',
+        verbose: true
+      }))
       .pipe(debug())
       .pipe(plumber());
   }

@@ -7,9 +7,13 @@ md-dialog.container-dialog(aria-label="Add Tag")
   md-content
     md-list
       md-item
-        md-text-float(label="Repo" ng-model="queryParams.repo" flex)
+        md-input-container(flex)
+          label Repo
+          input(ng-model="queryParams.repo")
       md-item
-        md-text-float(label="Tag" ng-model="queryParams.tag" flex)
+        md-input-container(flex)
+          label Tag
+          input(ng-model="queryParams.tag")
       md-item
         div Force:
         md-checkbox(ng-model="queryParams.force" aria-label="Force")

@@ -6,7 +6,10 @@
   <md-content>
     <md-list>
       <md-item>
-        <md-text-float label="Signal" ng-model="params.signal" flex="flex"></md-text-float>
+        <md-input-container flex="flex">
+          <label>Signal</label>
+          <input ng-model="params.signal"/>
+        </md-input-container>
         <div style="font-size: 0.5em;">Signal to send to the container: integer or string like "SIGINT".</div>
         <div style="font-size: 0.5em;">When not set, SIGKILL is assumed and the call will waits for the container to exit.</div>
       </md-item>

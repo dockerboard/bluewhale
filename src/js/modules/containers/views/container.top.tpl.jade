@@ -4,7 +4,9 @@ div(layout="column" layout-fill class="images" ng-controller="ContainerTopCtrl" 
       md-item(flex=20 layout-align="center center" layout="column")
         md-item-content
           md-tooltip List processes
-          md-text-float(label="PS_args" ng-model="queryParams.ps_args")
+          md-input-container
+            label PS_args
+            input(ng-model="queryParams.ps_args")
       md-item(style="position: absolute; right: 0;")
         md-item-content
           md-tooltip Search

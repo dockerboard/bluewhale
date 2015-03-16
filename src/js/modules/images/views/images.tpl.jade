@@ -5,10 +5,12 @@ div(layout="column" layout-fill class="images" ng-controller="ImagesCtrl" flex)
         md-item-content(layout-align="center center")
           md-tooltip All
           md-switch(ng-model="queryParams.all" aria-label="All")
-      md-item(flex=10 layout-align="center center" layout="column")
+      md-item(flex=15 layout-align="center center" layout="column")
         md-item-content(layout-align="center center")
           md-tooltip Filters
-          md-text-float(label="Filters" ng-model="queryParamsFilters")
+          md-input-container(flex)
+            label Filters
+            input(ng-model="queryParamsFilters")
       md-item
         md-item-content
           md-button(aria-label="Push Image" ng-click="push($event)")

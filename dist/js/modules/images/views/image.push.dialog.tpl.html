@@ -6,19 +6,34 @@
   <md-content>
     <md-list>
       <md-item>
-        <md-text-float label="Repository, Image name" ng-model="repository"></md-text-float>
+        <md-input-container>
+          <label>Repository, Image name</label>
+          <input ng-model="repository"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="Tag" ng-model="queryParams.tag"></md-text-float>
+        <md-input-container>
+          <label>Tag</label>
+          <input ng-model="tag"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="Username" ng-model="username"></md-text-float>
+        <md-input-container>
+          <label>Username</label>
+          <input ng-model="username"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="Email" type="email" ng-model="email"></md-text-float>
+        <md-input-container>
+          <label>Email</label>
+          <input type="email" ng-model="email"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="Password" type="password" ng-model="password"></md-text-float>
+        <md-input-container>
+          <label>Password</label>
+          <input type="password" ng-model="password"/>
+        </md-input-container>
       </md-item>
       <md-item>
         <p>{{ content }}</p>

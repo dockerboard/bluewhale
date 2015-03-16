@@ -6,9 +6,13 @@ md-dialog.host-dialog(aria-label="Add Host")
   md-content
     md-list
       md-item
-        md-text-float(label="Name" ng-model="name" flex)
+        md-input-container(flex)
+          label Name
+          input(ng-model="name")
       md-item
-        md-text-float.long(label="Host" ng-model="host" flex)
+        md-input-container(flex)
+          label Host
+          input(ng-model="host")
       md-item
         p {{ content }}
 

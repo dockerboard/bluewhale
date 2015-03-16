@@ -4,7 +4,9 @@ md-dialog.container-dialog(aria-label="Kill Container")
   md-content
     md-list
       md-item
-        md-text-float(label="Signal" ng-model="params.signal" flex)
+        md-input-container(flex)
+          label Signal
+          input(ng-model="params.signal")
         div(style="font-size: 0.5em;") Signal to send to the container: integer or string like "SIGINT".
         div(style="font-size: 0.5em;") When not set, SIGKILL is assumed and the call will waits for the container to exit.
       md-item

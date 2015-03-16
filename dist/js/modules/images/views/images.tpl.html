@@ -8,10 +8,13 @@
           <md-switch ng-model="queryParams.all" aria-label="All"></md-switch>
         </md-item-content>
       </md-item>
-      <md-item flex="10" layout-align="center center" layout="column">
+      <md-item flex="15" layout-align="center center" layout="column">
         <md-item-content layout-align="center center">
           <md-tooltip>Filters</md-tooltip>
-          <md-text-float label="Filters" ng-model="queryParamsFilters"></md-text-float>
+          <md-input-container flex="flex">
+            <label>Filters</label>
+            <input ng-model="queryParamsFilters"/>
+          </md-input-container>
         </md-item-content>
       </md-item>
       <md-item>

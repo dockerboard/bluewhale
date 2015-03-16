@@ -6,19 +6,34 @@
   <md-content>
     <md-list>
       <md-item>
-        <md-text-float label="From Image, name" ng-model="queryParams.fromImage"></md-text-float>
+        <md-input-container>
+          <label>From Image, name</label>
+          <input ng-model="queryParams.fromImage"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="From Src" ng-model="queryParams.fromSrc"></md-text-float>
+        <md-input-container>
+          <label>From src</label>
+          <input ng-model="queryParams.fromSrc"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="Repository" ng-model="queryParams.repo"></md-text-float>
+        <md-input-container>
+          <label>Repository</label>
+          <input ng-model="queryParams.repo"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="Tag" ng-model="queryParams.tag"></md-text-float>
+        <md-input-container>
+          <label>Tag</label>
+          <input ng-model="queryParams.tag"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="Registry" ng-model="queryParams.registry"></md-text-float>
+        <md-input-container>
+          <label>Registry</label>
+          <input ng-model="queryParams.registry"/>
+        </md-input-container>
       </md-item>
       <md-item>
         <p>{{ content }}</p>

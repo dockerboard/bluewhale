@@ -6,10 +6,16 @@
   <md-content>
     <md-list>
       <md-item>
-        <md-text-float label="Name" ng-model="name" flex="flex"></md-text-float>
+        <md-input-container flex="flex">
+          <label>Name</label>
+          <input ng-model="name"/>
+        </md-input-container>
       </md-item>
       <md-item>
-        <md-text-float label="Host" ng-model="host" flex="flex" class="long"></md-text-float>
+        <md-input-container flex="flex">
+          <label>Host</label>
+          <input ng-model="host"/>
+        </md-input-container>
       </md-item>
       <md-item>
         <p>{{ content }}</p>

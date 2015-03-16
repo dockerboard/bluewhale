@@ -4,7 +4,9 @@ div(layout="column" layout-fill class="images" ng-controller="HubCtrl" flex)
       md-item(flex=25 layout-align="center center" layout="column")
         md-item-content(layout-align="center center")
           md-tooltip Term to search
-          md-text-float(label="Term" ng-model="queryParamsTerm")
+          md-input-container
+            label Term
+            input(ng-model="queryParamsTerm")
       md-item(style="position: absolute; right: 0;")
         md-item-content
           md-tooltip Search

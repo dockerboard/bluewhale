@@ -32,6 +32,6 @@
     "angular-translate-loader-static-files": "2.6.x",
     "angular-translate-storage-cookie": "2.6.x",
     "angular-cookies": "1.4.x",
-    "sockjs-client": "~0.3.4"
+    "sockjs-client": "1.x.x"
   }
 }
